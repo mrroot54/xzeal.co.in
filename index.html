@@ -461,6 +461,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            aspect-ratio: 1 / 1; /* Ensures square aspect ratio */
+            max-width: 90vw; /* Responsive width */
+            max-height: 90vw; /* Responsive height to maintain square */
         }
         
         /* Central Circle - Updated with Logo */
@@ -476,6 +479,7 @@
             align-items: center;
             overflow: hidden;
             z-index: 10;
+            aspect-ratio: 1 / 1; /* Ensures square aspect ratio */
         }
         
         .central-circle img {
@@ -494,6 +498,9 @@
             top: 50%;
             transform: translate(-50%, -50%);
             transform-origin: center center;
+            aspect-ratio: 1 / 1; /* Ensures square aspect ratio */
+            min-width: 0; /* Prevents flexbox from shrinking */
+            min-height: 0; /* Prevents flexbox from shrinking */
         }
         
         .orbit-1 {
@@ -528,6 +535,7 @@
             font-size: 20px;
             left: 50%;
             transform-origin: center center;
+            aspect-ratio: 1 / 1; /* Ensures square aspect ratio */
         }
         
         /* Corrected positioning for orbit items */
@@ -1280,22 +1288,35 @@
                     ease: "power2.out"
                 });
                 
-                // Enhanced central circle effect
+                // Enhanced central circle effect - maintaining square aspect ratio
                 gsap.to(".central-circle", {
                     x: (x - 0.5) * 15,
                     y: (y - 0.5) * 15,
                     scale: 1 + (Math.abs(x - 0.5) + Math.abs(y - 0.5)) * 0.1,
                     duration: 1.5,
-                    ease: "power2.out"
+                    ease: "power2.out",
+                    onUpdate: function() {
+                        // Ensure the central circle maintains its square aspect ratio
+                        const circle = document.querySelector('.central-circle');
+                        const currentScale = gsap.getProperty(circle, "scale");
+                        circle.style.width = `${200 * currentScale}px`;
+                        circle.style.height = `${200 * currentScale}px`;
+                    }
                 });
                 
-                // Enhanced orbit effect
+                // Enhanced orbit effect - maintaining square aspect ratio
                 gsap.to(".orbit-1", {
                     x: (x - 0.5) * 10,
                     y: (y - 0.5) * 10,
                     rotation: "+=2",
                     duration: 1.5,
-                    ease: "power2.out"
+                    ease: "power2.out",
+                    onUpdate: function() {
+                        // Ensure orbit-1 maintains its square aspect ratio
+                        const orbit = document.querySelector('.orbit-1');
+                        const currentWidth = gsap.getProperty(orbit, "width");
+                        orbit.style.height = `${currentWidth}px`;
+                    }
                 });
                 
                 gsap.to(".orbit-2", {
@@ -1303,7 +1324,13 @@
                     y: (y - 0.5) * 8,
                     rotation: "-=1",
                     duration: 1.5,
-                    ease: "power2.out"
+                    ease: "power2.out",
+                    onUpdate: function() {
+                        // Ensure orbit-2 maintains its square aspect ratio
+                        const orbit = document.querySelector('.orbit-2');
+                        const currentWidth = gsap.getProperty(orbit, "width");
+                        orbit.style.height = `${currentWidth}px`;
+                    }
                 });
                 
                 gsap.to(".orbit-3", {
@@ -1311,7 +1338,13 @@
                     y: (y - 0.5) * 5,
                     rotation: "+=0.5",
                     duration: 1.5,
-                    ease: "power2.out"
+                    ease: "power2.out",
+                    onUpdate: function() {
+                        // Ensure orbit-3 maintains its square aspect ratio
+                        const orbit = document.querySelector('.orbit-3');
+                        const currentWidth = gsap.getProperty(orbit, "width");
+                        orbit.style.height = `${currentWidth}px`;
+                    }
                 });
                 
                 // Enhanced content parallax
@@ -1323,6 +1356,74 @@
                 });
             });
         }
+        
+        // Function to maintain square aspect ratio of orbit containers
+        function maintainSquareAspectRatio() {
+            const modernVisual = document.querySelector('.modern-visual');
+            const centralCircle = document.querySelector('.central-circle');
+            const orbits = document.querySelectorAll('.orbit');
+            
+            // Get the current width of the modern-visual container
+            const width = modernVisual.offsetWidth;
+            
+            // Set the height to match the width to maintain square aspect ratio
+            modernVisual.style.height = `${width}px`;
+            
+            // Adjust central circle size proportionally
+            const circleSize = width * 0.4; // 40% of the container width
+            centralCircle.style.width = `${circleSize}px`;
+            centralCircle.style.height = `${circleSize}px`;
+            
+            // Adjust orbit sizes proportionally
+            orbits.forEach((orbit, index) => {
+                const orbitSize = width * (0.6 + index * 0.2); // 60%, 80%, 100% of container width
+                orbit.style.width = `${orbitSize}px`;
+                orbit.style.height = `${orbitSize}px`;
+                
+                // Adjust orbit item sizes proportionally
+                const orbitItems = orbit.querySelectorAll('.orbit-item');
+                const itemSize = orbitSize * 0.1; // 10% of orbit width
+                orbitItems.forEach(item => {
+                    item.style.width = `${itemSize}px`;
+                    item.style.height = `${itemSize}px`;
+                    
+                    // Adjust positioning of orbit items
+                    if (item.classList.contains('orbit-item-1') || item.classList.contains('orbit-item-2')) {
+                        item.style.top = item.classList.contains('orbit-item-1') ? `-${itemSize/2}px` : `auto`;
+                        item.style.bottom = item.classList.contains('orbit-item-2') ? `-${itemSize/2}px` : `auto`;
+                        item.style.left = '50%';
+                        item.style.right = 'auto';
+                        item.style.transform = 'translateX(-50%)';
+                    } else if (item.classList.contains('orbit-item-3') || item.classList.contains('orbit-item-4')) {
+                        item.style.top = '50%';
+                        item.style.bottom = 'auto';
+                        item.style.left = item.classList.contains('orbit-item-3') ? `-${itemSize/2}px` : 'auto';
+                        item.style.right = item.classList.contains('orbit-item-4') ? `-${itemSize/2}px` : 'auto';
+                        item.style.transform = 'translateY(-50%)';
+                    }
+                });
+            });
+        }
+        
+        // Call the function initially and on window resize
+        maintainSquareAspectRatio();
+        window.addEventListener('resize', maintainSquareAspectRatio);
+        
+        // Also call the function on scroll to ensure aspect ratio is maintained
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateOnScroll);
+                ticking = true;
+            }
+        }
+        
+        function updateOnScroll() {
+            maintainSquareAspectRatio();
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', requestTick);
         
         // Navbar scroll effect
         let lastScroll = 0;
