@@ -396,6 +396,13 @@
             border-radius: 4px;
         }
         
+        /* Animated "i" letter style */
+        .animated-i {
+            display: inline-block;
+            position: relative;
+            color: var(--primary-color);
+        }
+        
         .hero-description {
             font-size: 1.2rem;
             color: var(--text-secondary);
@@ -1071,7 +1078,7 @@
             <div class="hero-left">
                 <h1 class="hero-title">
                     <span class="title-line">We Build</span><br>
-                    <span class="title-line"><span class="highlight">Digital</span></span><br>
+                    <span class="title-line"><span class="highlight">Dig<span class="animated-i">i</span>tal</span></span><br>
                     <span class="title-line">Experiences</span>
                 </h1>
                 
@@ -1213,7 +1220,29 @@
             stagger: 0.2
           }, "-=0.5")
           .to(".hero-description", { opacity: 1, x: 0, duration: 0.8 }, "-=0.4")
-          .to(".hero-buttons", { opacity: 1, y: 0, duration: 0.8 }, "-=0.3");
+          .to(".hero-buttons", { opacity: 1, y: 0, duration: 0.8 }, "-=0.3")
+          // Start the "i" animation after the main title animation
+          .add(() => {
+            // Animate the "i" letter
+            gsap.to(".animated-i", {
+                y: -20,
+                duration: 0.6,
+                ease: "power2.out",
+                repeat: -1,
+                yoyo: true,
+                repeatDelay: 0.4, // 0.4s pause at the top and bottom
+                onRepeat: function() {
+                    // Add a small bounce effect
+                    gsap.to(".animated-i", {
+                        scaleY: 1.2,
+                        duration: 0.1,
+                        yoyo: true,
+                        repeat: 1,
+                        ease: "power2.inOut"
+                    });
+                }
+            });
+          }, "+=0.5");
         
         // Continuous animations
         // Floating elements
