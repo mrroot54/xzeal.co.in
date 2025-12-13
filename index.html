@@ -463,6 +463,7 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            z-index: 10;
         }
         
         .central-circle img {
@@ -472,11 +473,15 @@
             filter: brightness(0) invert(1);
         }
         
-        /* Orbiting Elements - Updated to Pure White */
+        /* Orbiting Elements - Fixed for Perfect Center Rotation */
         .orbit {
             position: absolute;
             border: 1px dashed rgba(255, 255, 255, 0.3);
             border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transform-origin: center center;
         }
         
         .orbit-1 {
@@ -509,38 +514,50 @@
             align-items: center;
             color: #ffffff;
             font-size: 20px;
+            left: 50%;
+            transform-origin: center center;
         }
         
-        .orbit-item-1 {
+        /* Corrected positioning for orbit items */
+        .orbit-1 .orbit-item-1 {
             top: -25px;
-            left: 50%;
             transform: translateX(-50%);
         }
         
-        .orbit-item-2 {
+        .orbit-1 .orbit-item-2 {
             bottom: -25px;
-            left: 50%;
             transform: translateX(-50%);
         }
         
-        .orbit-item-3 {
+        .orbit-2 .orbit-item-3 {
             top: 50%;
             left: -25px;
             transform: translateY(-50%);
         }
         
-        .orbit-item-4 {
+        .orbit-2 .orbit-item-4 {
             top: 50%;
             right: -25px;
+            left: auto;
             transform: translateY(-50%);
+        }
+        
+        .orbit-3 .orbit-item-1 {
+            top: -25px;
+            transform: translateX(-50%);
+        }
+        
+        .orbit-3 .orbit-item-2 {
+            bottom: -25px;
+            transform: translateX(-50%);
         }
         
         @keyframes rotate {
             from {
-                transform: rotate(0deg);
+                transform: translate(-50%, -50%) rotate(0deg);
             }
             to {
-                transform: rotate(360deg);
+                transform: translate(-50%, -50%) rotate(360deg);
             }
         }
         
@@ -581,20 +598,28 @@
                 font-size: 18px;
             }
             
-            .orbit-item-1 {
+            .orbit-1 .orbit-item-1 {
                 top: -22.5px;
             }
             
-            .orbit-item-2 {
+            .orbit-1 .orbit-item-2 {
                 bottom: -22.5px;
             }
             
-            .orbit-item-3 {
+            .orbit-2 .orbit-item-3 {
                 left: -22.5px;
             }
             
-            .orbit-item-4 {
+            .orbit-2 .orbit-item-4 {
                 right: -22.5px;
+            }
+            
+            .orbit-3 .orbit-item-1 {
+                top: -22.5px;
+            }
+            
+            .orbit-3 .orbit-item-2 {
+                bottom: -22.5px;
             }
         }
         
@@ -640,20 +665,28 @@
                 font-size: 16px;
             }
             
-            .orbit-item-1 {
+            .orbit-1 .orbit-item-1 {
                 top: -20px;
             }
             
-            .orbit-item-2 {
+            .orbit-1 .orbit-item-2 {
                 bottom: -20px;
             }
             
-            .orbit-item-3 {
+            .orbit-2 .orbit-item-3 {
                 left: -20px;
             }
             
-            .orbit-item-4 {
+            .orbit-2 .orbit-item-4 {
                 right: -20px;
+            }
+            
+            .orbit-3 .orbit-item-1 {
+                top: -20px;
+            }
+            
+            .orbit-3 .orbit-item-2 {
+                bottom: -20px;
             }
             
             .hero-buttons {
@@ -728,20 +761,28 @@
                 font-size: 14px;
             }
             
-            .orbit-item-1 {
+            .orbit-1 .orbit-item-1 {
                 top: -17.5px;
             }
             
-            .orbit-item-2 {
+            .orbit-1 .orbit-item-2 {
                 bottom: -17.5px;
             }
             
-            .orbit-item-3 {
+            .orbit-2 .orbit-item-3 {
                 left: -17.5px;
             }
             
-            .orbit-item-4 {
+            .orbit-2 .orbit-item-4 {
                 right: -17.5px;
+            }
+            
+            .orbit-3 .orbit-item-1 {
+                top: -17.5px;
+            }
+            
+            .orbit-3 .orbit-item-2 {
+                bottom: -17.5px;
             }
             
             /* Lighter Design for Mobile */
@@ -834,20 +875,28 @@
                 font-size: 12px;
             }
             
-            .orbit-item-1 {
+            .orbit-1 .orbit-item-1 {
                 top: -15px;
             }
             
-            .orbit-item-2 {
+            .orbit-1 .orbit-item-2 {
                 bottom: -15px;
             }
             
-            .orbit-item-3 {
+            .orbit-2 .orbit-item-3 {
                 left: -15px;
             }
             
-            .orbit-item-4 {
+            .orbit-2 .orbit-item-4 {
                 right: -15px;
+            }
+            
+            .orbit-3 .orbit-item-1 {
+                top: -15px;
+            }
+            
+            .orbit-3 .orbit-item-2 {
+                bottom: -15px;
             }
             
             /* Even Lighter Design for Small Mobile */
@@ -912,20 +961,28 @@
                 font-size: 11px;
             }
             
-            .orbit-item-1 {
+            .orbit-1 .orbit-item-1 {
                 top: -14px;
             }
             
-            .orbit-item-2 {
+            .orbit-1 .orbit-item-2 {
                 bottom: -14px;
             }
             
-            .orbit-item-3 {
+            .orbit-2 .orbit-item-3 {
                 left: -14px;
             }
             
-            .orbit-item-4 {
+            .orbit-2 .orbit-item-4 {
                 right: -14px;
+            }
+            
+            .orbit-3 .orbit-item-1 {
+                top: -14px;
+            }
+            
+            .orbit-3 .orbit-item-2 {
+                bottom: -14px;
             }
         }
     </style>
