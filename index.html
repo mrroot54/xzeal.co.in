@@ -36,6 +36,8 @@
             --primary-light: #3d3c7f;
             --primary-dark: #1a1950;
             --accent-color: #4a49a0;
+            --cta-color: #272668; /* Using the primary color for CTA */
+            --cta-hover: #3d3c7f; /* Lighter shade for hover */
             --text-primary: #ffffff;
             --text-secondary: #b0b0b0;
         }
@@ -114,17 +116,19 @@
         }
         
         .nav-cta {
-            background: var(--primary-color);
+            background: var(--cta-color) !important; /* Using primary color */
             color: var(--text-primary) !important;
             padding: 12px 28px !important;
             border-radius: 30px;
             transition: all 0.3s ease;
             font-weight: 600;
+            box-shadow: 0 10px 25px rgba(39, 38, 104, 0.2); /* Primary color shadow */
         }
         
         .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(39, 38, 104, 0.3);
+            background: var(--cta-hover) !important; /* Lighter shade on hover */
+            box-shadow: 0 15px 35px rgba(39, 38, 104, 0.3); /* Enhanced shadow */
         }
         
         /* Mobile Menu Toggle */
@@ -208,7 +212,7 @@
         }
         
         .mobile-nav-cta {
-            background: var(--primary-color);
+            background: var(--cta-color) !important; /* Using primary color */
             color: var(--text-primary) !important;
             padding: 16px 28px !important;
             border-radius: 30px;
@@ -216,6 +220,14 @@
             margin-top: 25px;
             border: none !important;
             font-weight: 600;
+            box-shadow: 0 10px 25px rgba(39, 38, 104, 0.2); /* Primary color shadow */
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-cta:hover {
+            background: var(--cta-hover) !important; /* Lighter shade on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(39, 38, 104, 0.3); /* Enhanced shadow */
         }
         
         /* Overlay */
