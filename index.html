@@ -3,19 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xzeal - Digital Marketing Solutions</title>
-    
-    <!-- GSAP CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
-    
-    <!-- Font Awesome for icons -->
+    <title>Digital Marketing Agency - Our Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <style>
         * {
             margin: 0;
@@ -24,1434 +13,761 @@
         }
         
         body {
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #151932 50%, #0d1117 100%);
+            color: #fff;
             overflow-x: hidden;
+            min-height: 100vh;
         }
         
-        /* Custom Color Variables */
-        :root {
-            --primary-color: #272668;
-            --primary-light: #3d3c7f;
-            --primary-dark: #1a1950;
-            --accent-color: #4a49a0;
-            --cta-color: #272668; /* Using the primary color for CTA */
-            --cta-hover: #3d3c7f; /* Lighter shade for hover */
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
+        /* Light streaks for depth */
+        .light-streak {
+            position: absolute;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+            height: 2px;
+            width: 800px;
+            opacity: 0.3;
+            transform: rotate(15deg);
+            top: 100px;
+            left: 200px;
+            z-index: 0;
         }
         
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 25px 40px;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            transition: all 0.4s ease;
+        .light-streak:nth-child(2) {
+            width: 900px;
+            height: 1px;
+            opacity: 0.2;
+            transform: rotate(-10deg);
+            top: 400px;
+            left: 400px;
         }
         
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .light-streak:nth-child(3) {
+            width: 600px;
+            height: 1.5px;
+            opacity: 0.25;
+            transform: rotate(25deg);
+            top: 600px;
+            left: 100px;
+        }
+        
+        .container {
             max-width: 1400px;
             margin: 0 auto;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            z-index: 1002;
-            text-decoration: none;
-        }
-        
-        .logo img {
-            height: 40px;
-            width: auto;
-            transition: all 0.3s ease;
-        }
-        
-        .logo img:hover {
-            transform: scale(1.05);
-        }
-        
-        /* Desktop Navigation */
-        .nav-links {
-            display: flex;
-            gap: 45px;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 16px;
-            transition: all 0.3s ease;
+            padding: 0 20px;
             position: relative;
+            z-index: 1;
         }
         
-        .nav-links a:hover {
-            color: var(--text-primary);
+        header {
+            padding: 60px 0;
+            text-align: center;
         }
         
-        .nav-links a::after {
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-title h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 16px;
+            color: #94a3b8;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        
+        .service-card::before {
             content: '';
             position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .nav-cta {
-            background: var(--cta-color) !important; /* Using primary color */
-            color: var(--text-primary) !important;
-            padding: 12px 28px !important;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            box-shadow: 0 10px 25px rgba(39, 38, 104, 0.2); /* Primary color shadow */
-        }
-        
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            background: var(--cta-hover) !important; /* Lighter shade on hover */
-            box-shadow: 0 15px 35px rgba(39, 38, 104, 0.3); /* Enhanced shadow */
-        }
-        
-        /* Mobile Menu Toggle */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            z-index: 1002;
-            padding: 8px;
-        }
-        
-        .menu-toggle span {
-            width: 30px;
-            height: 3px;
-            background: var(--text-primary);
-            margin: 4px 0;
-            transition: 0.3s;
-            border-radius: 3px;
-        }
-        
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(-45deg) translate(-6px, 7px);
-        }
-        
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-6px, -7px);
-        }
-        
-        /* Mobile Navigation */
-        .mobile-nav {
-            position: fixed;
             top: 0;
-            right: -100%;
-            width: 85%;
-            max-width: 400px;
-            height: 100vh;
-            background: rgba(26, 25, 80, 0.98);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            z-index: 1001;
-            padding: 100px 30px 30px;
-            overflow-y: auto;
-        }
-        
-        .mobile-nav.active {
+            left: 0;
             right: 0;
+            bottom: 0;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
         
-        .mobile-nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
+        .service-card:hover::before {
+            opacity: 1;
         }
         
-        .mobile-nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .category-tag {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .service-icon {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: var(--card-color-1);
+        }
+        
+        .service-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .service-description {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .view-details {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--card-color-1);
+            font-weight: 500;
         }
         
-        .mobile-nav-links a:hover {
-            color: var(--text-primary);
-            padding-left: 10px;
+        .view-details i {
+            transition: transform 0.3s;
         }
         
-        .mobile-nav-links a i {
-            color: var(--primary-color);
-            width: 24px;
+        .service-card:hover .view-details i {
+            transform: translateX(5px);
         }
         
-        .mobile-nav-cta {
-            background: var(--cta-color) !important; /* Using primary color */
-            color: var(--text-primary) !important;
-            padding: 16px 28px !important;
-            border-radius: 30px;
-            text-align: center;
-            margin-top: 25px;
-            border: none !important;
-            font-weight: 600;
-            box-shadow: 0 10px 25px rgba(39, 38, 104, 0.2); /* Primary color shadow */
-            transition: all 0.3s ease;
-        }
-        
-        .mobile-nav-cta:hover {
-            background: var(--cta-hover) !important; /* Lighter shade on hover */
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(39, 38, 104, 0.3); /* Enhanced shadow */
-        }
-        
-        /* Overlay */
-        .overlay {
+        /* Modal Styles */
+        .modal {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.7);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
             z-index: 1000;
+            align-items: center;
+            justify-content: center;
         }
         
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
+        .modal-content {
+            background: #151932;
+            border-radius: 16px;
+            width: 80%;
+            max-width: 600px;
+            padding: 40px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         
-        /* Hero Section - New Modern Design */
-        .hero {
-            height: 100vh;
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #94a3b8;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: #fff;
+        }
+        
+        .modal-header {
             display: flex;
             align-items: center;
-            position: relative;
-            overflow: hidden;
-            background: #0a0a0a;
+            margin-bottom: 30px;
         }
         
-        /* Geometric Background Pattern */
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+        .modal-icon {
+            font-size: 40px;
+            margin-right: 20px;
+            color: var(--card-color-1);
         }
         
-        .geometric-pattern {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0.1;
-        }
-        
-        .geo-line {
-            position: absolute;
-            background: var(--primary-color);
-        }
-        
-        .geo-line-1 {
-            width: 1px;
-            height: 100%;
-            left: 20%;
-            transform: rotate(15deg);
-        }
-        
-        .geo-line-2 {
-            width: 1px;
-            height: 100%;
-            right: 25%;
-            transform: rotate(-10deg);
-        }
-        
-        .geo-line-3 {
-            width: 100%;
-            height: 1px;
-            top: 30%;
-            transform: rotate(5deg);
-        }
-        
-        .geo-line-4 {
-            width: 100%;
-            height: 1px;
-            bottom: 35%;
-            transform: rotate(-3deg);
-        }
-        
-        /* Modern Floating Elements */
-        .floating-element {
-            position: absolute;
-            border-radius: 20px;
-            background: rgba(39, 38, 104, 0.1);
-            border: 1px solid rgba(39, 38, 104, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        
-        .float-1 {
-            width: 120px;
-            height: 120px;
-            top: 15%;
-            left: 10%;
-            transform: rotate(45deg);
-        }
-        
-        .float-2 {
-            width: 80px;
-            height: 80px;
-            top: 25%;
-            right: 15%;
-            transform: rotate(-30deg);
-        }
-        
-        .float-3 {
-            width: 150px;
-            height: 150px;
-            bottom: 20%;
-            left: 20%;
-            transform: rotate(15deg);
-        }
-        
-        .float-4 {
-            width: 100px;
-            height: 100px;
-            bottom: 15%;
-            right: 10%;
-            transform: rotate(-45deg);
-        }
-        
-        /* Modern Content Layout */
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            width: 100%;
-            align-items: center;
-            z-index: 10;
-            position: relative;
-        }
-        
-        .hero-left {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 5rem);
+        .modal-title {
+            font-size: 28px;
             font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 25px;
-            color: var(--text-primary);
-            overflow: hidden;
         }
         
-        .hero-title .highlight {
-            color: var(--primary-color);
-            position: relative;
+        .modal-body {
+            margin-bottom: 30px;
         }
         
-        .hero-title .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: rgba(39, 38, 104, 0.2);
-            z-index: -1;
-            border-radius: 4px;
-        }
-        
-        .hero-description {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
+        .modal-body p {
             line-height: 1.6;
-            margin-bottom: 40px;
-            font-weight: 400;
+            margin-bottom: 20px;
+            color: #cbd5e1;
         }
         
-        .hero-buttons {
+        .modal-features {
+            margin-bottom: 30px;
+        }
+        
+        .modal-features h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            margin-bottom: 10px;
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .feature-list li i {
+            margin-right: 10px;
+            color: var(--card-color-1);
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
         }
         
         .btn {
-            padding: 16px 32px;
-            border-radius: 30px;
+            padding: 12px 24px;
+            border-radius: 8px;
             font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
             cursor: pointer;
+            transition: all 0.3s;
             border: none;
-            font-size: 16px;
+            font-size: 14px;
         }
         
         .btn-primary {
-            background: var(--primary-color);
-            color: var(--text-primary);
-            box-shadow: 0 10px 25px rgba(39, 38, 104, 0.2);
+            background: var(--card-color-1);
+            color: #fff;
         }
         
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(39, 38, 104, 0.3);
+            background: var(--card-color-2);
         }
         
         .btn-secondary {
             background: transparent;
-            color: var(--text-primary);
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: #94a3b8;
+            border: 1px solid #334155;
         }
         
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.3);
+            color: #fff;
         }
         
-        /* Modern Visual Side */
-        .hero-right {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-        
-        .modern-visual {
-            position: relative;
-            width: 500px;
-            height: 500px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            aspect-ratio: 1 / 1; /* Ensures square aspect ratio */
-            max-width: 90vw; /* Responsive width */
-            max-height: 90vw; /* Responsive height to maintain square */
-        }
-        
-        /* Central Circle - Updated with Logo */
-        .central-circle {
-            position: absolute;
+        /* Mobile View */
+        .mobile-mockup {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
             width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: rgba(39, 38, 104, 0.1);
-            border: 2px solid rgba(39, 38, 104, 0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height: 380px;
+            background: #0a0e27;
+            border-radius: 20px;
+            border: 2px solid #2d3748;
             overflow: hidden;
-            z-index: 10;
-            aspect-ratio: 1 / 1; /* Ensures square aspect ratio */
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
         
-        .central-circle img {
-            width: 60%;
-            height: 60%;
-            object-fit: contain;
-            filter: brightness(0) invert(1);
+        .mobile-screen {
+            width: 100%;
+            height: 100%;
+            padding: 30px 10px 10px;
+            overflow-y: auto;
         }
         
-        /* Orbiting Elements - Fixed for Perfect Center Rotation */
-        .orbit {
-            position: absolute;
-            border: 1px dashed rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            transform-origin: center center;
-            aspect-ratio: 1 / 1; /* Ensures square aspect ratio */
-            min-width: 0; /* Prevents flexbox from shrinking */
-            min-height: 0; /* Prevents flexbox from shrinking */
+        .mobile-header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 700;
         }
         
-        .orbit-1 {
-            width: 300px;
-            height: 300px;
-            animation: rotate 20s linear infinite;
-        }
-        
-        .orbit-2 {
-            width: 400px;
-            height: 400px;
-            animation: rotate 30s linear infinite reverse;
-        }
-        
-        .orbit-3 {
-            width: 500px;
-            height: 500px;
-            animation: rotate 40s linear infinite;
-        }
-        
-        .orbit-item {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        .mobile-services {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #ffffff;
-            font-size: 20px;
-            left: 50%;
-            transform-origin: center center;
-            aspect-ratio: 1 / 1; /* Ensures square aspect ratio */
+            flex-direction: column;
+            gap: 15px;
         }
         
-        /* Corrected positioning for orbit items */
-        .orbit-1 .orbit-item-1 {
-            top: -25px;
-            transform: translateX(-50%);
+        .mobile-service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 3px solid var(--card-color-1);
         }
         
-        .orbit-1 .orbit-item-2 {
-            bottom: -25px;
-            transform: translateX(-50%);
+        .mobile-service-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 14px;
         }
         
-        .orbit-2 .orbit-item-3 {
-            top: 50%;
-            left: -25px;
-            transform: translateY(-50%);
+        .mobile-service-desc {
+            font-size: 12px;
+            color: #94a3b8;
         }
         
-        .orbit-2 .orbit-item-4 {
-            top: 50%;
-            right: -25px;
-            left: auto;
-            transform: translateY(-50%);
-        }
-        
-        .orbit-3 .orbit-item-1 {
-            top: -25px;
-            transform: translateX(-50%);
-        }
-        
-        .orbit-3 .orbit-item-2 {
-            bottom: -25px;
-            transform: translateX(-50%);
-        }
-        
-        @keyframes rotate {
-            from {
-                transform: translate(-50%, -50%) rotate(0deg);
-            }
-            to {
-                transform: translate(-50%, -50%) rotate(360deg);
-            }
-        }
-        
-        /* Fully Responsive Design */
-        @media (max-width: 1200px) {
-            .hero-content {
-                gap: 60px;
-            }
-            
-            .modern-visual {
-                width: 450px;
-                height: 450px;
-            }
-            
-            .central-circle {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .orbit-1 {
-                width: 280px;
-                height: 280px;
-            }
-            
-            .orbit-2 {
-                width: 360px;
-                height: 360px;
-            }
-            
-            .orbit-3 {
-                width: 440px;
-                height: 440px;
-            }
-            
-            .orbit-item {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-            }
-            
-            .orbit-1 .orbit-item-1 {
-                top: -22.5px;
-            }
-            
-            .orbit-1 .orbit-item-2 {
-                bottom: -22.5px;
-            }
-            
-            .orbit-2 .orbit-item-3 {
-                left: -22.5px;
-            }
-            
-            .orbit-2 .orbit-item-4 {
-                right: -22.5px;
-            }
-            
-            .orbit-3 .orbit-item-1 {
-                top: -22.5px;
-            }
-            
-            .orbit-3 .orbit-item-2 {
-                bottom: -22.5px;
-            }
-        }
-        
+        /* Responsive Design */
         @media (max-width: 1024px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 60px;
-                text-align: center;
-            }
-            
-            .hero-right {
-                order: -1;
-            }
-            
-            .modern-visual {
-                width: 400px;
-                height: 400px;
-            }
-            
-            .central-circle {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .orbit-1 {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .orbit-2 {
-                width: 350px;
-                height: 350px;
-            }
-            
-            .orbit-3 {
-                width: 450px;
-                height: 450px;
-            }
-            
-            .orbit-item {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-            }
-            
-            .orbit-1 .orbit-item-1 {
-                top: -20px;
-            }
-            
-            .orbit-1 .orbit-item-2 {
-                bottom: -20px;
-            }
-            
-            .orbit-2 .orbit-item-3 {
-                left: -20px;
-            }
-            
-            .orbit-2 .orbit-item-4 {
-                right: -20px;
-            }
-            
-            .orbit-3 .orbit-item-1 {
-                top: -20px;
-            }
-            
-            .orbit-3 .orbit-item-2 {
-                bottom: -20px;
-            }
-            
-            .hero-buttons {
-                justify-content: center;
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
         @media (max-width: 768px) {
-            nav {
-                padding: 20px 25px;
+            .services-grid {
+                grid-template-columns: 1fr;
             }
             
-            .menu-toggle {
-                display: flex;
-            }
-            
-            .nav-links {
+            .mobile-mockup {
                 display: none;
             }
-            
-            .hero-content {
-                padding: 0 25px;
-                gap: 40px;
-            }
-            
-            .hero-title {
-                font-size: clamp(2.5rem, 10vw, 4rem);
-            }
-            
-            .hero-description {
-                font-size: 1.1rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .modern-visual {
-                width: 300px;
-                height: 300px;
-            }
-            
-            .central-circle {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .orbit-1 {
-                width: 200px;
-                height: 200px;
-            }
-            
-            .orbit-2 {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .orbit-3 {
-                width: 300px;
-                height: 300px;
-            }
-            
-            .orbit-item {
-                width: 35px;
-                height: 35px;
-                font-size: 14px;
-            }
-            
-            .orbit-1 .orbit-item-1 {
-                top: -17.5px;
-            }
-            
-            .orbit-1 .orbit-item-2 {
-                bottom: -17.5px;
-            }
-            
-            .orbit-2 .orbit-item-3 {
-                left: -17.5px;
-            }
-            
-            .orbit-2 .orbit-item-4 {
-                right: -17.5px;
-            }
-            
-            .orbit-3 .orbit-item-1 {
-                top: -17.5px;
-            }
-            
-            .orbit-3 .orbit-item-2 {
-                bottom: -17.5px;
-            }
-            
-            /* Lighter Design for Mobile */
-            .floating-element {
-                opacity: 0.05;
-            }
-            
-            .geometric-pattern {
-                opacity: 0.05;
-            }
-            
-            .geo-line {
-                opacity: 0.05;
-            }
-            
-            .central-circle {
-                opacity: 0.7;
-            }
-            
-            .orbit {
-                opacity: 0.5;
-            }
-            
-            .orbit-item {
-                opacity: 0.7;
-            }
         }
         
-        @media (max-width: 480px) {
-            nav {
-                padding: 15px 20px;
-            }
-            
-            .logo img {
-                height: 35px;
-            }
-            
-            .hero {
-                padding: 100px 0 40px;
-                height: auto;
-                min-height: 100vh;
-            }
-            
-            .hero-content {
-                padding: 0 20px;
-            }
-            
-            .hero-title {
-                font-size: clamp(2rem, 12vw, 3.5rem);
-            }
-            
-            .hero-description {
-                font-size: 1rem;
-                margin-bottom: 30px;
-            }
-            
-            .btn {
-                padding: 14px 28px;
-                font-size: 15px;
-            }
-            
-            .modern-visual {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .central-circle {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .orbit-1 {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .orbit-2 {
-                width: 220px;
-                height: 220px;
-            }
-            
-            .orbit-3 {
-                width: 260px;
-                height: 260px;
-            }
-            
-            .orbit-item {
-                width: 30px;
-                height: 30px;
-                font-size: 12px;
-            }
-            
-            .orbit-1 .orbit-item-1 {
-                top: -15px;
-            }
-            
-            .orbit-1 .orbit-item-2 {
-                bottom: -15px;
-            }
-            
-            .orbit-2 .orbit-item-3 {
-                left: -15px;
-            }
-            
-            .orbit-2 .orbit-item-4 {
-                right: -15px;
-            }
-            
-            .orbit-3 .orbit-item-1 {
-                top: -15px;
-            }
-            
-            .orbit-3 .orbit-item-2 {
-                bottom: -15px;
-            }
-            
-            /* Even Lighter Design for Small Mobile */
-            .floating-element {
-                opacity: 0.02;
-            }
-            
-            .geometric-pattern {
-                opacity: 0.02;
-            }
-            
-            .geo-line {
-                opacity: 0.02;
-            }
-            
-            .central-circle {
-                opacity: 0.6;
-            }
-            
-            .orbit {
-                opacity: 0.4;
-            }
-            
-            .orbit-item {
-                opacity: 0.6;
-            }
+        /* Service Card Colors */
+        .service-card:nth-child(1) {
+            --card-color-1: #4facfe;
+            --card-color-2: #00f2fe;
         }
         
-        @media (max-width: 380px) {
-            .hero-content {
-                padding: 0 15px;
+        .service-card:nth-child(2) {
+            --card-color-1: #a855f7;
+            --card-color-2: #7c3aed;
+        }
+        
+        .service-card:nth-child(3) {
+            --card-color-1: #ec4899;
+            --card-color-2: #f43f5e;
+        }
+        
+        .service-card:nth-child(4) {
+            --card-color-1: #14b8a6;
+            --card-color-2: #10b981;
+        }
+        
+        .service-card:nth-child(5) {
+            --card-color-1: #f59e0b;
+            --card-color-2: #f97316;
+        }
+        
+        .service-card:nth-child(6) {
+            --card-color-1: #3b82f6;
+            --card-color-2: #6366f1;
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-up {
+            animation: slideUp 0.5s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
             }
-            
-            .modern-visual {
-                width: 220px;
-                height: 220px;
-            }
-            
-            .central-circle {
-                width: 90px;
-                height: 90px;
-            }
-            
-            .orbit-1 {
-                width: 160px;
-                height: 160px;
-            }
-            
-            .orbit-2 {
-                width: 190px;
-                height: 190px;
-            }
-            
-            .orbit-3 {
-                width: 220px;
-                height: 220px;
-            }
-            
-            .orbit-item {
-                width: 28px;
-                height: 28px;
-                font-size: 11px;
-            }
-            
-            .orbit-1 .orbit-item-1 {
-                top: -14px;
-            }
-            
-            .orbit-1 .orbit-item-2 {
-                bottom: -14px;
-            }
-            
-            .orbit-2 .orbit-item-3 {
-                left: -14px;
-            }
-            
-            .orbit-2 .orbit-item-4 {
-                right: -14px;
-            }
-            
-            .orbit-3 .orbit-item-1 {
-                top: -14px;
-            }
-            
-            .orbit-3 .orbit-item-2 {
-                bottom: -14px;
+            to { 
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <img src="logo.png" alt="Xzeal Logo" />
-            </a>
-            
-            <!-- Desktop Navigation -->
-            <div class="nav-links">
-                <a href="#">Services</a>
-                <a href="#">About Us</a>
-                <a href="#">Portfolio</a>
-                <a href="#">Blog</a>
-                <a href="#" class="nav-cta">Contact</a>
-            </div>
-            
-            <!-- Mobile Menu Toggle -->
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+    <div class="light-streak"></div>
+    <div class="light-streak"></div>
+    <div class="light-streak"></div>
     
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-        <div class="mobile-nav-links">
-            <a href="#"><i class="fas fa-home"></i> Home</a>
-            <a href="#"><i class="fas fa-cogs"></i> Services</a>
-            <a href="#"><i class="fas fa-users"></i> About Us</a>
-            <a href="#"><i class="fas fa-briefcase"></i> Portfolio</a>
-            <a href="#"><i class="fas fa-blog"></i> Blog</a>
-            <a href="#" class="mobile-nav-cta"><i class="fas fa-envelope"></i> Contact Us</a>
+    <div class="container">
+        <header>
+            <div class="section-title">
+                <h1>Our Services</h1>
+                <p>Premium digital solutions for your business growth</p>
+            </div>
+        </header>
+        
+        <main>
+            <section class="services-grid">
+                <!-- Service Card 1: Marketing -->
+                <div class="service-card" data-service="marketing">
+                    <span class="category-tag" style="background: rgba(79, 172, 254, 0.2); color: #4facfe;">Marketing</span>
+                    <div class="service-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3 class="service-title">Digital Marketing</h3>
+                    <p class="service-description">Strategic campaigns to boost your brand</p>
+                    <div class="view-details">
+                        <span>View Details</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+                
+                <!-- Service Card 2: Ads -->
+                <div class="service-card" data-service="ads">
+                    <span class="category-tag" style="background: rgba(168, 85, 247, 0.2); color: #a855f7;">Ads</span>
+                    <div class="service-icon">
+                        <i class="fas fa-ad"></i>
+                    </div>
+                    <h3 class="service-title">PPC Advertising</h3>
+                    <p class="service-description">Targeted ads that convert visitors to customers</p>
+                    <div class="view-details">
+                        <span>View Details</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+                
+                <!-- Service Card 3: SEO -->
+                <div class="service-card" data-service="seo">
+                    <span class="category-tag" style="background: rgba(236, 72, 153, 0.2); color: #ec4899;">SEO</span>
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="service-title">SEO Optimization</h3>
+                    <p class="service-description">Rank higher and drive organic traffic</p>
+                    <div class="view-details">
+                        <span>View Details</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+                
+                <!-- Service Card 4: Web -->
+                <div class="service-card" data-service="web">
+                    <span class="category-tag" style="background: rgba(20, 184, 166, 0.2); color: #14b8a6;">Web</span>
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="service-title">Web Development</h3>
+                    <p class="service-description">Custom websites that impress and perform</p>
+                    <div class="view-details">
+                        <span>View Details</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+                
+                <!-- Service Card 5: Leads -->
+                <div class="service-card" data-service="leads">
+                    <span class="category-tag" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b;">Leads</span>
+                    <div class="service-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3 class="service-title">Lead Generation</h3>
+                    <p class="service-description">Quality leads that grow your business</p>
+                    <div class="view-details">
+                        <span>View Details</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+                
+                <!-- Service Card 6: Content -->
+                <div class="service-card" data-service="content">
+                    <span class="category-tag" style="background: rgba(59, 130, 246, 0.2); color: #3b82f6;">Content</span>
+                    <div class="service-icon">
+                        <i class="fas fa-pen-nib"></i>
+                    </div>
+                    <h3 class="service-title">Content Creation</h3>
+                    <p class="service-description">Engaging content that tells your story</p>
+                    <div class="view-details">
+                        <span>View Details</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal" id="serviceModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon" id="modalIcon"></div>
+                <h2 class="modal-title" id="modalTitle"></h2>
+            </div>
+            <div class="modal-body">
+                <p id="modalDescription"></p>
+                <div class="modal-features">
+                    <h3>Key Features</h3>
+                    <ul class="feature-list" id="modalFeatures"></ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="closeModalBtn">Close</button>
+                <button class="btn btn-primary" id="learnMoreBtn">Learn More</button>
+            </div>
         </div>
     </div>
     
-    <!-- Overlay -->
-    <div class="overlay" id="overlay"></div>
+    <!-- Mobile Mockup -->
+    <div class="mobile-mockup">
+        <div class="mobile-screen">
+            <div class="mobile-header">Services</div>
+            <div class="mobile-services">
+                <div class="mobile-service-card">
+                    <div class="mobile-service-title">Digital Marketing</div>
+                    <div class="mobile-service-desc">Strategic campaigns</div>
+                </div>
+                <div class="mobile-service-card">
+                    <div class="mobile-service-title">PPC Advertising</div>
+                    <div class="mobile-service-desc">Targeted ads</div>
+                </div>
+                <div class="mobile-service-card">
+                    <div class="mobile-service-title">SEO Optimization</div>
+                    <div class="mobile-service-desc">Rank higher</div>
+                </div>
+            </div>
+        </div>
+    </div>
     
-    <!-- Hero Section -->
-    <section class="hero">
-        <!-- Geometric Background -->
-        <div class="hero-bg">
-            <div class="geometric-pattern">
-                <div class="geo-line geo-line-1"></div>
-                <div class="geo-line geo-line-2"></div>
-                <div class="geo-line geo-line-3"></div>
-                <div class="geo-line geo-line-4"></div>
-            </div>
-            
-            <!-- Floating Elements -->
-            <div class="floating-element float-1"></div>
-            <div class="floating-element float-2"></div>
-            <div class="floating-element float-3"></div>
-            <div class="floating-element float-4"></div>
-        </div>
-        
-        <!-- Hero Content -->
-        <div class="hero-content">
-            <div class="hero-left">
-                <h1 class="hero-title">
-                    <span class="title-line">We Build</span><br>
-                    <span class="title-line"><span class="highlight">Digital</span></span><br>
-                    <span class="title-line">Experiences</span>
-                </h1>
-                
-                <p class="hero-description">
-                    Transform your brand with cutting-edge digital marketing strategies that drive results and elevate your online presence.
-                </p>
-                
-                <div class="hero-buttons">
-                    <a href="#" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i>
-                        Start Project
-                    </a>
-                    <a href="#" class="btn btn-secondary">
-                        <i class="fas fa-play"></i>
-                        Watch Demo
-                    </a>
-                </div>
-            </div>
-            
-            <div class="hero-right">
-                <div class="modern-visual">
-                    <!-- Central Circle with Logo -->
-                    <div class="central-circle">
-                        <img src="logo.png" alt="Logo" />
-                    </div>
-                    
-                    <!-- Orbiting Elements with Service Icons -->
-                    <div class="orbit orbit-1">
-                        <div class="orbit-item orbit-item-1">
-                            <i class="fas fa-share-alt"></i>
-                        </div>
-                        <div class="orbit-item orbit-item-2">
-                            <i class="fas fa-ad"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="orbit orbit-2">
-                        <div class="orbit-item orbit-item-3">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div class="orbit-item orbit-item-4">
-                            <i class="fas fa-search"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="orbit orbit-3">
-                        <div class="orbit-item orbit-item-1">
-                            <i class="fas fa-bullhorn"></i>
-                        </div>
-                        <div class="orbit-item orbit-item-2">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <script>
-        // Register GSAP plugins
-        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+        // Service data
+        const services = {
+            marketing: {
+                icon: 'fas fa-bullhorn',
+                title: 'Digital Marketing',
+                description: 'Our comprehensive digital marketing services help your brand stand out in a crowded online landscape. We create data-driven strategies that connect with your target audience and drive meaningful engagement.',
+                features: [
+                    'Social Media Marketing',
+                    'Email Campaigns',
+                    'Influencer Partnerships',
+                    'Brand Strategy',
+                    'Analytics & Reporting'
+                ],
+                color: '#4facfe'
+            },
+            ads: {
+                icon: 'fas fa-ad',
+                title: 'PPC Advertising',
+                description: 'Maximize your ROI with our targeted pay-per-click advertising campaigns. We optimize every aspect of your ad strategy to ensure you reach the right customers at the right time.',
+                features: [
+                    'Google Ads Management',
+                    'Facebook & Instagram Ads',
+                    'LinkedIn Advertising',
+                    'A/B Testing',
+                    'Conversion Tracking'
+                ],
+                color: '#a855f7'
+            },
+            seo: {
+                icon: 'fas fa-search',
+                title: 'SEO Optimization',
+                description: 'Improve your search engine rankings and drive organic traffic with our proven SEO strategies. We stay up-to-date with the latest algorithm changes to keep your website ahead of the competition.',
+                features: [
+                    'Keyword Research',
+                    'On-Page Optimization',
+                    'Technical SEO',
+                    'Link Building',
+                    'Local SEO'
+                ],
+                color: '#ec4899'
+            },
+            web: {
+                icon: 'fas fa-code',
+                title: 'Web Development',
+                description: 'Create a powerful online presence with our custom web development services. We build responsive, fast, and secure websites that provide exceptional user experiences.',
+                features: [
+                    'Responsive Design',
+                    'E-commerce Solutions',
+                    'CMS Development',
+                    'Website Optimization',
+                    'API Integration'
+                ],
+                color: '#14b8a6'
+            },
+            leads: {
+                icon: 'fas fa-user-plus',
+                title: 'Lead Generation',
+                description: 'Convert prospects into customers with our strategic lead generation services. We implement multi-channel approaches to attract and nurture high-quality leads for your business.',
+                features: [
+                    'Lead Nurturing',
+                    'Landing Page Optimization',
+                    'CRM Integration',
+                    'Lead Scoring',
+                    'Marketing Automation'
+                ],
+                color: '#f59e0b'
+            },
+            content: {
+                icon: 'fas fa-pen-nib',
+                title: 'Content Creation',
+                description: 'Engage your audience with compelling content that tells your brand story. Our team of creative professionals produces high-quality content across various formats.',
+                features: [
+                    'Blog Writing',
+                    'Video Production',
+                    'Infographics',
+                    'Whitepapers & E-books',
+                    'Content Strategy'
+                ],
+                color: '#3b82f6'
+            }
+        };
         
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileNav = document.getElementById('mobileNav');
-        const overlay = document.getElementById('overlay');
+        // DOM elements
+        const modal = document.getElementById('serviceModal');
+        const modalIcon = document.getElementById('modalIcon');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalFeatures = document.getElementById('modalFeatures');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const learnMoreBtn = document.getElementById('learnMoreBtn');
+        const closeIcon = document.querySelector('.close-modal');
+        const serviceCards = document.querySelectorAll('.service-card');
         
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            mobileNav.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
-        });
-        
-        overlay.addEventListener('click', () => {
-            menuToggle.classList.remove('active');
-            mobileNav.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-        
-        // Close mobile menu when clicking on a link
-        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                mobileNav.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = 'auto';
+        // Open modal when service card is clicked
+        serviceCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const serviceType = this.getAttribute('data-service');
+                const service = services[serviceType];
+                
+                // Set modal content
+                modalIcon.innerHTML = `<i class="${service.icon}" style="color: ${service.color}"></i>`;
+                modalTitle.textContent = service.title;
+                modalDescription.textContent = service.description;
+                
+                // Clear and populate features list
+                modalFeatures.innerHTML = '';
+                service.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<i class="fas fa-check-circle" style="color: ${service.color}"></i> ${feature}`;
+                    modalFeatures.appendChild(li);
+                });
+                
+                // Show modal with animation
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    modal.classList.add('fade-in');
+                    document.querySelector('.modal-content').classList.add('slide-up');
+                }, 10);
             });
         });
         
-        // Set initial states
-        gsap.set("nav", { opacity: 0, y: -30 });
-        gsap.set(".title-line", { opacity: 0, y: 50 });
-        gsap.set(".hero-description", { opacity: 0, x: -30 });
-        gsap.set(".hero-buttons", { opacity: 0, y: 30 });
+        // Close modal functions
+        function closeModal() {
+            modal.classList.remove('fade-in');
+            document.querySelector('.modal-content').classList.remove('slide-up');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
         
-        // Background elements
-        gsap.set(".geo-line", { scaleX: 0, transformOrigin: "center" });
-        gsap.set(".floating-element", { opacity: 0, scale: 0, rotation: 0 });
-        gsap.set(".central-circle", { opacity: 0, scale: 0 });
-        gsap.set(".orbit", { opacity: 0, scale: 0 });
-        gsap.set(".orbit-item", { opacity: 0, scale: 0 });
+        closeIcon.addEventListener('click', closeModal);
+        closeModalBtn.addEventListener('click', closeModal);
         
-        // Create timeline
-        const tl = gsap.timeline({
-            defaults: {
-                ease: "power3.out",
-                duration: 1
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeModal();
             }
         });
         
-        // Add animations to timeline
-        tl.to("nav", { opacity: 1, y: 0, duration: 0.8 })
-          // Background lines
-          .to(".geo-line-1", { scaleX: 1, duration: 1.5 }, "-=0.5")
-          .to(".geo-line-2", { scaleX: 1, duration: 1.5 }, "-=1.3")
-          .to(".geo-line-3", { scaleX: 1, duration: 1.5 }, "-=1.5")
-          .to(".geo-line-4", { scaleX: 1, duration: 1.5 }, "-=1.7")
-          // Floating elements
-          .to(".float-1", { opacity: 0.3, scale: 1, rotation: 45, duration: 1 }, "-=1.2")
-          .to(".float-2", { opacity: 0.3, scale: 1, rotation: -30, duration: 1 }, "-=1.1")
-          .to(".float-3", { opacity: 0.3, scale: 1, rotation: 15, duration: 1 }, "-=1")
-          .to(".float-4", { opacity: 0.3, scale: 1, rotation: -45, duration: 1 }, "-=0.9")
-          // Central visual
-          .to(".central-circle", { opacity: 1, scale: 1, duration: 1.2 }, "-=0.8")
-          .to(".orbit-1", { opacity: 1, scale: 1, duration: 1.2 }, "-=1")
-          .to(".orbit-2", { opacity: 1, scale: 1, duration: 1.2 }, "-=1.1")
-          .to(".orbit-3", { opacity: 1, scale: 1, duration: 1.2 }, "-=1.2")
-          // Orbit items
-          .to(".orbit-item", { opacity: 1, scale: 1, duration: 0.5, stagger: 0.1 }, "-=0.8")
-          // Content
-          // Text Animation for Title
-          .to(".title-line", { 
-            opacity: 1, 
-            y: 0, 
-            duration: 0.8,
-            stagger: 0.2
-          }, "-=0.5")
-          .to(".hero-description", { opacity: 1, x: 0, duration: 0.8 }, "-=0.4")
-          .to(".hero-buttons", { opacity: 1, y: 0, duration: 0.8 }, "-=0.3");
-        
-        // Continuous animations
-        // Floating elements
-        gsap.to(".float-1", {
-            y: -30,
-            duration: 4,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
+        // Learn more button functionality
+        learnMoreBtn.addEventListener('click', function() {
+            // In a real application, this would navigate to a detailed service page
+            alert('In a real application, this would navigate to a detailed service page');
         });
         
-        gsap.to(".float-2", {
-            y: -20,
-            duration: 3,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-        });
+        // Add animation to service cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
         
-        gsap.to(".float-3", {
-            y: -25,
-            duration: 3.5,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-        });
-        
-        gsap.to(".float-4", {
-            y: -35,
-            duration: 4.5,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-        });
-        
-        // Enhanced Parallax effect on mouse move (desktop only)
-        if (window.innerWidth > 768) {
-            document.addEventListener("mousemove", (e) => {
-                const x = e.clientX / window.innerWidth;
-                const y = e.clientY / window.innerHeight;
-                
-                // Floating elements parallax with enhanced effect
-                gsap.to(".float-1", {
-                    x: (x - 0.5) * 30,
-                    y: (y - 0.5) * 30,
-                    rotation: 45 + (x - 0.5) * 20,
-                    duration: 1.5,
-                    ease: "power2.out"
-                });
-                
-                gsap.to(".float-2", {
-                    x: (x - 0.5) * 25,
-                    y: (y - 0.5) * 25,
-                    rotation: -30 + (y - 0.5) * 20,
-                    duration: 1.5,
-                    ease: "power2.out"
-                });
-                
-                gsap.to(".float-3", {
-                    x: (x - 0.5) * 35,
-                    y: (y - 0.5) * 35,
-                    rotation: 15 + (x - 0.5) * 15,
-                    duration: 1.5,
-                    ease: "power2.out"
-                });
-                
-                gsap.to(".float-4", {
-                    x: (x - 0.5) * 28,
-                    y: (y - 0.5) * 28,
-                    rotation: -45 + (y - 0.5) * 25,
-                    duration: 1.5,
-                    ease: "power2.out"
-                });
-                
-                // Enhanced central circle effect - maintaining square aspect ratio
-                gsap.to(".central-circle", {
-                    x: (x - 0.5) * 15,
-                    y: (y - 0.5) * 15,
-                    scale: 1 + (Math.abs(x - 0.5) + Math.abs(y - 0.5)) * 0.1,
-                    duration: 1.5,
-                    ease: "power2.out",
-                    onUpdate: function() {
-                        // Ensure the central circle maintains its square aspect ratio
-                        const circle = document.querySelector('.central-circle');
-                        const currentScale = gsap.getProperty(circle, "scale");
-                        circle.style.width = `${200 * currentScale}px`;
-                        circle.style.height = `${200 * currentScale}px`;
-                    }
-                });
-                
-                // Enhanced orbit effect - maintaining square aspect ratio
-                gsap.to(".orbit-1", {
-                    x: (x - 0.5) * 10,
-                    y: (y - 0.5) * 10,
-                    rotation: "+=2",
-                    duration: 1.5,
-                    ease: "power2.out",
-                    onUpdate: function() {
-                        // Ensure orbit-1 maintains its square aspect ratio
-                        const orbit = document.querySelector('.orbit-1');
-                        const currentWidth = gsap.getProperty(orbit, "width");
-                        orbit.style.height = `${currentWidth}px`;
-                    }
-                });
-                
-                gsap.to(".orbit-2", {
-                    x: (x - 0.5) * 8,
-                    y: (y - 0.5) * 8,
-                    rotation: "-=1",
-                    duration: 1.5,
-                    ease: "power2.out",
-                    onUpdate: function() {
-                        // Ensure orbit-2 maintains its square aspect ratio
-                        const orbit = document.querySelector('.orbit-2');
-                        const currentWidth = gsap.getProperty(orbit, "width");
-                        orbit.style.height = `${currentWidth}px`;
-                    }
-                });
-                
-                gsap.to(".orbit-3", {
-                    x: (x - 0.5) * 5,
-                    y: (y - 0.5) * 5,
-                    rotation: "+=0.5",
-                    duration: 1.5,
-                    ease: "power2.out",
-                    onUpdate: function() {
-                        // Ensure orbit-3 maintains its square aspect ratio
-                        const orbit = document.querySelector('.orbit-3');
-                        const currentWidth = gsap.getProperty(orbit, "width");
-                        orbit.style.height = `${currentWidth}px`;
-                    }
-                });
-                
-                // Enhanced content parallax
-                gsap.to(".hero-left", {
-                    x: (x - 0.5) * 5,
-                    y: (y - 0.5) * 5,
-                    duration: 1.5,
-                    ease: "power2.out"
-                });
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('slide-up');
+                    observer.unobserve(entry.target);
+                }
             });
-        }
+        }, observerOptions);
         
-        // Function to maintain square aspect ratio of orbit containers
-        function maintainSquareAspectRatio() {
-            const modernVisual = document.querySelector('.modern-visual');
-            const centralCircle = document.querySelector('.central-circle');
-            const orbits = document.querySelectorAll('.orbit');
-            
-            // Get the current width of the modern-visual container
-            const width = modernVisual.offsetWidth;
-            
-            // Set the height to match the width to maintain square aspect ratio
-            modernVisual.style.height = `${width}px`;
-            
-            // Adjust central circle size proportionally
-            const circleSize = width * 0.4; // 40% of the container width
-            centralCircle.style.width = `${circleSize}px`;
-            centralCircle.style.height = `${circleSize}px`;
-            
-            // Adjust orbit sizes proportionally
-            orbits.forEach((orbit, index) => {
-                const orbitSize = width * (0.6 + index * 0.2); // 60%, 80%, 100% of container width
-                orbit.style.width = `${orbitSize}px`;
-                orbit.style.height = `${orbitSize}px`;
+        serviceCards.forEach(card => {
+            observer.observe(card);
+        });
+        
+        // Mobile mockup functionality
+        const mobileMockup = document.querySelector('.mobile-mockup');
+        const mobileServiceCards = document.querySelectorAll('.mobile-service-card');
+        
+        // Add click events to mobile service cards
+        mobileServiceCards.forEach((card, index) => {
+            card.addEventListener('click', function() {
+                const serviceTypes = ['marketing', 'ads', 'seo'];
+                const serviceType = serviceTypes[index];
+                const service = services[serviceType];
                 
-                // Adjust orbit item sizes proportionally
-                const orbitItems = orbit.querySelectorAll('.orbit-item');
-                const itemSize = orbitSize * 0.1; // 10% of orbit width
-                orbitItems.forEach(item => {
-                    item.style.width = `${itemSize}px`;
-                    item.style.height = `${itemSize}px`;
-                    
-                    // Adjust positioning of orbit items
-                    if (item.classList.contains('orbit-item-1') || item.classList.contains('orbit-item-2')) {
-                        item.style.top = item.classList.contains('orbit-item-1') ? `-${itemSize/2}px` : `auto`;
-                        item.style.bottom = item.classList.contains('orbit-item-2') ? `-${itemSize/2}px` : `auto`;
-                        item.style.left = '50%';
-                        item.style.right = 'auto';
-                        item.style.transform = 'translateX(-50%)';
-                    } else if (item.classList.contains('orbit-item-3') || item.classList.contains('orbit-item-4')) {
-                        item.style.top = '50%';
-                        item.style.bottom = 'auto';
-                        item.style.left = item.classList.contains('orbit-item-3') ? `-${itemSize/2}px` : 'auto';
-                        item.style.right = item.classList.contains('orbit-item-4') ? `-${itemSize/2}px` : 'auto';
-                        item.style.transform = 'translateY(-50%)';
-                    }
+                // Set modal content
+                modalIcon.innerHTML = `<i class="${service.icon}" style="color: ${service.color}"></i>`;
+                modalTitle.textContent = service.title;
+                modalDescription.textContent = service.description;
+                
+                // Clear and populate features list
+                modalFeatures.innerHTML = '';
+                service.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<i class="fas fa-check-circle" style="color: ${service.color}"></i> ${feature}`;
+                    modalFeatures.appendChild(li);
                 });
+                
+                // Show modal with animation
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    modal.classList.add('fade-in');
+                    document.querySelector('.modal-content').classList.add('slide-up');
+                }, 10);
             });
-        }
-        
-        // Call the function initially and on window resize
-        maintainSquareAspectRatio();
-        window.addEventListener('resize', maintainSquareAspectRatio);
-        
-        // Also call the function on scroll to ensure aspect ratio is maintained
-        let ticking = false;
-        function requestTick() {
-            if (!ticking) {
-                window.requestAnimationFrame(updateOnScroll);
-                ticking = true;
-            }
-        }
-        
-        function updateOnScroll() {
-            maintainSquareAspectRatio();
-            ticking = false;
-        }
-        
-        window.addEventListener('scroll', requestTick);
-        
-        // Navbar scroll effect
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            const navbar = document.querySelector('nav');
-            
-            if (currentScroll > 100) {
-                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-                navbar.style.padding = '15px 40px';
-            } else {
-                navbar.style.background = 'rgba(10, 10, 10, 0.6)';
-                navbar.style.padding = '25px 40px';
-            }
-            
-            lastScroll = currentScroll;
-        });
-        
-        // Logo error handling
-        const logoImg = document.querySelector('.logo img');
-        const centralLogo = document.querySelector('.central-circle img');
-        
-        logoImg.addEventListener('error', function() {
-            this.style.display = 'none';
-        });
-        
-        centralLogo.addEventListener('error', function() {
-            this.style.display = 'none';
         });
     </script>
 </body>
