@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Digital Agency - Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -32,7 +35,7 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             background: linear-gradient(135deg, #0a0e27 0%, #151932 50%, #0d1117 100%);
             color: var(--text-primary);
             overflow-x: hidden;
@@ -96,36 +99,40 @@
         }
         
         .main-title {
-            font-size: clamp(28px, 5vw, 42px);
-            font-weight: 700;
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 800;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 15px;
+            letter-spacing: -0.5px;
         }
         
         .main-subtitle {
-            font-size: clamp(14px, 2vw, 16px);
+            font-size: clamp(16px, 2.5vw, 18px);
             color: var(--text-secondary);
             margin-bottom: 30px;
+            font-weight: 400;
         }
         
         /* Search Bar */
         .search-container {
             max-width: 500px;
-            margin: 0 auto 30px;
+            margin: 0 auto 40px;
             position: relative;
         }
         
         .search-bar {
             width: 100%;
-            padding: 15px 50px 15px 20px;
-            border-radius: 16px;
+            padding: 18px 55px 18px 25px;
+            border-radius: 20px;
             background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-primary);
             font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
@@ -133,21 +140,24 @@
             outline: none;
             border-color: var(--accent-blue);
             background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.2);
         }
         
         .search-icon {
             position: absolute;
-            right: 20px;
+            right: 25px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-secondary);
+            font-size: 18px;
         }
         
-        /* Category Pills */
+        /* Category Pills - Enhanced */
         .category-pills {
             display: flex;
-            gap: 12px;
-            padding: 0 20px 30px;
+            gap: 16px;
+            padding: 0 20px 50px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
@@ -160,27 +170,58 @@
         }
         
         .category-pill {
-            padding: 12px 24px;
-            border-radius: 25px;
+            padding: 16px 32px;
+            border-radius: 30px;
             background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.15);
             color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
             white-space: nowrap;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-pill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
         }
         
         .category-pill:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.05);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: var(--text-primary);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .category-pill:hover::before {
+            left: 0;
         }
         
         .category-pill.active {
             background: var(--primary-gradient);
             color: white;
             border-color: transparent;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            font-weight: 700;
+        }
+        
+        .category-pill.active::before {
+            left: 0;
         }
         
         /* Main Content */
@@ -266,11 +307,13 @@
             color: var(--badge-color);
             font-size: 12px;
             font-weight: 600;
+            font-family: 'Poppins', sans-serif;
         }
         
         .service-title {
             font-size: 20px;
             font-weight: 700;
+            font-family: 'Poppins', sans-serif;
             margin-bottom: 10px;
             line-height: 1.3;
         }
@@ -280,6 +323,8 @@
             color: var(--text-secondary);
             line-height: 1.5;
             margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
         }
         
         .service-footer {
@@ -299,6 +344,7 @@
             gap: 5px;
             font-size: 12px;
             color: var(--text-secondary);
+            font-family: 'Poppins', sans-serif;
         }
         
         .stat-item i {
@@ -476,11 +522,14 @@
         .modal-title {
             font-size: 24px;
             font-weight: 700;
+            font-family: 'Poppins', sans-serif;
         }
         
         .modal-subtitle {
             color: var(--text-secondary);
             font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
         }
         
         .modal-body {
@@ -491,6 +540,8 @@
             color: var(--text-secondary);
             line-height: 1.6;
             margin-bottom: 25px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
         }
         
         .feature-list {
@@ -529,6 +580,7 @@
             flex: 1;
             font-size: 14px;
             font-weight: 500;
+            font-family: 'Poppins', sans-serif;
         }
         
         .modal-footer {
@@ -545,6 +597,7 @@
             border: none;
             font-weight: 600;
             font-size: 16px;
+            font-family: 'Poppins', sans-serif;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -577,7 +630,13 @@
             }
             
             .category-pills {
-                padding: 0 40px 40px;
+                padding: 0 40px 50px;
+                gap: 20px;
+            }
+            
+            .category-pill {
+                font-size: 17px;
+                padding: 18px 36px;
             }
             
             .main-content {
@@ -615,7 +674,13 @@
             }
             
             .category-pills {
-                padding: 0 60px 50px;
+                padding: 0 60px 60px;
+                gap: 24px;
+            }
+            
+            .category-pill {
+                font-size: 18px;
+                padding: 20px 40px;
             }
             
             .main-content {
@@ -656,6 +721,11 @@
             .service-card {
                 padding: 40px;
                 min-height: 300px;
+            }
+            
+            .category-pill {
+                font-size: 19px;
+                padding: 22px 44px;
             }
         }
         
@@ -716,7 +786,7 @@
             <i class="fas fa-search search-icon"></i>
         </div>
         
-        <!-- Category Pills -->
+        <!-- Category Pills - Enhanced -->
         <div class="category-pills">
             <div class="category-pill active" onclick="filterCategory('all')">All Services</div>
             <div class="category-pill" onclick="filterCategory('marketing')">Marketing</div>
@@ -758,7 +828,7 @@
                 </p>
                 
                 <div class="modal-features">
-                    <h3 style="margin-bottom: 20px; font-size: 18px;">Key Features</h3>
+                    <h3 style="margin-bottom: 20px; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">Key Features</h3>
                     <ul class="feature-list" id="featureList">
                         <!-- Features will be dynamically added -->
                     </ul>
@@ -1043,6 +1113,8 @@
                 animation: slideDown 0.3s ease-out;
                 backdrop-filter: blur(10px);
                 border: 1px solid rgba(255, 255, 255, 0.1);
+                font-family: 'Poppins', sans-serif;
+                font-weight: 500;
             `;
             toast.textContent = message;
             
