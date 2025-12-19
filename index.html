@@ -15,6 +15,8 @@
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Naya Font 'Poppins' add kiya gaya hai -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -594,12 +596,15 @@
             }
         }
         
-        /* Services Section Styles */
+        /* Services Section Styles - CHANGES START HERE */
         .services-section {
-            padding: 100px 0;
+            /* Hero Section or Services ka gap kam kar diya */
+            padding: 50px 0; 
             position: relative;
             background: #0a0a0a; /* Same as hero section */
             overflow: hidden;
+            /* Naya font apply kiya gaya hai */
+            font-family: 'Poppins', sans-serif;
         }
         
         /* Animated background particles */
@@ -656,7 +661,8 @@
         }
         
         .services-title {
-            font-size: clamp(32px, 5vw, 48px);
+            /* Font size bara kiya gaya hai */
+            font-size: clamp(38px, 5vw, 56px);
             font-weight: 700;
             margin-bottom: 20px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -780,14 +786,15 @@
             transform: scaleX(1);
         }
         
+        /* Enhanced hover animation */
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             background: rgba(255, 255, 255, 0.12);
         }
         
         .service-card:active {
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.01);
         }
         
         .service-header {
@@ -823,14 +830,16 @@
         }
         
         .service-title {
-            font-size: 22px;
+            /* Font size bara kiya gaya hai */
+            font-size: 26px;
             font-weight: 700;
             margin-bottom: 15px;
             line-height: 1.3;
         }
         
         .service-description {
-            font-size: 16px;
+            /* Font size bara kiya gaya hai */
+            font-size: 17px;
             color: var(--text-secondary);
             line-height: 1.5;
             margin-bottom: 25px;
@@ -1124,7 +1133,7 @@
             color: var(--text-primary);
         }
         
-        /* Responsive Styles */
+        /* Responsive Styles - CHANGES START HERE */
         @media (max-width: 1200px) {
             .hero-content {
                 gap: 60px;
@@ -1381,12 +1390,17 @@
                 opacity: 0.7;
             }
             
+            /* Services Section Mobile Padding */
             .services-section {
-                padding: 60px 0;
+                padding: 40px 0;
             }
             
             .services-container {
                 padding: 0 25px;
+            }
+
+            .service-title {
+                font-size: 22px; /* Mobile ke liye thoda chhota */
             }
         }
         
@@ -1503,8 +1517,9 @@
                 opacity: 0.6;
             }
             
+            /* Services Section Small Mobile Padding */
             .services-section {
-                padding: 40px 0;
+                padding: 30px 0;
             }
             
             .services-container {
@@ -2484,7 +2499,7 @@
                 }
             }
             
-            // Initialize scroll animations for services section
+            // Initialize scroll animations for services section - ENHANCED ANIMATIONS
             gsap.from(".services-header", {
                 scrollTrigger: {
                     trigger: ".services-section",
@@ -2492,6 +2507,7 @@
                     toggleActions: "play none none reverse"
                 },
                 y: 50,
+                scale: 0.95, // Naya effect
                 opacity: 0,
                 duration: 1,
                 ease: "power2.out"
@@ -2519,9 +2535,46 @@
                 y: 30,
                 opacity: 0,
                 duration: 0.8,
-                stagger: 0.1,
+                stagger: 0.1, // Staggered animation for pills
                 delay: 0.4,
                 ease: "power2.out"
+            });
+
+            // Enhanced animation for service cards
+            gsap.from(".service-card", {
+                scrollTrigger: {
+                    trigger: ".services-grid",
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 60,
+                scale: 0.9, // Naya effect
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.15, // Staggered animation for cards
+                ease: "power2.out"
+            });
+
+            // Naya background animation for services section
+            gsap.to(".services-bg .geo-line-1", {
+                rotation: 360,
+                scrollTrigger: {
+                    trigger: ".services-section",
+                    scrub: 1,
+                    start: "top bottom",
+                    end: "bottom top"
+                },
+                ease: "none"
+            });
+            gsap.to(".services-bg .geo-line-2", {
+                rotation: -360,
+                scrollTrigger: {
+                    trigger: ".services-section",
+                    scrub: 1,
+                    start: "top bottom",
+                    end: "bottom top"
+                },
+                ease: "none"
             });
         });
         
