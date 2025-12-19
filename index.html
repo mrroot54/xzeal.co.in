@@ -2242,10 +2242,24 @@
             
             // Apply search filter
             if (searchTerm) {
-                filteredServices = filteredServices.filter(service => 
-                    service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    service.description.toLowerCase().includes(searchTerm.toLowerCase())
+                const lowerCaseSearchTerm = searchTerm.toLowerCase();
+                let foundServices = [];
+                
+                // First, check if the search term matches any main service title
+                foundServices = servicesData.filter(service => 
+                    service.title.toLowerCase().includes(lowerCaseSearchTerm)
                 );
+                
+                // If no main service is found, check features
+                if (foundServices.length === 0) {
+                    foundServices = servicesData.filter(service => 
+                        service.features.some(feature => 
+                            feature.text.toLowerCase().includes(lowerCaseSearchTerm)
+                        )
+                    );
+                }
+                
+                filteredServices = foundServices;
             }
             
             filteredServices.forEach((service, index) => {
