@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Digital Agency - App Style</title>
+    <title>Digital Agency - Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -87,101 +87,34 @@
             flex-direction: column;
         }
         
-        /* Mobile App Header */
-        .app-header {
-            background: rgba(10, 14, 39, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 20px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        /* Simple Header */
+        .simple-header {
+            padding: 40px 20px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
         }
         
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .menu-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            background: var(--card-bg);
-            border: none;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .menu-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: scale(1.05);
-        }
-        
-        .menu-btn:active {
-            transform: scale(0.95);
-        }
-        
-        .app-title {
-            font-size: 24px;
+        .main-title {
+            font-size: clamp(28px, 5vw, 42px);
             font-weight: 700;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            margin-bottom: 15px;
         }
         
-        .notification-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            background: var(--card-bg);
-            border: none;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .notification-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: scale(1.05);
-        }
-        
-        .notification-badge {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 8px;
-            height: 8px;
-            background: #ef4444;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
-            }
+        .main-subtitle {
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-secondary);
+            margin-bottom: 30px;
         }
         
         /* Search Bar */
         .search-container {
+            max-width: 500px;
+            margin: 0 auto 30px;
             position: relative;
         }
         
@@ -214,10 +147,12 @@
         .category-pills {
             display: flex;
             gap: 12px;
-            padding: 20px;
+            padding: 0 20px 30px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
         .category-pills::-webkit-scrollbar {
@@ -251,7 +186,7 @@
         /* Main Content */
         .main-content {
             flex: 1;
-            padding: 0 20px 100px;
+            padding: 0 20px 60px;
         }
         
         /* Services Grid */
@@ -437,88 +372,6 @@
             --icon-color: #3b82f6;
             --badge-bg: rgba(59, 130, 246, 0.2);
             --badge-color: #3b82f6;
-        }
-        
-        /* Floating Action Button */
-        .fab {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--primary-gradient);
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: var(--shadow-lg);
-            z-index: 90;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .fab:hover {
-            transform: scale(1.1) rotate(90deg);
-            box-shadow: var(--shadow-xl);
-        }
-        
-        .fab:active {
-            transform: scale(0.95);
-        }
-        
-        /* Bottom Navigation */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(10, 14, 39, 0.98);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 100;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 12px 0;
-        }
-        
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            padding: 8px 16px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 12px;
-        }
-        
-        .nav-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .nav-item.active {
-            color: #667eea;
-        }
-        
-        .nav-icon {
-            font-size: 20px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .nav-item.active .nav-icon {
-            transform: translateY(-2px);
-        }
-        
-        .nav-label {
-            font-size: 11px;
-            font-weight: 500;
         }
         
         /* Modal Styles */
@@ -717,30 +570,18 @@
             color: var(--text-primary);
         }
         
-        /* Loading Animation */
-        .loading-skeleton {
-            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-        
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-        
         /* Tablet Styles */
         @media (min-width: 768px) {
-            .app-header {
-                padding: 30px 40px;
+            .simple-header {
+                padding: 60px 40px 30px;
             }
             
             .category-pills {
-                padding: 20px 40px;
+                padding: 0 40px 40px;
             }
             
             .main-content {
-                padding: 0 40px 120px;
+                padding: 0 40px 80px;
             }
             
             .services-grid {
@@ -769,16 +610,16 @@
                 margin: 0 auto;
             }
             
-            .app-header {
-                padding: 40px 60px;
+            .simple-header {
+                padding: 80px 60px 40px;
             }
             
             .category-pills {
-                padding: 20px 60px;
+                padding: 0 60px 50px;
             }
             
             .main-content {
-                padding: 0 60px 140px;
+                padding: 0 60px 100px;
             }
             
             .services-grid {
@@ -797,23 +638,6 @@
             
             .service-description {
                 font-size: 15px;
-            }
-            
-            .fab {
-                bottom: 120px;
-                right: 60px;
-                width: 64px;
-                height: 64px;
-                font-size: 28px;
-            }
-            
-            .bottom-nav {
-                left: 50%;
-                transform: translateX(-50%);
-                width: auto;
-                min-width: 400px;
-                border-radius: 20px 20px 0 0;
-                box-shadow: var(--shadow-lg);
             }
             
             .modal-content {
@@ -848,10 +672,6 @@
             .category-pill:active {
                 transform: scale(0.95);
             }
-            
-            .nav-item:active {
-                background: rgba(255, 255, 255, 0.1);
-            }
         }
         
         /* Smooth scrolling */
@@ -884,24 +704,17 @@
     
     <!-- App Container -->
     <div class="app-container">
-        <!-- App Header -->
-        <header class="app-header">
-            <div class="header-content">
-                <button class="menu-btn" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <h1 class="app-title">Digital Agency</h1>
-                <button class="notification-btn" onclick="showNotifications()">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge"></span>
-                </button>
-            </div>
-            
-            <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Search services..." onkeyup="searchServices(this.value)">
-                <i class="fas fa-search search-icon"></i>
-            </div>
+        <!-- Simple Header -->
+        <header class="simple-header">
+            <h1 class="main-title">Our Services</h1>
+            <p class="main-subtitle">Premium digital solutions for your business growth</p>
         </header>
+        
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search services..." onkeyup="searchServices(this.value)">
+            <i class="fas fa-search search-icon"></i>
+        </div>
         
         <!-- Category Pills -->
         <div class="category-pills">
@@ -918,33 +731,6 @@
                 <!-- Service Cards will be dynamically generated -->
             </div>
         </main>
-        
-        <!-- Floating Action Button -->
-        <button class="fab" onclick="openContactForm()">
-            <i class="fas fa-plus"></i>
-        </button>
-        
-        <!-- Bottom Navigation -->
-        <nav class="bottom-nav">
-            <div class="nav-container">
-                <div class="nav-item active" onclick="navigateTo('home')">
-                    <i class="fas fa-home nav-icon"></i>
-                    <span class="nav-label">Home</span>
-                </div>
-                <div class="nav-item" onclick="navigateTo('services')">
-                    <i class="fas fa-th-large nav-icon"></i>
-                    <span class="nav-label">Services</span>
-                </div>
-                <div class="nav-item" onclick="navigateTo('portfolio')">
-                    <i class="fas fa-briefcase nav-icon"></i>
-                    <span class="nav-label">Portfolio</span>
-                </div>
-                <div class="nav-item" onclick="navigateTo('profile')">
-                    <i class="fas fa-user nav-icon"></i>
-                    <span class="nav-label">Profile</span>
-                </div>
-            </div>
-        </nav>
     </div>
     
     <!-- Service Modal -->
@@ -1238,30 +1024,6 @@
             closeModal();
             // In a real app, this would navigate to a booking or contact form
             showNotification('Service request sent! We\'ll contact you soon.');
-        }
-        
-        // Navigation functions
-        function navigateTo(page) {
-            // Update active nav item
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            event.currentTarget.classList.add('active');
-            
-            // In a real app, this would navigate to different pages
-            showNotification(`Navigating to ${page}...`);
-        }
-        
-        function toggleMenu() {
-            showNotification('Menu opened');
-        }
-        
-        function showNotifications() {
-            showNotification('You have 3 new notifications');
-        }
-        
-        function openContactForm() {
-            showNotification('Opening contact form...');
         }
         
         // Show notification (toast)
