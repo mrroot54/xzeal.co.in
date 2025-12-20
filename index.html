@@ -654,13 +654,16 @@
         /* Services Header */
         .services-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 30px; /* Reduced from 60px */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .services-title {
-            font-size: clamp(28px, 5vw, 40px);
+            font-size: clamp(28px, 5vw, 40px); /* Reduced from 38px to 28px */
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 15px; /* Reduced from 20px */
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -668,7 +671,7 @@
         }
         
         .services-subtitle {
-            font-size: clamp(14px, 2vw, 16px);
+            font-size: clamp(14px, 2vw, 16px); /* Reduced from 16px to 14px */
             color: var(--text-secondary);
             max-width: 700px;
             margin: 0 auto;
@@ -677,7 +680,7 @@
         /* Search Bar */
         .search-container {
             max-width: 500px;
-            margin: 0 auto 20px;
+            margin: 0 auto 20px; /* Reduced from 40px */
             position: relative;
         }
         
@@ -710,7 +713,7 @@
         .category-pills {
             display: flex;
             gap: 12px;
-            padding: 0 0 20px;
+            padding: 0 0 20px; /* Reduced from 40px */
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
@@ -1126,6 +1129,33 @@
             color: var(--text-primary);
         }
         
+        /* Logo Destination Styles - ADDED */
+        #logo-destination {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            vertical-align: middle;
+            margin-right: 15px;
+            opacity: 0;
+        }
+        
+        /* Floating Logo Styles - NEW */
+        #floating-logo {
+            position: fixed;
+            width: 120px;
+            height: 120px;
+            z-index: 998;
+            pointer-events: none;
+            display: none;
+        }
+        
+        #floating-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+        
         /* Responsive Styles */
         @media (max-width: 1200px) {
             .hero-content {
@@ -1385,7 +1415,7 @@
             
             /* Services Section Mobile Adjustments */
             .services-section {
-                padding: 30px 0;
+                padding: 30px 0; /* Further reduced for mobile */
             }
             
             .services-container {
@@ -1393,36 +1423,36 @@
             }
             
             .services-header {
-                margin-bottom: 20px;
+                margin-bottom: 20px; /* Further reduced for mobile */
             }
             
             .services-title {
-                font-size: clamp(24px, 6vw, 32px);
+                font-size: clamp(24px, 6vw, 32px); /* Further reduced for mobile */
                 margin-bottom: 10px;
             }
             
             .services-subtitle {
-                font-size: clamp(12px, 3vw, 14px);
+                font-size: clamp(12px, 3vw, 14px); /* Further reduced for mobile */
             }
             
             .search-container {
-                margin: 0 auto 10px; /* Reduced gap */
+                margin: 0 auto 15px; /* Further reduced for mobile */
             }
             
             .category-pills {
-                padding: 0 0 10px; /* Reduced gap */
+                padding: 0 0 15px; /* Further reduced for mobile */
             }
             
             .service-card {
-                padding: 20px;
+                padding: 20px; /* Reduced padding for mobile */
             }
             
             .service-title {
-                font-size: 20px;
+                font-size: 20px; /* Reduced for mobile */
             }
             
             .service-description {
-                font-size: 15px;
+                font-size: 15px; /* Reduced for mobile */
             }
         }
         
@@ -1541,7 +1571,7 @@
             
             /* Services Section Small Mobile Adjustments */
             .services-section {
-                padding: 20px 0;
+                padding: 20px 0; /* Even more reduced for small mobile */
             }
             
             .services-container {
@@ -1549,35 +1579,35 @@
             }
             
             .services-header {
-                margin-bottom: 15px;
+                margin-bottom: 15px; /* Even more reduced for small mobile */
             }
             
             .services-title {
-                font-size: clamp(22px, 7vw, 28px);
+                font-size: clamp(22px, 7vw, 28px); /* Even more reduced for small mobile */
             }
             
             .services-subtitle {
-                font-size: clamp(11px, 3vw, 13px);
+                font-size: clamp(11px, 3vw, 13px); /* Even more reduced for small mobile */
             }
             
             .search-container {
-                margin: 0 auto 8px; /* Further reduced gap */
+                margin: 0 auto 10px; /* Even more reduced for small mobile */
             }
             
             .category-pills {
-                padding: 0 0 5px; /* Further reduced gap */
+                padding: 0 0 10px; /* Even more reduced for small mobile */
             }
             
             .service-card {
-                padding: 15px;
+                padding: 15px; /* Even more reduced for small mobile */
             }
             
             .service-title {
-                font-size: 18px;
+                font-size: 18px; /* Even more reduced for small mobile */
             }
             
             .service-description {
-                font-size: 14px;
+                font-size: 14px; /* Even more reduced for small mobile */
             }
         }
         
@@ -1643,7 +1673,7 @@
             
             /* Services Section Ultra Small Mobile Adjustments */
             .services-section {
-                padding: 15px 0;
+                padding: 15px 0; /* Ultra reduced for very small mobile */
             }
             
             .services-container {
@@ -1651,35 +1681,35 @@
             }
             
             .services-header {
-                margin-bottom: 10px;
+                margin-bottom: 10px; /* Ultra reduced for very small mobile */
             }
             
             .services-title {
-                font-size: clamp(20px, 8vw, 24px);
+                font-size: clamp(20px, 8vw, 24px); /* Ultra reduced for very small mobile */
             }
             
             .services-subtitle {
-                font-size: clamp(10px, 3vw, 12px);
+                font-size: clamp(10px, 3vw, 12px); /* Ultra reduced for very small mobile */
             }
             
             .search-container {
-                margin: 0 auto 5px; /* Ultra reduced gap */
+                margin: 0 auto 8px; /* Ultra reduced for very small mobile */
             }
             
             .category-pills {
-                padding: 0 0 0px; /* No gap for very small screens */
+                padding: 0 0 8px; /* Ultra reduced for very small mobile */
             }
             
             .service-card {
-                padding: 12px;
+                padding: 12px; /* Ultra reduced for very small mobile */
             }
             
             .service-title {
-                font-size: 16px;
+                font-size: 16px; /* Ultra reduced for very small mobile */
             }
             
             .service-description {
-                font-size: 13px;
+                font-size: 13px; /* Ultra reduced for very small mobile */
             }
         }
     </style>
@@ -1771,8 +1801,8 @@
             <div class="hero-right">
                 <div class="modern-visual">
                     <!-- Central Circle with Logo -->
-                    <div class="central-circle">
-                        <img src="logo.png" alt="Logo" />
+                    <div class="central-circle" id="hero-logo-container">
+                        <img src="logo.png" alt="Logo" id="hero-logo" />
                     </div>
                     
                     <!-- Orbiting Elements with Service Icons -->
@@ -1832,8 +1862,10 @@
         <div class="services-container">
             <!-- Services Header -->
             <div class="services-header">
+                <!-- यह नया डिव जोड़ा गया है -->
+                <div id="logo-destination"></div>
+                
                 <h2 class="services-title">Our Services</h2>
-                <p class="services-subtitle">Premium digital solutions for your business growth</p>
             </div>
             
             <!-- Search Bar -->
@@ -1895,6 +1927,11 @@
                 <button class="modal-btn modal-btn-primary" onclick="startService()">Get Started</button>
             </div>
         </div>
+    </div>
+
+    <!-- Floating Logo - NEW -->
+    <div id="floating-logo">
+        <img src="logo.png" alt="Logo" />
     </div>
 
     <script>
@@ -2166,7 +2203,7 @@
                     duration: 1.5,
                     ease: "power2.out",
                     onUpdate: function() {
-                        // Ensure the central circle maintains its square aspect ratio
+                        // Ensure central circle maintains its square aspect ratio
                         const circle = document.querySelector('.central-circle');
                         const currentScale = gsap.getProperty(circle, "scale");
                         circle.style.width = `${200 * currentScale}px`;
@@ -2233,10 +2270,10 @@
             const centralCircle = document.querySelector('.central-circle');
             const orbits = document.querySelectorAll('.orbit');
             
-            // Get the current width of the modern-visual container
+            // Get current width of modern-visual container
             const width = modernVisual.offsetWidth;
             
-            // Set the height to match the width to maintain square aspect ratio
+            // Set height to match the width to maintain square aspect ratio
             modernVisual.style.height = `${width}px`;
             
             // Adjust central circle size proportionally
@@ -2314,13 +2351,13 @@
         
         // Logo error handling
         const logoImg = document.querySelector('.logo img');
-        const centralLogo = document.querySelector('.central-circle img');
+        const heroLogo = document.querySelector('#hero-logo');
         
         logoImg.addEventListener('error', function() {
             this.style.display = 'none';
         });
         
-        centralLogo.addEventListener('error', function() {
+        heroLogo.addEventListener('error', function() {
             this.style.display = 'none';
         });
         
@@ -2699,6 +2736,119 @@
                     });
                 }
             });
+        });
+
+        // ===================================================
+        // ========== VISIBLE SCROLLING LOGO ANIMATION ==============
+        // ===================================================
+
+        // 1. सभी जरूरी एलिमेंट्स को पकड़ो
+        const heroLogoContainer = document.getElementById('hero-logo-container');
+        const heroLogoImg = document.getElementById('hero-logo');
+        const floatingLogo = document.getElementById('floating-logo');
+        const logoDestination = document.getElementById('logo-destination');
+        const servicesSection = document.querySelector('.services-section');
+        
+        // 2. लोगो की शुरुआती स्थिति और साइज़ सेट करो
+        function initializeLogoPosition() {
+            const heroLogoRect = heroLogoContainer.getBoundingClientRect();
+            
+            // फ्लोटिंग लोगो को शुरुआती स्थिति पर सेट करो
+            gsap.set(floatingLogo, {
+                x: heroLogoRect.left + (heroLogoRect.width / 2) - 60, // केंद्र में लाने के लिए
+                y: heroLogoRect.top + (heroLogoRect.height / 2) - 60, // केंद्र में लाने के लिए
+                width: 120,
+                height: 120,
+                opacity: 0,
+                scale: 0.5
+            });
+        }
+        
+        // 3. ScrollTrigger टाइमलाइन बनाओ
+        const logoTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: () => `+=${servicesSection.offsetTop - window.innerHeight + 200}`, // सर्विसेज सेक्शन से थोड़ा पहले
+                scrub: 1,
+                pin: ".hero",
+                onUpdate: (self) => {
+                    // स्क्रॉल के दौरान लोगो की स्थिति अपडेट करो
+                    const progress = self.progress;
+                    
+                    // जब प्रोग्रेस 0.2 से अधिक हो, तो फ्लोटिंग लोगो दिखाओ
+                    if (progress > 0.2) {
+                        gsap.to(floatingLogo, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.3
+                        });
+                        
+                        // ओरिजिनल लोगो को धीरे-धीरे छिपाओ
+                        gsap.to(heroLogoContainer, {
+                            opacity: 0,
+                            scale: 0.8,
+                            duration: 0.3
+                        });
+                    } else {
+                        gsap.to(floatingLogo, {
+                            opacity: 0,
+                            scale: 0.5,
+                            duration: 0.3
+                        });
+                        
+                        // ओरिजिनल लोगो को दिखाओ
+                        gsap.to(heroLogoContainer, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.3
+                        });
+                    }
+                    
+                    // जब प्रोग्रेस 0.8 से अधिक हो, तो लोगो को डेस्टिनेशन की ओर ले जाओ
+                    if (progress > 0.8) {
+                        const logoDestRect = logoDestination.getBoundingClientRect();
+                        
+                        gsap.to(floatingLogo, {
+                            x: logoDestRect.left + (logoDestRect.width / 2) - 60,
+                            y: logoDestRect.top + (logoDestRect.height / 2) - 60,
+                            width: 50,
+                            height: 50,
+                            scale: 1,
+                            duration: 0.5,
+                            ease: "power2.inOut"
+                        });
+                    }
+                },
+                onComplete: () => {
+                    // एनिमेशन पूरा होने पर लोगो को डेस्टिनेशन में डालो
+                    const logoClone = document.createElement('img');
+                    logoClone.src = 'logo.png';
+                    logoClone.alt = 'Logo';
+                    logoClone.style.width = '100%';
+                    logoClone.style.height = 'auto';
+                    logoClone.style.filter = 'brightness(0) invert(1)';
+                    
+                    logoDestination.appendChild(logoClone);
+                    logoDestination.style.opacity = '1';
+                    
+                    // फ्लोटिंग लोगो को छिपाओ
+                    gsap.set(floatingLogo, {
+                        opacity: 0
+                    });
+                }
+            }
+        });
+        
+        // 4. विंडो रिसाइज़ पर लोगो की स्थिति रीसेट करो
+        window.addEventListener('resize', () => {
+            initializeLogoPosition();
+            ScrollTrigger.refresh();
+        });
+        
+        // 5. पेज लोड होने पर लोगो की स्थिति इनिशियलाइज़ करो
+        window.addEventListener('load', () => {
+            initializeLogoPosition();
         });
     </script>
 </body>
