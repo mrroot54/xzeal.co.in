@@ -1556,6 +1556,21 @@
             .category-pills {
                 padding: 0 0 15px; /* Reduced from 30px */
             }
+            
+            /* FIXED: Ensure all 6 service cards are visible on mobile */
+            .services-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 20px;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            
+            .service-card {
+                height: auto !important;
+                min-height: 250px !important;
+                overflow: visible !important;
+            }
         }
         
         @media (max-width: 480px) {
@@ -1717,6 +1732,21 @@
             .category-pills {
                 padding: 0 0 10px; /* Reduced from 15px */
             }
+            
+            /* FIXED: Ensure all 6 service cards are visible on small mobile */
+            .services-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 15px;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            
+            .service-card {
+                height: auto !important;
+                min-height: 220px !important;
+                overflow: visible !important;
+            }
         }
         
         @media (max-width: 380px) {
@@ -1824,6 +1854,21 @@
             
             .category-pills {
                 padding: 0 0 8px; /* Reduced from 10px */
+            }
+            
+            /* FIXED: Ensure all 6 service cards are visible on ultra small mobile */
+            .services-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 12px;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            
+            .service-card {
+                height: auto !important;
+                min-height: 200px !important;
+                overflow: visible !important;
             }
         }
     </style>
