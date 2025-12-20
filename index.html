@@ -274,7 +274,7 @@
         }
         
         /* Geometric Background Pattern */
-        .hero-bg, .services-bg {
+        .hero-bg, .services-bg, .about-bg {
             position: absolute;
             top: 0;
             left: 0;
@@ -595,6 +595,116 @@
             }
         }
         
+        /* About Us Section Styles */
+        .about-section {
+            padding: 100px 0;
+            position: relative;
+            background: #0a0a0a;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .about-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .about-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .about-title {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .about-subtitle {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        
+        .about-text {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .about-description {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .stat-box {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(39, 38, 104, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+        
+        .stat-number {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+        
+        .about-cta {
+            text-align: center;
+        }
+        
         /* Services Section Styles */
         .services-section {
             padding: 50px 0;
@@ -660,7 +770,7 @@
         .services-title {
             font-size: clamp(28px, 5vw, 40px);
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -678,7 +788,7 @@
         .category-pills {
             display: flex;
             gap: 12px;
-            padding: 0 0 10px;
+            padding: 0 0 15px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
@@ -1212,6 +1322,16 @@
             .service-card {
                 padding: 20px;
             }
+            
+            /* About Section Responsive */
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         @media (max-width: 1024px) {
@@ -1410,14 +1530,14 @@
                 padding: 0 25px;
             }
             
-            /* FIXED: Drastically reduced margins between header, pills and search on mobile */
+            /* FIXED: Reduced margins between header, pills and search on mobile */
             .services-header {
-                margin-bottom: 5px; /* Further reduced */
+                margin-bottom: 5px; /* Reduced from 15px */
             }
             
             .services-title {
                 font-size: clamp(24px, 6vw, 32px);
-                margin-bottom: 5px; /* Further reduced */
+                margin-bottom: 5px; /* Reduced from 15px */
             }
             
             .services-subtitle {
@@ -1426,14 +1546,14 @@
             }
             
             .category-pills {
-                padding: 0 0 5px; /* Further reduced */
+                padding: 0 0 5px; /* Reduced from 15px */
             }
             
             /* Search wrapper mobile adjustments */
             .search-wrapper {
                 flex-direction: column;
-                gap: 5px; /* Further reduced */
-                margin-bottom: 5px; /* Further reduced */
+                gap: 5px; /* Reduced from 10px */
+                margin-bottom: 5px; /* Reduced from 10px */
             }
             
             .search-container {
@@ -1456,6 +1576,47 @@
             
             .service-description {
                 font-size: 13px;
+            }
+            
+            /* About Section Mobile Adjustments */
+            .about-section {
+                padding: 60px 0;
+            }
+            
+            .about-container {
+                padding: 0 25px;
+            }
+            
+            .about-header {
+                margin-bottom: 40px;
+            }
+            
+            .about-content {
+                gap: 30px;
+                margin-bottom: 40px;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .stat-box {
+                padding: 20px;
+            }
+            
+            .stat-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .stat-number {
+                font-size: 36px;
+            }
+            
+            .stat-label {
+                font-size: 14px;
             }
         }
         
@@ -1622,6 +1783,20 @@
             .service-description {
                 font-size: 12px;
             }
+            
+            /* About Section Small Mobile Adjustments */
+            .about-section {
+                padding: 40px 0;
+            }
+            
+            .about-container {
+                padding: 0 20px;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
         }
         
         @media (max-width: 380px) {
@@ -1748,7 +1923,7 @@
             <!-- Desktop Navigation -->
             <div class="nav-links">
                 <a href="#services">Services</a>
-                <a href="#">About Us</a>
+                <a href="#about">About Us</a>
                 <a href="#">Portfolio</a>
                 <a href="#">Blog</a>
                 <a href="#" class="nav-cta">Contact</a>
@@ -1768,7 +1943,7 @@
         <div class="mobile-nav-links">
             <a href="#"><i class="fas fa-home"></i> Home</a>
             <a href="#services"><i class="fas fa-cogs"></i> Services</a>
-            <a href="#"><i class="fas fa-users"></i> About Us</a>
+            <a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
             <a href="#"><i class="fas fa-briefcase"></i> Portfolio</a>
             <a href="#"><i class="fas fa-blog"></i> Blog</a>
             <a href="#" class="mobile-nav-cta"><i class="fas fa-envelope"></i> Contact Us</a>
@@ -1856,6 +2031,89 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-section" id="about">
+        <!-- Geometric Background -->
+        <div class="about-bg">
+            <div class="geometric-pattern">
+                <div class="geo-line geo-line-1"></div>
+                <div class="geo-line geo-line-2"></div>
+                <div class="geo-line geo-line-3"></div>
+                <div class="geo-line geo-line-4"></div>
+            </div>
+            
+            <!-- Floating Elements -->
+            <div class="floating-element float-1"></div>
+            <div class="floating-element float-2"></div>
+            <div class="floating-element float-3"></div>
+            <div class="floating-element float-4"></div>
+        </div>
+        
+        <!-- About Container -->
+        <div class="about-container">
+            <!-- About Header -->
+            <div class="about-header">
+                <h2 class="about-title">About Xzeal</h2>
+                <p class="about-subtitle">Transforming ideas into digital reality</p>
+            </div>
+            
+            <!-- About Content -->
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description">
+                        We are a team of passionate digital innovators dedicated to helping businesses thrive in the digital landscape. With expertise spanning across marketing, development, and design, we craft solutions that not only look stunning but deliver measurable results.
+                    </p>
+                    <p class="about-description">
+                        Our approach combines creativity with data-driven strategies to ensure your brand stands out in today's competitive market. We believe in building lasting partnerships with our clients, understanding their unique challenges, and delivering tailored solutions that exceed expectations.
+                    </p>
+                </div>
+                
+                <!-- Stats Section -->
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number" data-target="100">0</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="stat-number" data-target="200">0</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="stat-number" data-target="15">0</div>
+                        <div class="stat-label">Industry Awards</div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-coffee"></i>
+                        </div>
+                        <div class="stat-number" data-target="5000">0</div>
+                        <div class="stat-label">Cups of Coffee</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA Button -->
+            <div class="about-cta">
+                <a href="#" class="btn btn-primary">
+                    <i class="fas fa-info-circle"></i>
+                    Learn More About Us
+                </a>
             </div>
         </div>
     </section>
@@ -2377,6 +2635,194 @@
         
         centralLogo.addEventListener('error', function() {
             this.style.display = 'none';
+        });
+        
+        // About Section Animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize scroll animations for about section
+            gsap.from(".about-header", {
+                scrollTrigger: {
+                    trigger: ".about-section",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power2.out"
+            });
+            
+            gsap.from(".about-description", {
+                scrollTrigger: {
+                    trigger: ".about-section",
+                    start: "top 70%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.2,
+                delay: 0.3,
+                ease: "power2.out"
+            });
+            
+            gsap.from(".stat-box", {
+                scrollTrigger: {
+                    trigger: ".stats-container",
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 60,
+                scale: 0.9,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: "power2.out"
+            });
+            
+            gsap.from(".about-cta", {
+                scrollTrigger: {
+                    trigger: ".about-section",
+                    start: "top 60%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                delay: 0.5,
+                ease: "power2.out"
+            });
+            
+            // Animated counters
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 200;
+            
+            const animateCounters = () => {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const increment = target / speed;
+                    
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(() => animateCounters(), 10);
+                    } else {
+                        counter.innerText = target + '+';
+                    }
+                });
+            };
+            
+            // Trigger counter animation when stats section is in view
+            const statsObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            const statsContainer = document.querySelector('.stats-container');
+            if (statsContainer) {
+                statsObserver.observe(statsContainer);
+            }
+            
+            // Background animation for about section
+            gsap.to(".about-bg .geo-line-1", {
+                rotation: 360,
+                scrollTrigger: {
+                    trigger: ".about-section",
+                    scrub: 1,
+                    start: "top bottom",
+                    end: "bottom top"
+                },
+                ease: "none"
+            });
+            
+            gsap.to(".about-bg .geo-line-2", {
+                rotation: -360,
+                scrollTrigger: {
+                    trigger: ".about-section",
+                    scrub: 1,
+                    start: "top bottom",
+                    end: "bottom top"
+                },
+                ease: "none"
+            });
+            
+            // Floating elements animation
+            gsap.to(".about-bg .float-1", {
+                y: -30,
+                duration: 4,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            gsap.to(".about-bg .float-2", {
+                y: -20,
+                duration: 3,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            gsap.to(".about-bg .float-3", {
+                y: -25,
+                duration: 3.5,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            gsap.to(".about-bg .float-4", {
+                y: -35,
+                duration: 4.5,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            // Parallax effect on mouse move (desktop only)
+            if (window.innerWidth > 768) {
+                document.addEventListener("mousemove", (e) => {
+                    const x = e.clientX / window.innerWidth;
+                    const y = e.clientY / window.innerHeight;
+                    
+                    // Floating elements parallax
+                    gsap.to(".about-bg .float-1", {
+                        x: (x - 0.5) * 30,
+                        y: (y - 0.5) * 30,
+                        rotation: 45 + (x - 0.5) * 20,
+                        duration: 1.5,
+                        ease: "power2.out"
+                    });
+                    
+                    gsap.to(".about-bg .float-2", {
+                        x: (x - 0.5) * 25,
+                        y: (y - 0.5) * 25,
+                        rotation: -30 + (y - 0.5) * 20,
+                        duration: 1.5,
+                        ease: "power2.out"
+                    });
+                    
+                    gsap.to(".about-bg .float-3", {
+                        x: (x - 0.5) * 35,
+                        y: (y - 0.5) * 35,
+                        rotation: 15 + (x - 0.5) * 15,
+                        duration: 1.5,
+                        ease: "power2.out"
+                    });
+                    
+                    gsap.to(".about-bg .float-4", {
+                        x: (x - 0.5) * 28,
+                        y: (y - 0.5) * 28,
+                        rotation: -45 + (y - 0.5) * 25,
+                        duration: 1.5,
+                        ease: "power2.out"
+                    });
+                });
+            }
         });
         
         // Services Section JavaScript
