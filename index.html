@@ -651,10 +651,10 @@
             padding: 0 40px;
         }
         
-        /* Services Header */
+        /* Services Header - MODIFIED: Reduced margin */
         .services-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 15px; /* Reduced from 30px */
         }
         
         .services-title {
@@ -678,7 +678,7 @@
         .category-pills {
             display: flex;
             gap: 12px;
-            padding: 0 0 20px;
+            padding: 0 0 15px; /* Reduced from 20px */
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
@@ -712,6 +712,48 @@
             background: var(--primary-gradient);
             color: white;
             border-color: transparent;
+        }
+        
+        /* Search Bar - MODIFIED: Moved closer to services */
+        .search-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px; /* Reduced from 20px */
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .search-container {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 12px 45px 12px 18px;
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 14px;
         }
         
         /* Services Grid - MODIFIED: Always show 6 boxes */
@@ -902,48 +944,6 @@
             --icon-color: #3b82f6;
             --badge-bg: rgba(59, 130, 246, 0.2);
             --badge-color: #3b82f6;
-        }
-        
-        /* Search Bar - MODIFIED: Moved closer to services */
-        .search-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .search-container {
-            flex: 1;
-            max-width: 400px;
-            position: relative;
-        }
-        
-        .search-bar {
-            width: 100%;
-            padding: 12px 45px 12px 18px;
-            border-radius: 16px;
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            font-size: 15px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .search-bar:focus {
-            outline: none;
-            border-color: var(--accent-blue);
-            background: rgba(255, 255, 255, 0.12);
-        }
-        
-        .search-icon {
-            position: absolute;
-            right: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
-            font-size: 14px;
         }
         
         /* Modal Styles */
@@ -1401,7 +1401,7 @@
                 opacity: 0.7;
             }
             
-            /* Services Section Mobile Adjustments */
+            /* Services Section Mobile Adjustments - MODIFIED: Reduced gaps */
             .services-section {
                 padding: 30px 0;
             }
@@ -1411,12 +1411,12 @@
             }
             
             .services-header {
-                margin-bottom: 20px;
+                margin-bottom: 10px; /* Further reduced */
             }
             
             .services-title {
                 font-size: clamp(24px, 6vw, 32px);
-                margin-bottom: 10px;
+                margin-bottom: 8px; /* Further reduced */
             }
             
             .services-subtitle {
@@ -1426,7 +1426,8 @@
             /* Search wrapper mobile adjustments */
             .search-wrapper {
                 flex-direction: column;
-                gap: 15px;
+                gap: 10px; /* Reduced gap */
+                margin-bottom: 10px; /* Further reduced */
             }
             
             .search-container {
@@ -1434,12 +1435,12 @@
             }
             
             .category-pills {
-                padding: 0 0 15px;
+                padding: 0 0 10px; /* Further reduced */
             }
             
-            /* Services Grid - MODIFIED: 2 columns on mobile */
+            /* Services Grid - MODIFIED: Fixed 2 columns on mobile */
             .services-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr); /* Fixed 2 columns */
                 gap: 15px;
             }
             
@@ -1569,7 +1570,7 @@
                 opacity: 0.6;
             }
             
-            /* Services Section Small Mobile Adjustments */
+            /* Services Section Small Mobile Adjustments - MODIFIED: Further reduced gaps */
             .services-section {
                 padding: 20px 0;
             }
@@ -1579,24 +1580,30 @@
             }
             
             .services-header {
-                margin-bottom: 15px;
+                margin-bottom: 8px; /* Further reduced */
             }
             
             .services-title {
                 font-size: clamp(22px, 7vw, 28px);
+                margin-bottom: 5px; /* Further reduced */
             }
             
             .services-subtitle {
                 font-size: clamp(11px, 3vw, 13px);
             }
             
+            .search-wrapper {
+                gap: 8px; /* Further reduced */
+                margin-bottom: 8px; /* Further reduced */
+            }
+            
             .category-pills {
-                padding: 0 0 10px;
+                padding: 0 0 8px; /* Further reduced */
             }
             
             /* Services Grid - MODIFIED: Still 2 columns on small mobile to show all 6 */
             .services-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr); /* Fixed 2 columns */
                 gap: 12px;
             }
             
@@ -1673,7 +1680,7 @@
                 bottom: -14px;
             }
             
-            /* Services Section Ultra Small Mobile Adjustments */
+            /* Services Section Ultra Small Mobile Adjustments - MODIFIED: Minimal gaps */
             .services-section {
                 padding: 15px 0;
             }
@@ -1683,24 +1690,30 @@
             }
             
             .services-header {
-                margin-bottom: 10px;
+                margin-bottom: 5px; /* Minimal gap */
             }
             
             .services-title {
                 font-size: clamp(20px, 8vw, 24px);
+                margin-bottom: 3px; /* Minimal gap */
             }
             
             .services-subtitle {
                 font-size: clamp(10px, 3vw, 12px);
             }
             
+            .search-wrapper {
+                gap: 5px; /* Minimal gap */
+                margin-bottom: 5px; /* Minimal gap */
+            }
+            
             .category-pills {
-                padding: 0 0 8px;
+                padding: 0 0 5px; /* Minimal gap */
             }
             
             /* Services Grid - MODIFIED: Still 2 columns to ensure all 6 boxes are visible */
             .services-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr); /* Fixed 2 columns */
                 gap: 10px;
             }
             
@@ -2379,11 +2392,31 @@
             const grid = document.getElementById('servicesGrid');
             grid.innerHTML = '';
             
+            // MODIFIED: Always show all 6 services regardless of filter
             let filteredServices = servicesData;
             
-            // Apply category filter
+            // Apply category filter only if not 'all'
             if (currentFilter !== 'all') {
                 filteredServices = filteredServices.filter(service => service.category === currentFilter);
+                
+                // If filter results in less than 6 services, add dummy cards to maintain 6 total
+                if (filteredServices.length < 6) {
+                    const neededCards = 6 - filteredServices.length;
+                    for (let i = 0; i < neededCards; i++) {
+                        filteredServices.push({
+                            id: 100 + i,
+                            title: 'Coming Soon',
+                            category: currentFilter,
+                            description: 'New service coming soon. Stay tuned for updates.',
+                            icon: 'fa-clock',
+                            color: '#888888',
+                            features: [
+                                { icon: 'fa-info-circle', text: 'More details coming soon' }
+                            ],
+                            stats: { projects: 0, rating: 0 }
+                        });
+                    }
+                }
             }
             
             // Apply search filter
@@ -2405,13 +2438,49 @@
                     );
                 }
                 
+                // If search results in less than 6 services, add dummy cards to maintain 6 total
+                if (foundServices.length < 6) {
+                    const neededCards = 6 - foundServices.length;
+                    for (let i = 0; i < neededCards; i++) {
+                        foundServices.push({
+                            id: 200 + i,
+                            title: 'No Results',
+                            category: 'none',
+                            description: 'No matching services found.',
+                            icon: 'fa-search',
+                            color: '#888888',
+                            features: [
+                                { icon: 'fa-info-circle', text: 'Try different search terms' }
+                            ],
+                            stats: { projects: 0, rating: 0 }
+                        });
+                    }
+                }
+                
                 filteredServices = foundServices;
             }
             
-            // MODIFIED: If no filter is applied, always show all 6 services
-            if (currentFilter === 'all' && !searchTerm) {
-                filteredServices = servicesData;
+            // Ensure we always have exactly 6 services
+            if (filteredServices.length < 6) {
+                const neededCards = 6 - filteredServices.length;
+                for (let i = 0; i < neededCards; i++) {
+                    filteredServices.push({
+                        id: 300 + i,
+                        title: 'More Services',
+                        category: 'all',
+                        description: 'More services available soon.',
+                        icon: 'fa-plus-circle',
+                        color: '#888888',
+                        features: [
+                            { icon: 'fa-info-circle', text: 'More services coming soon' }
+                        ],
+                        stats: { projects: 0, rating: 0 }
+                    });
+                }
             }
+            
+            // Limit to exactly 6 services
+            filteredServices = filteredServices.slice(0, 6);
             
             filteredServices.forEach((service, index) => {
                 const card = createServiceCard(service);
