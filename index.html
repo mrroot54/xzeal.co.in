@@ -1409,6 +1409,12 @@
                 display: none;
             }
             
+            .hero {
+                height: auto; /* FIXED: Changed from 100vh to auto */
+                min-height: auto; /* FIXED: Changed from 100vh to auto */
+                padding: 100px 0 20px; /* FIXED: Added bottom padding */
+            }
+            
             .hero-content {
                 padding: 0 25px;
                 gap: 40px;
@@ -1531,11 +1537,12 @@
             
             /* Services Section Mobile Adjustments */
             .services-section {
-                padding: 60px 0;
+                padding: 20px 0; /* FIXED: Reduced from 60px to 20px */
             }
             
             .services-container {
                 padding: 0 25px;
+                gap: 16px; /* FIXED: Added gap control */
             }
             
             .services-header {
@@ -1543,7 +1550,7 @@
             }
             
             .search-container {
-                margin: 0 auto 15px; /* Reduced from 30px */
+                margin: 0 auto 15px; /* FIXED: Reduced from 30px to 15px */
             }
             
             .category-pills {
