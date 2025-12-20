@@ -845,6 +845,9 @@
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         
         .service-card::before {
@@ -917,12 +920,14 @@
             color: var(--text-secondary);
             line-height: 1.5;
             margin-bottom: 25px;
+            flex-grow: 1;
         }
         
         .service-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-top: auto;
         }
         
         .service-stats {
@@ -1513,7 +1518,7 @@
                 margin: 0 auto 20px; /* FIXED: Reduced from 30px to 20px */
             }
             
-            /* FIXED: Updated for 2x2 grid on mobile */
+            /* FIXED: Updated for 2x2 grid on mobile with full responsiveness */
             .services-grid {
                 display: grid;
                 grid-template-columns: 1fr 1fr; /* Changed to 2 columns */
@@ -1526,6 +1531,35 @@
                 height: auto !important;
                 min-height: 250px !important;
                 overflow: visible !important;
+                padding: 20px; /* Reduced padding for mobile */
+            }
+            
+            .service-title {
+                font-size: 20px; /* Reduced font size for mobile */
+            }
+            
+            .service-description {
+                font-size: 14px; /* Reduced font size for mobile */
+                margin-bottom: 15px; /* Reduced margin for mobile */
+            }
+            
+            .service-icon-wrapper {
+                width: 50px; /* Reduced size for mobile */
+                height: 50px; /* Reduced size for mobile */
+                margin-bottom: 15px; /* Reduced margin for mobile */
+            }
+            
+            .service-icon {
+                font-size: 24px; /* Reduced font size for mobile */
+            }
+            
+            .service-stats {
+                gap: 10px; /* Reduced gap for mobile */
+            }
+            
+            .service-action {
+                width: 35px; /* Reduced size for mobile */
+                height: 35px; /* Reduced size for mobile */
             }
         }
         
@@ -1685,7 +1719,7 @@
                 margin: 0 auto 15px; /* Reduced from 20px to 15px */
             }
             
-            /* FIXED: Updated for 2x2 grid on small mobile */
+            /* FIXED: Updated for 2x2 grid on small mobile with full responsiveness */
             .services-grid {
                 display: grid;
                 grid-template-columns: 1fr 1fr; /* Changed to 2 columns */
@@ -1698,6 +1732,35 @@
                 height: auto !important;
                 min-height: 220px !important;
                 overflow: visible !important;
+                padding: 15px; /* Further reduced padding for small mobile */
+            }
+            
+            .service-title {
+                font-size: 18px; /* Further reduced font size for small mobile */
+            }
+            
+            .service-description {
+                font-size: 13px; /* Further reduced font size for small mobile */
+                margin-bottom: 12px; /* Further reduced margin for small mobile */
+            }
+            
+            .service-icon-wrapper {
+                width: 45px; /* Further reduced size for small mobile */
+                height: 45px; /* Further reduced size for small mobile */
+                margin-bottom: 12px; /* Further reduced margin for small mobile */
+            }
+            
+            .service-icon {
+                font-size: 20px; /* Further reduced font size for small mobile */
+            }
+            
+            .service-stats {
+                gap: 8px; /* Further reduced gap for small mobile */
+            }
+            
+            .service-action {
+                width: 30px; /* Further reduced size for small mobile */
+                height: 30px; /* Further reduced size for small mobile */
             }
         }
         
@@ -1804,7 +1867,7 @@
                 margin: 0 auto 12px; /* Reduced from 15px to 12px */
             }
             
-            /* FIXED: Updated for 2x2 grid on ultra small mobile */
+            /* FIXED: Updated for 2x2 grid on ultra small mobile with full responsiveness */
             .services-grid {
                 display: grid;
                 grid-template-columns: 1fr 1fr; /* Changed to 2 columns */
@@ -1817,6 +1880,35 @@
                 height: auto !important;
                 min-height: 200px !important;
                 overflow: visible !important;
+                padding: 12px; /* Further reduced padding for ultra small mobile */
+            }
+            
+            .service-title {
+                font-size: 16px; /* Further reduced font size for ultra small mobile */
+            }
+            
+            .service-description {
+                font-size: 12px; /* Further reduced font size for ultra small mobile */
+                margin-bottom: 10px; /* Further reduced margin for ultra small mobile */
+            }
+            
+            .service-icon-wrapper {
+                width: 40px; /* Further reduced size for ultra small mobile */
+                height: 40px; /* Further reduced size for ultra small mobile */
+                margin-bottom: 10px; /* Further reduced margin for ultra small mobile */
+            }
+            
+            .service-icon {
+                font-size: 18px; /* Further reduced font size for ultra small mobile */
+            }
+            
+            .service-stats {
+                gap: 6px; /* Further reduced gap for ultra small mobile */
+            }
+            
+            .service-action {
+                width: 28px; /* Further reduced size for ultra small mobile */
+                height: 28px; /* Further reduced size for ultra small mobile */
             }
         }
     </style>
