@@ -798,7 +798,7 @@
         /* Search Bar */
         .search-container {
             max-width: 500px;
-            margin: 0 auto 20px; /* Reduced from 40px */
+            margin: 0 auto 30px; /* Increased bottom margin */
             position: relative;
         }
         
@@ -825,46 +825,6 @@
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-secondary);
-        }
-        
-        /* Category Pills */
-        .category-pills {
-            display: flex;
-            gap: 12px;
-            padding: 0 0 20px; /* Reduced from 40px */
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .category-pills::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .category-pill {
-            padding: 12px 24px;
-            border-radius: 25px;
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 500;
-            white-space: nowrap;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .category-pill:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-        }
-        
-        .category-pill.active {
-            background: var(--primary-gradient);
-            color: white;
-            border-color: transparent;
         }
         
         /* Services Grid */
@@ -1550,18 +1510,14 @@
             }
             
             .search-container {
-                margin: 0 auto 15px; /* FIXED: Reduced from 30px to 15px */
+                margin: 0 auto 20px; /* FIXED: Reduced from 30px to 20px */
             }
             
-            .category-pills {
-                padding: 0 0 15px; /* Reduced from 30px */
-            }
-            
-            /* FIXED: Ensure all 6 service cards are visible on mobile */
+            /* FIXED: Updated for 2x2 grid on mobile */
             .services-grid {
                 display: grid;
-                grid-template-columns: 1fr;
-                gap: 20px;
+                grid-template-columns: 1fr 1fr; /* Changed to 2 columns */
+                gap: 15px; /* Adjusted gap */
                 height: auto !important;
                 overflow: visible !important;
             }
@@ -1726,18 +1682,14 @@
             }
             
             .search-container {
-                margin: 0 auto 10px; /* Reduced from 15px */
+                margin: 0 auto 15px; /* Reduced from 20px to 15px */
             }
             
-            .category-pills {
-                padding: 0 0 10px; /* Reduced from 15px */
-            }
-            
-            /* FIXED: Ensure all 6 service cards are visible on small mobile */
+            /* FIXED: Updated for 2x2 grid on small mobile */
             .services-grid {
                 display: grid;
-                grid-template-columns: 1fr;
-                gap: 15px;
+                grid-template-columns: 1fr 1fr; /* Changed to 2 columns */
+                gap: 12px; /* Adjusted gap */
                 height: auto !important;
                 overflow: visible !important;
             }
@@ -1849,18 +1801,14 @@
             }
             
             .search-container {
-                margin: 0 auto 8px; /* Reduced from 10px */
+                margin: 0 auto 12px; /* Reduced from 15px to 12px */
             }
             
-            .category-pills {
-                padding: 0 0 8px; /* Reduced from 10px */
-            }
-            
-            /* FIXED: Ensure all 6 service cards are visible on ultra small mobile */
+            /* FIXED: Updated for 2x2 grid on ultra small mobile */
             .services-grid {
                 display: grid;
-                grid-template-columns: 1fr;
-                gap: 12px;
+                grid-template-columns: 1fr 1fr; /* Changed to 2 columns */
+                gap: 10px; /* Adjusted gap */
                 height: auto !important;
                 overflow: visible !important;
             }
@@ -2086,15 +2034,6 @@
             <div class="search-container">
                 <input type="text" class="search-bar" placeholder="Search services..." onkeyup="searchServices(this.value)">
                 <i class="fas fa-search search-icon"></i>
-            </div>
-            
-            <!-- Category Pills (Filter Buttons) -->
-            <div class="category-pills">
-                <div class="category-pill active" onclick="filterCategory('all')">All Services</div>
-                <div class="category-pill" onclick="filterCategory('marketing')">Marketing</div>
-                <div class="category-pill" onclick="filterCategory('development')">Development</div>
-                <div class="category-pill" onclick="filterCategory('analytics')">Analytics</div>
-                <div class="category-pill" onclick="filterCategory('content')">Content</div>
             </div>
             
             <!-- Services Grid -->
@@ -2646,11 +2585,6 @@
             
             let filteredServices = servicesData;
             
-            // Apply category filter
-            if (currentFilter !== 'all') {
-                filteredServices = filteredServices.filter(service => service.category === currentFilter);
-            }
-            
             // Apply search filter
             if (searchTerm) {
                 const lowerCaseSearchTerm = searchTerm.toLowerCase();
@@ -2716,19 +2650,6 @@
             `;
             
             return card;
-        }
-        
-        // Filter by category
-        function filterCategory(category) {
-            currentFilter = category;
-            
-            // Update active pill
-            document.querySelectorAll('.category-pill').forEach(pill => {
-                pill.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            renderServices();
         }
         
         // Search services
@@ -2862,39 +2783,6 @@
             createParticles();
             renderServices();
             
-            // Add touch support for swipe gestures
-            let touchStartX = 0;
-            let touchEndX = 0;
-            
-            document.addEventListener('touchstart', function(e) {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-            
-            document.addEventListener('touchend', function(e) {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            });
-            
-            function handleSwipe() {
-                if (touchEndX < touchStartX - 50) {
-                    // Swipe left - next category
-                    const pills = document.querySelectorAll('.category-pill');
-                    const activeIndex = Array.from(pills).findIndex(pill => pill.classList.contains('active'));
-                    if (activeIndex < pills.length - 1) {
-                        pills[activeIndex + 1].click();
-                    }
-                }
-                
-                if (touchEndX > touchStartX + 50) {
-                    // Swipe right - previous category
-                    const pills = document.querySelectorAll('.category-pill');
-                    const activeIndex = Array.from(pills).findIndex(pill => pill.classList.contains('active'));
-                    if (activeIndex > 0) {
-                        pills[activeIndex - 1].click();
-                    }
-                }
-            }
-            
             // Initialize scroll animations for services section - ENHANCED ANIMATIONS
             gsap.from(".services-header", {
                 scrollTrigger: {
@@ -2919,20 +2807,6 @@
                 opacity: 0,
                 duration: 1,
                 delay: 0.2,
-                ease: "power2.out"
-            });
-            
-            gsap.from(".category-pill", {
-                scrollTrigger: {
-                    trigger: ".services-section",
-                    start: "top 70%",
-                    toggleActions: "play none none reverse"
-                },
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.1, // Staggered animation for pills
-                delay: 0.4,
                 ease: "power2.out"
             });
 
