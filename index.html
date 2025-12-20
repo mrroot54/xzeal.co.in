@@ -1410,32 +1410,34 @@
                 padding: 0 25px;
             }
             
+            /* FIXED: Reduced margins between header, pills and search on mobile */
             .services-header {
-                margin-bottom: 10px;
+                margin-bottom: 5px; /* Reduced from 15px */
             }
             
             .services-title {
                 font-size: clamp(24px, 6vw, 32px);
-                margin-bottom: 8px;
+                margin-bottom: 5px; /* Reduced from 15px */
             }
             
             .services-subtitle {
                 font-size: clamp(12px, 3vw, 14px);
+                margin-bottom: 5px; /* Added to reduce gap */
+            }
+            
+            .category-pills {
+                padding: 0 0 5px; /* Reduced from 15px */
             }
             
             /* Search wrapper mobile adjustments */
             .search-wrapper {
                 flex-direction: column;
-                gap: 10px;
-                margin-bottom: 10px;
+                gap: 5px; /* Reduced from 10px */
+                margin-bottom: 5px; /* Reduced from 10px */
             }
             
             .search-container {
                 max-width: 100%;
-            }
-            
-            .category-pills {
-                padding: 0 0 10px;
             }
             
             /* Services Grid - FIXED: Always 2 columns on mobile */
@@ -1579,29 +1581,31 @@
                 padding: 0 20px;
             }
             
+            /* FIXED: Further reduced margins between header, pills and search on small mobile */
             .services-header {
-                margin-bottom: 8px;
+                margin-bottom: 3px; /* Further reduced */
             }
             
             .services-title {
                 font-size: clamp(22px, 7vw, 28px);
-                margin-bottom: 5px;
+                margin-bottom: 3px; /* Further reduced */
             }
             
             .services-subtitle {
                 font-size: clamp(11px, 3vw, 13px);
-            }
-            
-            .search-wrapper {
-                gap: 8px;
-                margin-bottom: 8px;
+                margin-bottom: 3px; /* Further reduced */
             }
             
             .category-pills {
-                padding: 0 0 8px;
+                padding: 0 0 3px; /* Further reduced */
             }
             
-            /* Services Grid - FIXED: Still 2 columns on small mobile */
+            .search-wrapper {
+                gap: 3px; /* Further reduced */
+                margin-bottom: 3px; /* Further reduced */
+            }
+            
+            /* Services Grid - Still 2 columns on small mobile */
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
@@ -1689,29 +1693,31 @@
                 padding: 0 15px;
             }
             
+            /* FIXED: Minimal margins between header, pills and search on ultra small mobile */
             .services-header {
-                margin-bottom: 5px;
+                margin-bottom: 2px; /* Minimal */
             }
             
             .services-title {
                 font-size: clamp(20px, 8vw, 24px);
-                margin-bottom: 3px;
+                margin-bottom: 2px; /* Minimal */
             }
             
             .services-subtitle {
                 font-size: clamp(10px, 3vw, 12px);
-            }
-            
-            .search-wrapper {
-                gap: 5px;
-                margin-bottom: 5px;
+                margin-bottom: 2px; /* Minimal */
             }
             
             .category-pills {
-                padding: 0 0 5px;
+                padding: 0 0 2px; /* Minimal */
             }
             
-            /* Services Grid - FIXED: Still 2 columns to ensure all 6 boxes are visible */
+            .search-wrapper {
+                gap: 2px; /* Minimal */
+                margin-bottom: 2px; /* Minimal */
+            }
+            
+            /* Services Grid - Still 2 columns to ensure all 6 boxes are visible */
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
@@ -1969,7 +1975,7 @@
                 id: 2,
                 title: 'PPC Advertising',
                 category: 'marketing',
-                description: 'Targeted pay-per-click campaigns that maximize your ROI and reach the right customers.',
+                description: 'Targeted pay-per-click campaigns that maximize your ROI and reach right customers.',
                 icon: 'fa-ad',
                 color: '#a855f7',
                 features: [
