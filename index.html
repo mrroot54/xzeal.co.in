@@ -274,7 +274,7 @@
         }
         
         /* Geometric Background Pattern */
-        .hero-bg, .services-bg, .about-bg {
+        .hero-bg, .services-bg, .about-bg, .why-choose-bg {
             position: absolute;
             top: 0;
             left: 0;
@@ -1016,6 +1016,155 @@
             --badge-color: #3b82f6;
         }
         
+        /* Why Choose Us Section */
+        .why-choose-section {
+            padding: 100px 0;
+            position: relative;
+            background: #0a0a0a;
+            overflow: hidden;
+        }
+        
+        .why-choose-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .why-choose-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .why-choose-title {
+            font-size: clamp(36px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .why-choose-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--feature-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--icon-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-icon {
+            font-size: 36px;
+            color: var(--icon-color);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-icon-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--icon-bg);
+            z-index: 1;
+        }
+        
+        .feature-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+        
+        .feature-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* Feature Card Colors */
+        .feature-card:nth-child(1) {
+            --feature-gradient: linear-gradient(90deg, #4facfe, #00f2fe);
+            --icon-bg: rgba(79, 172, 254, 0.2);
+            --icon-color: #4facfe;
+        }
+        
+        .feature-card:nth-child(2) {
+            --feature-gradient: linear-gradient(90deg, #a855f7, #7c3aed);
+            --icon-bg: rgba(168, 85, 247, 0.2);
+            --icon-color: #a855f7;
+        }
+        
+        .feature-card:nth-child(3) {
+            --feature-gradient: linear-gradient(90deg, #ec4899, #f43f5e);
+            --icon-bg: rgba(236, 72, 153, 0.2);
+            --icon-color: #ec4899;
+        }
+        
+        .feature-card:nth-child(4) {
+            --feature-gradient: linear-gradient(90deg, #14b8a6, #10b981);
+            --icon-bg: rgba(20, 184, 166, 0.2);
+            --icon-color: #14b8a6;
+        }
+        
         /* Modal Styles */
         .modal {
             display: none;
@@ -1561,6 +1710,46 @@
                 width: 35px; /* Reduced size for mobile */
                 height: 35px; /* Reduced size for mobile */
             }
+            
+            /* Why Choose Us Section Mobile Adjustments */
+            .why-choose-section {
+                padding: 60px 0;
+            }
+            
+            .why-choose-container {
+                padding: 0 25px;
+            }
+            
+            .why-choose-header {
+                margin-bottom: 40px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr 1fr; /* 2 columns for mobile */
+                gap: 20px;
+            }
+            
+            .feature-card {
+                padding: 30px 20px;
+            }
+            
+            .feature-icon-wrapper {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 20px;
+            }
+            
+            .feature-icon {
+                font-size: 28px;
+            }
+            
+            .feature-title {
+                font-size: 20px;
+            }
+            
+            .feature-description {
+                font-size: 14px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -1762,6 +1951,46 @@
                 width: 30px; /* Further reduced size for small mobile */
                 height: 30px; /* Further reduced size for small mobile */
             }
+            
+            /* Why Choose Us Section Small Mobile Adjustments */
+            .why-choose-section {
+                padding: 40px 0;
+            }
+            
+            .why-choose-container {
+                padding: 0 20px;
+            }
+            
+            .why-choose-header {
+                margin-bottom: 30px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr; /* 1 column for very small mobile */
+                gap: 15px;
+            }
+            
+            .feature-card {
+                padding: 25px 15px;
+            }
+            
+            .feature-icon-wrapper {
+                width: 50px;
+                height: 50px;
+                margin-bottom: 15px;
+            }
+            
+            .feature-icon {
+                font-size: 24px;
+            }
+            
+            .feature-title {
+                font-size: 18px;
+            }
+            
+            .feature-description {
+                font-size: 13px;
+            }
         }
         
         @media (max-width: 380px) {
@@ -1910,6 +2139,46 @@
                 width: 28px; /* Further reduced size for ultra small mobile */
                 height: 28px; /* Further reduced size for ultra small mobile */
             }
+            
+            /* Why Choose Us Section Ultra Small Mobile Adjustments */
+            .why-choose-section {
+                padding: 30px 0;
+            }
+            
+            .why-choose-container {
+                padding: 0 15px;
+            }
+            
+            .why-choose-header {
+                margin-bottom: 25px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr; /* 1 column for ultra small mobile */
+                gap: 12px;
+            }
+            
+            .feature-card {
+                padding: 20px 15px;
+            }
+            
+            .feature-icon-wrapper {
+                width: 45px;
+                height: 45px;
+                margin-bottom: 12px;
+            }
+            
+            .feature-icon {
+                font-size: 22px;
+            }
+            
+            .feature-title {
+                font-size: 16px;
+            }
+            
+            .feature-description {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -1925,6 +2194,7 @@
             <div class="nav-links">
                 <a href="#services">Services</a>
                 <a href="#about">About Us</a>
+                <a href="#why-choose">Why Choose Us</a>
                 <a href="#">Portfolio</a>
                 <a href="#">Blog</a>
                 <a href="#" class="nav-cta">Contact</a>
@@ -1945,6 +2215,7 @@
             <a href="#"><i class="fas fa-home"></i> Home</a>
             <a href="#services"><i class="fas fa-cogs"></i> Services</a>
             <a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
+            <a href="#why-choose"><i class="fas fa-star"></i> Why Choose Us</a>
             <a href="#"><i class="fas fa-briefcase"></i> Portfolio</a>
             <a href="#"><i class="fas fa-blog"></i> Blog</a>
             <a href="#" class="mobile-nav-cta"><i class="fas fa-envelope"></i> Contact Us</a>
@@ -2131,6 +2402,80 @@
             <!-- Services Grid -->
             <div class="services-grid" id="servicesGrid">
                 <!-- Service Cards will be dynamically generated -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-section" id="why-choose">
+        <!-- Geometric Background -->
+        <div class="why-choose-bg">
+            <div class="geometric-pattern">
+                <div class="geo-line geo-line-1"></div>
+                <div class="geo-line geo-line-2"></div>
+                <div class="geo-line geo-line-3"></div>
+                <div class="geo-line geo-line-4"></div>
+            </div>
+            
+            <!-- Floating Elements -->
+            <div class="floating-element float-1"></div>
+            <div class="floating-element float-2"></div>
+            <div class="floating-element float-3"></div>
+            <div class="floating-element float-4"></div>
+        </div>
+        
+        <div class="why-choose-container">
+            <!-- Section Header -->
+            <div class="why-choose-header">
+                <h2 class="why-choose-title">Why Choose Us</h2>
+                <p class="why-choose-subtitle">Show your unique strengths that set us apart from the competition</p>
+            </div>
+            
+            <!-- Features Grid -->
+            <div class="features-grid">
+                <!-- Feature Card 1: 24/7 Support -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-headset feature-icon"></i>
+                    </div>
+                    <h3 class="feature-title">24/7 Support</h3>
+                    <p class="feature-description">
+                        Round-the-clock assistance to address your concerns and ensure your digital campaigns run smoothly at all times.
+                    </p>
+                </div>
+                
+                <!-- Feature Card 2: Professional Team -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-users feature-icon"></i>
+                    </div>
+                    <h3 class="feature-title">Professional Team</h3>
+                    <p class="feature-description">
+                        Experienced specialists dedicated to delivering exceptional results and innovative solutions for your business.
+                    </p>
+                </div>
+                
+                <!-- Feature Card 3: Fast Delivery -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-rocket feature-icon"></i>
+                    </div>
+                    <h3 class="feature-title">Fast Delivery</h3>
+                    <p class="feature-description">
+                        Quick turnaround times without compromising on quality, helping you launch your campaigns and achieve goals faster.
+                    </p>
+                </div>
+                
+                <!-- Feature Card 4: Result Oriented -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-chart-line feature-icon"></i>
+                    </div>
+                    <h3 class="feature-title">Result Oriented</h3>
+                    <p class="feature-description">
+                        Data-driven strategies focused on delivering measurable results and maximizing your return on investment.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -2937,6 +3282,44 @@
                     end: "bottom top"
                 },
                 ease: "none"
+            });
+            
+            // Why Choose Us Section Animations
+            // Set initial states for Why Choose Us section
+            gsap.set(".why-choose-title", { opacity: 0, y: 50 });
+            gsap.set(".why-choose-subtitle", { opacity: 0, y: 30 });
+            gsap.set(".feature-card", { opacity: 0, y: 50, scale: 0.9 });
+            
+            // Why Choose Us section animation with ScrollTrigger
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".why-choose-section",
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            })
+            .to(".why-choose-title", { opacity: 1, y: 0, duration: 1, ease: "power2.out" })
+            .to(".why-choose-subtitle", { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, "-=0.7")
+            .to(".feature-card", { 
+                opacity: 1, 
+                y: 0, 
+                scale: 1, 
+                duration: 0.8, 
+                stagger: 0.2, 
+                ease: "back.out(1.7)" 
+            }, "-=0.3");
+            
+            // Add hover effect for feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    gsap.to(card.querySelector('.feature-icon-wrapper'), {
+                        rotation: 360,
+                        duration: 0.8,
+                        ease: "power2.out"
+                    });
+                });
             });
         });
         
