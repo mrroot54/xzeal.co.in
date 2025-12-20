@@ -654,13 +654,13 @@
         /* Services Header */
         .services-header {
             text-align: center;
-            margin-bottom: 30px; /* Reduced from 60px */
+            margin-bottom: 30px;
         }
         
         .services-title {
-            font-size: clamp(28px, 5vw, 40px); /* Reduced from 38px to 28px */
+            font-size: clamp(28px, 5vw, 40px);
             font-weight: 700;
-            margin-bottom: 15px; /* Reduced from 20px */
+            margin-bottom: 15px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -668,49 +668,17 @@
         }
         
         .services-subtitle {
-            font-size: clamp(14px, 2vw, 16px); /* Reduced from 16px to 14px */
+            font-size: clamp(14px, 2vw, 16px);
             color: var(--text-secondary);
             max-width: 700px;
             margin: 0 auto;
-        }
-        
-        /* Search Bar */
-        .search-container {
-            max-width: 500px;
-            margin: 0 auto 20px; /* Reduced from 40px */
-            position: relative;
-        }
-        
-        .search-bar {
-            width: 100%;
-            padding: 15px 50px 15px 20px;
-            border-radius: 16px;
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            font-size: 16px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .search-bar:focus {
-            outline: none;
-            border-color: var(--accent-blue);
-            background: rgba(255, 255, 255, 0.12);
-        }
-        
-        .search-icon {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
         }
         
         /* Category Pills */
         .category-pills {
             display: flex;
             gap: 12px;
-            padding: 0 0 20px; /* Reduced from 40px */
+            padding: 0 0 20px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
@@ -746,11 +714,12 @@
             border-color: transparent;
         }
         
-        /* Services Grid */
+        /* Services Grid - MODIFIED: Always show 6 boxes */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(3, 1fr); /* Always 3 columns on desktop */
+            gap: 25px;
+            margin-top: 20px;
         }
         
         /* Service Cards */
@@ -758,12 +727,15 @@
             background: var(--card-bg);
             backdrop-filter: blur(20px);
             border-radius: 20px;
-            padding: 30px;
+            padding: 25px;
             position: relative;
             overflow: hidden;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         
         .service-card::before {
@@ -796,46 +768,47 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .service-icon-wrapper {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 16px;
             background: var(--icon-bg);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .service-icon {
-            font-size: 28px;
+            font-size: 24px;
             color: var(--icon-color);
         }
         
         .service-badge {
-            padding: 6px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
             background: var(--badge-bg);
             color: var(--badge-color);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
         }
         
         .service-title {
-            font-size: 26px;
+            font-size: 20px;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             line-height: 1.3;
         }
         
         .service-description {
-            font-size: 17px;
+            font-size: 14px;
             color: var(--text-secondary);
             line-height: 1.5;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            flex-grow: 1;
         }
         
         .service-footer {
@@ -846,24 +819,25 @@
         
         .service-stats {
             display: flex;
-            gap: 20px;
+            gap: 15px;
         }
         
         .stat-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 14px;
+            gap: 6px;
+            font-size: 12px;
             color: var(--text-secondary);
         }
         
         .stat-item i {
             color: var(--icon-color);
+            font-size: 12px;
         }
         
         .service-action {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             background: var(--icon-bg);
             border: none;
@@ -928,6 +902,48 @@
             --icon-color: #3b82f6;
             --badge-bg: rgba(59, 130, 246, 0.2);
             --badge-color: #3b82f6;
+        }
+        
+        /* Search Bar - MODIFIED: Moved closer to services */
+        .search-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .search-container {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 12px 45px 12px 18px;
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 14px;
         }
         
         /* Modal Styles */
@@ -1187,8 +1203,14 @@
                 bottom: -22.5px;
             }
             
+            /* Services Grid - MODIFIED: 2 columns on tablet */
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .service-card {
+                padding: 20px;
             }
         }
         
@@ -1260,10 +1282,6 @@
             
             .hero-buttons {
                 justify-content: center;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
             }
         }
         
@@ -1385,7 +1403,7 @@
             
             /* Services Section Mobile Adjustments */
             .services-section {
-                padding: 30px 0; /* Further reduced for mobile */
+                padding: 30px 0;
             }
             
             .services-container {
@@ -1393,36 +1411,48 @@
             }
             
             .services-header {
-                margin-bottom: 20px; /* Further reduced for mobile */
+                margin-bottom: 20px;
             }
             
             .services-title {
-                font-size: clamp(24px, 6vw, 32px); /* Further reduced for mobile */
+                font-size: clamp(24px, 6vw, 32px);
                 margin-bottom: 10px;
             }
             
             .services-subtitle {
-                font-size: clamp(12px, 3vw, 14px); /* Further reduced for mobile */
+                font-size: clamp(12px, 3vw, 14px);
+            }
+            
+            /* Search wrapper mobile adjustments */
+            .search-wrapper {
+                flex-direction: column;
+                gap: 15px;
             }
             
             .search-container {
-                margin: 0 auto 15px; /* Further reduced for mobile */
+                max-width: 100%;
             }
             
             .category-pills {
-                padding: 0 0 15px; /* Further reduced for mobile */
+                padding: 0 0 15px;
+            }
+            
+            /* Services Grid - MODIFIED: 2 columns on mobile */
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
             }
             
             .service-card {
-                padding: 20px; /* Reduced padding for mobile */
+                padding: 18px;
             }
             
             .service-title {
-                font-size: 20px; /* Reduced for mobile */
+                font-size: 18px;
             }
             
             .service-description {
-                font-size: 15px; /* Reduced for mobile */
+                font-size: 13px;
             }
         }
         
@@ -1541,7 +1571,7 @@
             
             /* Services Section Small Mobile Adjustments */
             .services-section {
-                padding: 20px 0; /* Even more reduced for small mobile */
+                padding: 20px 0;
             }
             
             .services-container {
@@ -1549,35 +1579,37 @@
             }
             
             .services-header {
-                margin-bottom: 15px; /* Even more reduced for small mobile */
+                margin-bottom: 15px;
             }
             
             .services-title {
-                font-size: clamp(22px, 7vw, 28px); /* Even more reduced for small mobile */
+                font-size: clamp(22px, 7vw, 28px);
             }
             
             .services-subtitle {
-                font-size: clamp(11px, 3vw, 13px); /* Even more reduced for small mobile */
-            }
-            
-            .search-container {
-                margin: 0 auto 10px; /* Even more reduced for small mobile */
+                font-size: clamp(11px, 3vw, 13px);
             }
             
             .category-pills {
-                padding: 0 0 10px; /* Even more reduced for small mobile */
+                padding: 0 0 10px;
+            }
+            
+            /* Services Grid - MODIFIED: Still 2 columns on small mobile to show all 6 */
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
             }
             
             .service-card {
-                padding: 15px; /* Even more reduced for small mobile */
+                padding: 15px;
             }
             
             .service-title {
-                font-size: 18px; /* Even more reduced for small mobile */
+                font-size: 16px;
             }
             
             .service-description {
-                font-size: 14px; /* Even more reduced for small mobile */
+                font-size: 12px;
             }
         }
         
@@ -1643,7 +1675,7 @@
             
             /* Services Section Ultra Small Mobile Adjustments */
             .services-section {
-                padding: 15px 0; /* Ultra reduced for very small mobile */
+                padding: 15px 0;
             }
             
             .services-container {
@@ -1651,35 +1683,37 @@
             }
             
             .services-header {
-                margin-bottom: 10px; /* Ultra reduced for very small mobile */
+                margin-bottom: 10px;
             }
             
             .services-title {
-                font-size: clamp(20px, 8vw, 24px); /* Ultra reduced for very small mobile */
+                font-size: clamp(20px, 8vw, 24px);
             }
             
             .services-subtitle {
-                font-size: clamp(10px, 3vw, 12px); /* Ultra reduced for very small mobile */
-            }
-            
-            .search-container {
-                margin: 0 auto 8px; /* Ultra reduced for very small mobile */
+                font-size: clamp(10px, 3vw, 12px);
             }
             
             .category-pills {
-                padding: 0 0 8px; /* Ultra reduced for very small mobile */
+                padding: 0 0 8px;
+            }
+            
+            /* Services Grid - MODIFIED: Still 2 columns to ensure all 6 boxes are visible */
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
             }
             
             .service-card {
-                padding: 12px; /* Ultra reduced for very small mobile */
+                padding: 12px;
             }
             
             .service-title {
-                font-size: 16px; /* Ultra reduced for very small mobile */
+                font-size: 14px;
             }
             
             .service-description {
-                font-size: 13px; /* Ultra reduced for very small mobile */
+                font-size: 11px;
             }
         }
     </style>
@@ -1836,19 +1870,21 @@
                 <p class="services-subtitle">Premium digital solutions for your business growth</p>
             </div>
             
-            <!-- Search Bar -->
-            <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Search services..." onkeyup="searchServices(this.value)">
-                <i class="fas fa-search search-icon"></i>
-            </div>
-            
-            <!-- Category Pills (Filter Buttons) -->
+            <!-- Category Pills -->
             <div class="category-pills">
                 <div class="category-pill active" onclick="filterCategory('all')">All Services</div>
                 <div class="category-pill" onclick="filterCategory('marketing')">Marketing</div>
                 <div class="category-pill" onclick="filterCategory('development')">Development</div>
                 <div class="category-pill" onclick="filterCategory('analytics')">Analytics</div>
                 <div class="category-pill" onclick="filterCategory('content')">Content</div>
+            </div>
+            
+            <!-- Search Bar and Services Grid Container - MODIFIED: Search moved closer -->
+            <div class="search-wrapper">
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Search services..." onkeyup="searchServices(this.value)">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
             </div>
             
             <!-- Services Grid -->
@@ -2338,7 +2374,7 @@
             }
         }
         
-        // Render services
+        // Render services - MODIFIED: Always show all 6 services
         function renderServices() {
             const grid = document.getElementById('servicesGrid');
             grid.innerHTML = '';
@@ -2370,6 +2406,11 @@
                 }
                 
                 filteredServices = foundServices;
+            }
+            
+            // MODIFIED: If no filter is applied, always show all 6 services
+            if (currentFilter === 'all' && !searchTerm) {
+                filteredServices = servicesData;
             }
             
             filteredServices.forEach((service, index) => {
@@ -2602,22 +2643,9 @@
                     toggleActions: "play none none reverse"
                 },
                 y: 50,
-                scale: 0.95, // Naya effect
+                scale: 0.95,
                 opacity: 0,
                 duration: 1,
-                ease: "power2.out"
-            });
-            
-            gsap.from(".search-container", {
-                scrollTrigger: {
-                    trigger: ".services-section",
-                    start: "top 75%",
-                    toggleActions: "play none none reverse"
-                },
-                y: 30,
-                opacity: 0,
-                duration: 1,
-                delay: 0.2,
                 ease: "power2.out"
             });
             
@@ -2630,8 +2658,22 @@
                 y: 30,
                 opacity: 0,
                 duration: 0.8,
-                stagger: 0.1, // Staggered animation for pills
+                stagger: 0.1,
                 delay: 0.4,
+                ease: "power2.out"
+            });
+
+            // Search bar animation
+            gsap.from(".search-wrapper", {
+                scrollTrigger: {
+                    trigger: ".services-section",
+                    start: "top 75%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                delay: 0.2,
                 ease: "power2.out"
             });
 
@@ -2643,14 +2685,14 @@
                     toggleActions: "play none none reverse"
                 },
                 y: 60,
-                scale: 0.9, // Naya effect
+                scale: 0.9,
                 opacity: 0,
                 duration: 0.8,
-                stagger: 0.15, // Staggered animation for cards
+                stagger: 0.15,
                 ease: "power2.out"
             });
 
-            // Naya background animation for services section
+            // Background animation for services section
             gsap.to(".services-bg .geo-line-1", {
                 rotation: 360,
                 scrollTrigger: {
