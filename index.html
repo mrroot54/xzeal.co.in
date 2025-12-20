@@ -651,10 +651,10 @@
             padding: 0 40px;
         }
         
-        /* Services Header - MODIFIED: Reduced margin */
+        /* Services Header */
         .services-header {
             text-align: center;
-            margin-bottom: 15px; /* Reduced from 30px */
+            margin-bottom: 15px;
         }
         
         .services-title {
@@ -678,7 +678,7 @@
         .category-pills {
             display: flex;
             gap: 12px;
-            padding: 0 0 15px; /* Reduced from 20px */
+            padding: 0 0 15px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
@@ -714,12 +714,12 @@
             border-color: transparent;
         }
         
-        /* Search Bar - MODIFIED: Moved closer to services */
+        /* Search Bar */
         .search-wrapper {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 15px; /* Reduced from 20px */
+            margin-bottom: 15px;
             gap: 20px;
             flex-wrap: wrap;
         }
@@ -756,10 +756,10 @@
             font-size: 14px;
         }
         
-        /* Services Grid - MODIFIED: Always show 6 boxes */
+        /* Services Grid - FIXED: Always show all 6 services */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* Always 3 columns on desktop */
+            grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
             gap: 25px;
             margin-top: 20px;
         }
@@ -1203,7 +1203,7 @@
                 bottom: -22.5px;
             }
             
-            /* Services Grid - MODIFIED: 2 columns on tablet */
+            /* Services Grid - 2 columns on tablet */
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 20px;
@@ -1401,7 +1401,7 @@
                 opacity: 0.7;
             }
             
-            /* Services Section Mobile Adjustments - MODIFIED: Reduced gaps */
+            /* Services Section Mobile Adjustments */
             .services-section {
                 padding: 30px 0;
             }
@@ -1411,12 +1411,12 @@
             }
             
             .services-header {
-                margin-bottom: 10px; /* Further reduced */
+                margin-bottom: 10px;
             }
             
             .services-title {
                 font-size: clamp(24px, 6vw, 32px);
-                margin-bottom: 8px; /* Further reduced */
+                margin-bottom: 8px;
             }
             
             .services-subtitle {
@@ -1426,8 +1426,8 @@
             /* Search wrapper mobile adjustments */
             .search-wrapper {
                 flex-direction: column;
-                gap: 10px; /* Reduced gap */
-                margin-bottom: 10px; /* Further reduced */
+                gap: 10px;
+                margin-bottom: 10px;
             }
             
             .search-container {
@@ -1435,12 +1435,12 @@
             }
             
             .category-pills {
-                padding: 0 0 10px; /* Further reduced */
+                padding: 0 0 10px;
             }
             
-            /* Services Grid - MODIFIED: Fixed 2 columns on mobile */
+            /* Services Grid - FIXED: Always 2 columns on mobile */
             .services-grid {
-                grid-template-columns: repeat(2, 1fr); /* Fixed 2 columns */
+                grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
             }
             
@@ -1570,7 +1570,7 @@
                 opacity: 0.6;
             }
             
-            /* Services Section Small Mobile Adjustments - MODIFIED: Further reduced gaps */
+            /* Services Section Small Mobile Adjustments */
             .services-section {
                 padding: 20px 0;
             }
@@ -1580,12 +1580,12 @@
             }
             
             .services-header {
-                margin-bottom: 8px; /* Further reduced */
+                margin-bottom: 8px;
             }
             
             .services-title {
                 font-size: clamp(22px, 7vw, 28px);
-                margin-bottom: 5px; /* Further reduced */
+                margin-bottom: 5px;
             }
             
             .services-subtitle {
@@ -1593,17 +1593,17 @@
             }
             
             .search-wrapper {
-                gap: 8px; /* Further reduced */
-                margin-bottom: 8px; /* Further reduced */
+                gap: 8px;
+                margin-bottom: 8px;
             }
             
             .category-pills {
-                padding: 0 0 8px; /* Further reduced */
+                padding: 0 0 8px;
             }
             
-            /* Services Grid - MODIFIED: Still 2 columns on small mobile to show all 6 */
+            /* Services Grid - FIXED: Still 2 columns on small mobile */
             .services-grid {
-                grid-template-columns: repeat(2, 1fr); /* Fixed 2 columns */
+                grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
             }
             
@@ -1680,7 +1680,7 @@
                 bottom: -14px;
             }
             
-            /* Services Section Ultra Small Mobile Adjustments - MODIFIED: Minimal gaps */
+            /* Services Section Ultra Small Mobile Adjustments */
             .services-section {
                 padding: 15px 0;
             }
@@ -1690,12 +1690,12 @@
             }
             
             .services-header {
-                margin-bottom: 5px; /* Minimal gap */
+                margin-bottom: 5px;
             }
             
             .services-title {
                 font-size: clamp(20px, 8vw, 24px);
-                margin-bottom: 3px; /* Minimal gap */
+                margin-bottom: 3px;
             }
             
             .services-subtitle {
@@ -1703,17 +1703,17 @@
             }
             
             .search-wrapper {
-                gap: 5px; /* Minimal gap */
-                margin-bottom: 5px; /* Minimal gap */
+                gap: 5px;
+                margin-bottom: 5px;
             }
             
             .category-pills {
-                padding: 0 0 5px; /* Minimal gap */
+                padding: 0 0 5px;
             }
             
-            /* Services Grid - MODIFIED: Still 2 columns to ensure all 6 boxes are visible */
+            /* Services Grid - FIXED: Still 2 columns to ensure all 6 boxes are visible */
             .services-grid {
-                grid-template-columns: repeat(2, 1fr); /* Fixed 2 columns */
+                grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
             }
             
@@ -1892,7 +1892,7 @@
                 <div class="category-pill" onclick="filterCategory('content')">Content</div>
             </div>
             
-            <!-- Search Bar and Services Grid Container - MODIFIED: Search moved closer -->
+            <!-- Search Bar and Services Grid Container -->
             <div class="search-wrapper">
                 <div class="search-container">
                     <input type="text" class="search-bar" placeholder="Search services..." onkeyup="searchServices(this.value)">
@@ -2387,114 +2387,73 @@
             }
         }
         
-        // Render services - MODIFIED: Always show all 6 services
+        // Render services - FIXED: Always show all 6 services
         function renderServices() {
             const grid = document.getElementById('servicesGrid');
             grid.innerHTML = '';
             
-            // MODIFIED: Always show all 6 services regardless of filter
+            // FIXED: Always show all 6 services regardless of filter
             let filteredServices = servicesData;
             
-            // Apply category filter only if not 'all'
+            // Apply category filter
             if (currentFilter !== 'all') {
                 filteredServices = filteredServices.filter(service => service.category === currentFilter);
-                
-                // If filter results in less than 6 services, add dummy cards to maintain 6 total
-                if (filteredServices.length < 6) {
-                    const neededCards = 6 - filteredServices.length;
-                    for (let i = 0; i < neededCards; i++) {
-                        filteredServices.push({
-                            id: 100 + i,
-                            title: 'Coming Soon',
-                            category: currentFilter,
-                            description: 'New service coming soon. Stay tuned for updates.',
-                            icon: 'fa-clock',
-                            color: '#888888',
-                            features: [
-                                { icon: 'fa-info-circle', text: 'More details coming soon' }
-                            ],
-                            stats: { projects: 0, rating: 0 }
-                        });
-                    }
-                }
             }
             
             // Apply search filter
             if (searchTerm) {
                 const lowerCaseSearchTerm = searchTerm.toLowerCase();
-                let foundServices = [];
-                
-                // First, check if the search term matches any main service title
-                foundServices = servicesData.filter(service => 
-                    service.title.toLowerCase().includes(lowerCaseSearchTerm)
+                filteredServices = filteredServices.filter(service => 
+                    service.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+                    service.description.toLowerCase().includes(lowerCaseSearchTerm) ||
+                    service.features.some(feature => 
+                        feature.text.toLowerCase().includes(lowerCaseSearchTerm)
+                    )
                 );
-                
-                // If no main service is found, check features
-                if (foundServices.length === 0) {
-                    foundServices = servicesData.filter(service => 
-                        service.features.some(feature => 
-                            feature.text.toLowerCase().includes(lowerCaseSearchTerm)
-                        )
-                    );
-                }
-                
-                // If search results in less than 6 services, add dummy cards to maintain 6 total
-                if (foundServices.length < 6) {
-                    const neededCards = 6 - foundServices.length;
-                    for (let i = 0; i < neededCards; i++) {
-                        foundServices.push({
-                            id: 200 + i,
-                            title: 'No Results',
-                            category: 'none',
-                            description: 'No matching services found.',
-                            icon: 'fa-search',
-                            color: '#888888',
-                            features: [
-                                { icon: 'fa-info-circle', text: 'Try different search terms' }
-                            ],
-                            stats: { projects: 0, rating: 0 }
-                        });
-                    }
-                }
-                
-                filteredServices = foundServices;
             }
             
-            // Ensure we always have exactly 6 services
-            if (filteredServices.length < 6) {
-                const neededCards = 6 - filteredServices.length;
-                for (let i = 0; i < neededCards; i++) {
-                    filteredServices.push({
-                        id: 300 + i,
-                        title: 'More Services',
-                        category: 'all',
-                        description: 'More services available soon.',
-                        icon: 'fa-plus-circle',
-                        color: '#888888',
-                        features: [
-                            { icon: 'fa-info-circle', text: 'More services coming soon' }
-                        ],
-                        stats: { projects: 0, rating: 0 }
-                    });
-                }
+            // FIXED: If no filter is applied, always show all 6 services
+            if (currentFilter === 'all' && !searchTerm) {
+                filteredServices = servicesData;
             }
             
-            // Limit to exactly 6 services
-            filteredServices = filteredServices.slice(0, 6);
-            
-            filteredServices.forEach((service, index) => {
-                const card = createServiceCard(service);
-                card.style.animationDelay = `${index * 0.1}s`;
-                card.classList.add('slide-up');
-                grid.appendChild(card);
-            });
+            // FIXED: If filter results in less than 6 services, show all services but highlight matching ones
+            if (filteredServices.length < 6 && (currentFilter !== 'all' || searchTerm)) {
+                // Create a map of filtered service IDs for quick lookup
+                const filteredIds = new Set(filteredServices.map(service => service.id));
+                
+                // Show all services, but highlight the filtered ones
+                servicesData.forEach((service, index) => {
+                    const card = createServiceCard(service, filteredIds.has(service.id));
+                    card.style.animationDelay = `${index * 0.1}s`;
+                    card.classList.add('slide-up');
+                    grid.appendChild(card);
+                });
+            } else {
+                // Show filtered services
+                filteredServices.forEach((service, index) => {
+                    const card = createServiceCard(service, true);
+                    card.style.animationDelay = `${index * 0.1}s`;
+                    card.classList.add('slide-up');
+                    grid.appendChild(card);
+                });
+            }
         }
         
         // Create service card
-        function createServiceCard(service) {
+        function createServiceCard(service, isHighlighted = false) {
             const card = document.createElement('div');
             card.className = 'service-card';
             card.onclick = () => openServiceModal(service);
+            
+            // Add highlight class if this service matches the filter
+            if (isHighlighted) {
+                card.style.opacity = '1';
+                card.style.transform = 'scale(1)';
+            } else {
+                card.style.opacity = '0.5';
+                card.style.transform = 'scale(0.95)';
+            }
             
             card.innerHTML = `
                 <div class="service-header">
