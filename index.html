@@ -274,7 +274,7 @@
         }
         
         /* Geometric Background Pattern */
-        .hero-bg, .services-bg, .about-bg, .why-choose-bg {
+        .hero-bg, .services-bg, .about-bg, .why-choose-bg, .portfolio-bg {
             position: absolute;
             top: 0;
             left: 0;
@@ -775,7 +775,7 @@
         /* Services Header */
         .services-header {
             text-align: center;
-            margin-bottom: 30px; /* Reduced from 60px */
+            margin-bottom: 30px;
         }
         
         .services-title {
@@ -798,7 +798,7 @@
         /* Search Bar */
         .search-container {
             max-width: 500px;
-            margin: 0 auto 30px; /* Increased bottom margin */
+            margin: 0 auto 30px;
             position: relative;
         }
         
@@ -1165,6 +1165,565 @@
             --icon-color: #14b8a6;
         }
         
+        /* Portfolio Section Styles */
+        .portfolio-section {
+            padding: 100px 0;
+            position: relative;
+            background: #0a0a0a;
+            overflow: hidden;
+        }
+        
+        .portfolio-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Portfolio Header */
+        .portfolio-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .portfolio-title {
+            font-size: clamp(36px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .portfolio-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Category Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .filter-tab {
+            padding: 12px 24px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .filter-tab:hover {
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .filter-tab.active {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .filter-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: var(--text-primary);
+        }
+        
+        /* Portfolio Slider */
+        .portfolio-slider {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+        
+        .slider-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .slider-arrow:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .slider-arrow.prev {
+            left: 20px;
+        }
+        
+        .slider-arrow.next {
+            right: 20px;
+        }
+        
+        /* Project Cards */
+        .project-card {
+            min-width: 350px;
+            margin: 0 15px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .project-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        .project-cta {
+            display: inline-block;
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .project-cta:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Slider Pagination */
+        .slider-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .pagination-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination-dot.active {
+            background: var(--text-primary);
+            width: 30px;
+            border-radius: 5px;
+        }
+        
+        /* Lower Section */
+        .lower-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        /* Lightbox Gallery Card */
+        .lightbox-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+        
+        .lightbox-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .lightbox-preview {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .lightbox-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .lightbox-card:hover .lightbox-preview img {
+            transform: scale(1.05);
+        }
+        
+        .lightbox-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lightbox-card:hover .lightbox-overlay {
+            opacity: 1;
+        }
+        
+        .lightbox-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-size: 24px;
+        }
+        
+        .lightbox-content {
+            padding: 25px;
+        }
+        
+        .lightbox-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .lightbox-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
+        /* Video Case Study Card */
+        .video-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .video-preview {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .video-card:hover .video-preview img {
+            transform: scale(1.05);
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .play-button {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-size: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover .play-button {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .video-content {
+            padding: 25px;
+        }
+        
+        .video-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .video-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
+        /* Statistics Card */
+        .stats-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stats-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .stat-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--text-primary);
+            font-size: 20px;
+        }
+        
+        .stat-info {
+            flex: 1;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+        
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-modal.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Video Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-modal.active {
+            display: flex;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 80%;
+            max-width: 900px;
+        }
+        
+        .video-frame {
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            position: relative;
+        }
+        
+        .video-frame iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        
+        .video-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .video-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
         /* Modal Styles */
         .modal {
             display: none;
@@ -1429,6 +1988,14 @@
             .stats-container {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .project-card {
+                min-width: 300px;
+            }
+            
+            .lower-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         
         @media (max-width: 1024px) {
@@ -1524,9 +2091,9 @@
             }
             
             .hero {
-                height: auto; /* FIXED: Changed from 100vh to auto */
-                min-height: auto; /* FIXED: Changed from 100vh to auto */
-                padding: 100px 0 20px; /* FIXED: Added bottom padding */
+                height: auto;
+                min-height: auto;
+                padding: 100px 0 20px;
             }
             
             .hero-content {
@@ -1651,27 +2218,26 @@
             
             /* Services Section Mobile Adjustments */
             .services-section {
-                padding: 20px 0; /* FIXED: Reduced from 60px to 20px */
+                padding: 20px 0;
             }
             
             .services-container {
                 padding: 0 25px;
-                gap: 16px; /* FIXED: Added gap control */
+                gap: 16px;
             }
             
             .services-header {
-                margin-bottom: 20px; /* Reduced from 40px */
+                margin-bottom: 20px;
             }
             
             .search-container {
-                margin: 0 auto 20px; /* FIXED: Reduced from 30px to 20px */
+                margin: 0 auto 20px;
             }
             
-            /* FIXED: Updated for 2x2 grid on mobile with full responsiveness */
             .services-grid {
                 display: grid;
-                grid-template-columns: 1fr 1fr; /* Changed to 2 columns */
-                gap: 15px; /* Adjusted gap */
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
                 height: auto !important;
                 overflow: visible !important;
             }
@@ -1680,35 +2246,35 @@
                 height: auto !important;
                 min-height: 250px !important;
                 overflow: visible !important;
-                padding: 20px; /* Reduced padding for mobile */
+                padding: 20px;
             }
             
             .service-title {
-                font-size: 20px; /* Reduced font size for mobile */
+                font-size: 20px;
             }
             
             .service-description {
-                font-size: 14px; /* Reduced font size for mobile */
-                margin-bottom: 15px; /* Reduced margin for mobile */
+                font-size: 14px;
+                margin-bottom: 15px;
             }
             
             .service-icon-wrapper {
-                width: 50px; /* Reduced size for mobile */
-                height: 50px; /* Reduced size for mobile */
-                margin-bottom: 15px; /* Reduced margin for mobile */
+                width: 50px;
+                height: 50px;
+                margin-bottom: 15px;
             }
             
             .service-icon {
-                font-size: 24px; /* Reduced font size for mobile */
+                font-size: 24px;
             }
             
             .service-stats {
-                gap: 10px; /* Reduced gap for mobile */
+                gap: 10px;
             }
             
             .service-action {
-                width: 35px; /* Reduced size for mobile */
-                height: 35px; /* Reduced size for mobile */
+                width: 35px;
+                height: 35px;
             }
             
             /* Why Choose Us Section Mobile Adjustments */
@@ -1725,7 +2291,7 @@
             }
             
             .features-grid {
-                grid-template-columns: 1fr 1fr; /* 2 columns for mobile */
+                grid-template-columns: 1fr 1fr;
                 gap: 20px;
             }
             
@@ -1749,6 +2315,45 @@
             
             .feature-description {
                 font-size: 14px;
+            }
+            
+            /* Portfolio Section Mobile Adjustments */
+            .portfolio-section {
+                padding: 60px 0;
+            }
+            
+            .portfolio-container {
+                padding: 0 25px;
+            }
+            
+            .portfolio-header {
+                margin-bottom: 40px;
+            }
+            
+            .filter-tabs {
+                margin-bottom: 30px;
+            }
+            
+            .project-card {
+                min-width: 280px;
+            }
+            
+            .slider-arrow {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .slider-arrow.prev {
+                left: 10px;
+            }
+            
+            .slider-arrow.next {
+                right: 10px;
+            }
+            
+            .lower-section {
+                grid-template-columns: 1fr;
+                margin-top: 40px;
             }
         }
         
@@ -1901,18 +2506,17 @@
             }
             
             .services-header {
-                margin-bottom: 15px; /* Reduced from 20px */
+                margin-bottom: 15px;
             }
             
             .search-container {
-                margin: 0 auto 15px; /* Reduced from 20px to 15px */
+                margin: 0 auto 15px;
             }
             
-            /* FIXED: Updated for 2x2 grid on small mobile with full responsiveness */
             .services-grid {
                 display: grid;
-                grid-template-columns: 1fr 1fr; /* Changed to 2 columns */
-                gap: 12px; /* Adjusted gap */
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
                 height: auto !important;
                 overflow: visible !important;
             }
@@ -1921,35 +2525,35 @@
                 height: auto !important;
                 min-height: 220px !important;
                 overflow: visible !important;
-                padding: 15px; /* Further reduced padding for small mobile */
+                padding: 15px;
             }
             
             .service-title {
-                font-size: 18px; /* Further reduced font size for small mobile */
+                font-size: 18px;
             }
             
             .service-description {
-                font-size: 13px; /* Further reduced font size for small mobile */
-                margin-bottom: 12px; /* Further reduced margin for small mobile */
+                font-size: 13px;
+                margin-bottom: 12px;
             }
             
             .service-icon-wrapper {
-                width: 45px; /* Further reduced size for small mobile */
-                height: 45px; /* Further reduced size for small mobile */
-                margin-bottom: 12px; /* Further reduced margin for small mobile */
+                width: 45px;
+                height: 45px;
+                margin-bottom: 12px;
             }
             
             .service-icon {
-                font-size: 20px; /* Further reduced font size for small mobile */
+                font-size: 20px;
             }
             
             .service-stats {
-                gap: 8px; /* Further reduced gap for small mobile */
+                gap: 8px;
             }
             
             .service-action {
-                width: 30px; /* Further reduced size for small mobile */
-                height: 30px; /* Further reduced size for small mobile */
+                width: 30px;
+                height: 30px;
             }
             
             /* Why Choose Us Section Small Mobile Adjustments */
@@ -1966,7 +2570,7 @@
             }
             
             .features-grid {
-                grid-template-columns: 1fr; /* 1 column for very small mobile */
+                grid-template-columns: 1fr;
                 gap: 15px;
             }
             
@@ -1990,6 +2594,75 @@
             
             .feature-description {
                 font-size: 13px;
+            }
+            
+            /* Portfolio Section Small Mobile Adjustments */
+            .portfolio-section {
+                padding: 40px 0;
+            }
+            
+            .portfolio-container {
+                padding: 0 20px;
+            }
+            
+            .portfolio-header {
+                margin-bottom: 30px;
+            }
+            
+            .filter-tabs {
+                margin-bottom: 20px;
+            }
+            
+            .filter-tab {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+            
+            .project-card {
+                min-width: 260px;
+            }
+            
+            .project-content {
+                padding: 20px;
+            }
+            
+            .project-title {
+                font-size: 20px;
+            }
+            
+            .project-description {
+                font-size: 14px;
+            }
+            
+            .lightbox-content,
+            .video-content {
+                padding: 20px;
+            }
+            
+            .lightbox-title,
+            .video-title {
+                font-size: 20px;
+            }
+            
+            .lightbox-description,
+            .video-description {
+                font-size: 14px;
+            }
+            
+            .stats-card {
+                padding: 25px 20px;
+            }
+            
+            .stats-title {
+                font-size: 20px;
+            }
+            
+            .stat-value {
+                font-size: 22px;
+            }
+            
+            .stat-label {
+                font-size: 14px;
             }
         }
         
@@ -2089,18 +2762,17 @@
             }
             
             .services-header {
-                margin-bottom: 10px; /* Reduced from 15px */
+                margin-bottom: 10px;
             }
             
             .search-container {
-                margin: 0 auto 12px; /* Reduced from 15px to 12px */
+                margin: 0 auto 12px;
             }
             
-            /* FIXED: Updated for 2x2 grid on ultra small mobile with full responsiveness */
             .services-grid {
                 display: grid;
-                grid-template-columns: 1fr 1fr; /* Changed to 2 columns */
-                gap: 10px; /* Adjusted gap */
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
                 height: auto !important;
                 overflow: visible !important;
             }
@@ -2109,35 +2781,35 @@
                 height: auto !important;
                 min-height: 200px !important;
                 overflow: visible !important;
-                padding: 12px; /* Further reduced padding for ultra small mobile */
+                padding: 12px;
             }
             
             .service-title {
-                font-size: 16px; /* Further reduced font size for ultra small mobile */
+                font-size: 16px;
             }
             
             .service-description {
-                font-size: 12px; /* Further reduced font size for ultra small mobile */
-                margin-bottom: 10px; /* Further reduced margin for ultra small mobile */
+                font-size: 12px;
+                margin-bottom: 10px;
             }
             
             .service-icon-wrapper {
-                width: 40px; /* Further reduced size for ultra small mobile */
-                height: 40px; /* Further reduced size for ultra small mobile */
-                margin-bottom: 10px; /* Further reduced margin for ultra small mobile */
+                width: 40px;
+                height: 40px;
+                margin-bottom: 10px;
             }
             
             .service-icon {
-                font-size: 18px; /* Further reduced font size for ultra small mobile */
+                font-size: 18px;
             }
             
             .service-stats {
-                gap: 6px; /* Further reduced gap for ultra small mobile */
+                gap: 6px;
             }
             
             .service-action {
-                width: 28px; /* Further reduced size for ultra small mobile */
-                height: 28px; /* Further reduced size for ultra small mobile */
+                width: 28px;
+                height: 28px;
             }
             
             /* Why Choose Us Section Ultra Small Mobile Adjustments */
@@ -2154,7 +2826,7 @@
             }
             
             .features-grid {
-                grid-template-columns: 1fr; /* 1 column for ultra small mobile */
+                grid-template-columns: 1fr;
                 gap: 12px;
             }
             
@@ -2179,6 +2851,75 @@
             .feature-description {
                 font-size: 12px;
             }
+            
+            /* Portfolio Section Ultra Small Mobile Adjustments */
+            .portfolio-section {
+                padding: 30px 0;
+            }
+            
+            .portfolio-container {
+                padding: 0 15px;
+            }
+            
+            .portfolio-header {
+                margin-bottom: 20px;
+            }
+            
+            .filter-tabs {
+                margin-bottom: 15px;
+            }
+            
+            .filter-tab {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+            
+            .project-card {
+                min-width: 240px;
+            }
+            
+            .project-content {
+                padding: 18px;
+            }
+            
+            .project-title {
+                font-size: 18px;
+            }
+            
+            .project-description {
+                font-size: 13px;
+            }
+            
+            .lightbox-content,
+            .video-content {
+                padding: 18px;
+            }
+            
+            .lightbox-title,
+            .video-title {
+                font-size: 18px;
+            }
+            
+            .lightbox-description,
+            .video-description {
+                font-size: 13px;
+            }
+            
+            .stats-card {
+                padding: 20px 15px;
+            }
+            
+            .stats-title {
+                font-size: 18px;
+            }
+            
+            .stat-value {
+                font-size: 20px;
+            }
+            
+            .stat-label {
+                font-size: 13px;
+            }
         }
     </style>
 </head>
@@ -2195,7 +2936,7 @@
                 <a href="#services">Services</a>
                 <a href="#about">About Us</a>
                 <a href="#why-choose">Why Choose Us</a>
-                <a href="#">Portfolio</a>
+                <a href="#portfolio">Portfolio</a>
                 <a href="#">Blog</a>
                 <a href="#" class="nav-cta">Contact</a>
             </div>
@@ -2216,7 +2957,7 @@
             <a href="#services"><i class="fas fa-cogs"></i> Services</a>
             <a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
             <a href="#why-choose"><i class="fas fa-star"></i> Why Choose Us</a>
-            <a href="#"><i class="fas fa-briefcase"></i> Portfolio</a>
+            <a href="#portfolio"><i class="fas fa-briefcase"></i> Portfolio</a>
             <a href="#"><i class="fas fa-blog"></i> Blog</a>
             <a href="#" class="mobile-nav-cta"><i class="fas fa-envelope"></i> Contact Us</a>
         </div>
@@ -2480,6 +3221,128 @@
         </div>
     </section>
     
+    <!-- Portfolio Section -->
+    <section class="portfolio-section" id="portfolio">
+        <!-- Geometric Background -->
+        <div class="portfolio-bg">
+            <div class="geometric-pattern">
+                <div class="geo-line geo-line-1"></div>
+                <div class="geo-line geo-line-2"></div>
+                <div class="geo-line geo-line-3"></div>
+                <div class="geo-line geo-line-4"></div>
+            </div>
+            
+            <!-- Floating Elements -->
+            <div class="floating-element float-1"></div>
+            <div class="floating-element float-2"></div>
+            <div class="floating-element float-3"></div>
+            <div class="floating-element float-4"></div>
+        </div>
+        
+        <div class="portfolio-container">
+            <!-- Portfolio Header -->
+            <div class="portfolio-header">
+                <h2 class="portfolio-title">Portfolio / Case Studies</h2>
+                <p class="portfolio-subtitle">Showcasing Our Best Work & Results</p>
+            </div>
+            
+            <!-- Category Filter Tabs -->
+            <div class="filter-tabs">
+                <div class="filter-tab active" data-filter="social">Social Media</div>
+                <div class="filter-tab" data-filter="websites">Websites</div>
+                <div class="filter-tab" data-filter="ads">Ads Results</div>
+                <div class="filter-tab" data-filter="analytics">Analytics</div>
+            </div>
+            
+            <!-- Portfolio Slider -->
+            <div class="portfolio-slider">
+                <div class="slider-container" id="sliderContainer">
+                    <!-- Project Cards will be dynamically generated -->
+                </div>
+                
+                <!-- Slider Navigation -->
+                <div class="slider-arrow prev" id="prevArrow">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="slider-arrow next" id="nextArrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+            
+            <!-- Slider Pagination -->
+            <div class="slider-pagination" id="sliderPagination">
+                <!-- Pagination dots will be dynamically generated -->
+            </div>
+            
+            <!-- Lower Section -->
+            <div class="lower-section">
+                <!-- Lightbox Gallery Card -->
+                <div class="lightbox-card" id="lightboxCard">
+                    <div class="lightbox-preview">
+                        <img src="https://picsum.photos/seed/gallery1/600/400.jpg" alt="Gallery Preview">
+                        <div class="lightbox-overlay">
+                            <div class="lightbox-icon">
+                                <i class="fas fa-expand"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lightbox-content">
+                        <h3 class="lightbox-title">Creative Campaign Gallery</h3>
+                        <p class="lightbox-description">Explore our collection of visually stunning social media campaigns that drove exceptional engagement and brand awareness.</p>
+                    </div>
+                </div>
+                
+                <!-- Video Case Study Card -->
+                <div class="video-card" id="videoCard">
+                    <div class="video-preview">
+                        <img src="https://picsum.photos/seed/video1/600/400.jpg" alt="Video Preview">
+                        <div class="video-overlay">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3 class="video-title">Success Story: Brand Transformation</h3>
+                        <p class="video-description">Watch how we helped a struggling brand reinvent its digital presence and achieve unprecedented growth in just 6 months.</p>
+                    </div>
+                </div>
+                
+                <!-- Statistics Card -->
+                <div class="stats-card">
+                    <h3 class="stats-title">Growth Metrics</h3>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value">+180%</div>
+                            <div class="stat-label">Traffic Increase</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value">3.5x</div>
+                            <div class="stat-label">Return on Investment</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value">1200+</div>
+                            <div class="stat-label">Quality Leads Generated</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Service Modal -->
     <div class="modal" id="serviceModal">
         <div class="modal-content">
@@ -2515,6 +3378,28 @@
             <div class="modal-footer">
                 <button class="modal-btn modal-btn-secondary" onclick="closeModal()">Close</button>
                 <button class="modal-btn modal-btn-primary" onclick="startService()">Get Started</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <div class="lightbox-content">
+            <img src="https://picsum.photos/seed/gallery1/1200/800.jpg" alt="Gallery Image" class="lightbox-image" id="lightboxImage">
+            <button class="lightbox-close" id="lightboxClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-container">
+            <button class="video-close" id="videoClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="video-frame">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -2620,8 +3505,96 @@
             }
         ];
         
+        // Portfolio Data
+        const portfolioData = {
+            social: [
+                {
+                    id: 1,
+                    title: "Instagram Campaign",
+                    description: "A highly successful Instagram campaign that increased brand visibility by 200% and generated over 50k engagements.",
+                    image: "https://picsum.photos/seed/instagram1/600/400.jpg"
+                },
+                {
+                    id: 2,
+                    title: "Creative Posts Series",
+                    description: "Innovative social media content series that went viral and reached over 1 million users across multiple platforms.",
+                    image: "https://picsum.photos/seed/posts1/600/400.jpg"
+                },
+                {
+                    id: 3,
+                    title: "Influencer Collaboration",
+                    description: "Strategic partnership with top influencers that resulted in a 150% increase in product sales and brand credibility.",
+                    image: "https://picsum.photos/seed/influencer1/600/400.jpg"
+                }
+            ],
+            websites: [
+                {
+                    id: 4,
+                    title: "E-commerce Redesign",
+                    description: "Complete website overhaul that improved user experience and increased conversion rate by 75%.",
+                    image: "https://picsum.photos/seed/ecommerce1/600/400.jpg"
+                },
+                {
+                    id: 5,
+                    title: "Corporate Website",
+                    description: "Modern corporate website design that enhanced brand perception and increased lead generation by 120%.",
+                    image: "https://picsum.photos/seed/corporate1/600/400.jpg"
+                },
+                {
+                    id: 6,
+                    title: "Landing Page Optimization",
+                    description: "A/B tested landing pages that improved ad campaign performance and reduced cost per acquisition by 40%.",
+                    image: "https://picsum.photos/seed/landing1/600/400.jpg"
+                }
+            ],
+            ads: [
+                {
+                    id: 7,
+                    title: "Promo Video Ad",
+                    description: "Compelling video advertisement that achieved a 5x return on ad spend and went viral with over 2 million views.",
+                    image: "https://picsum.photos/seed/videoad1/600/400.jpg"
+                },
+                {
+                    id: 8,
+                    title: "Google Ads Campaign",
+                    description: "Strategic PPC campaign that increased qualified leads by 180% while reducing cost per click by 35%.",
+                    image: "https://picsum.photos/seed/googleads1/600/400.jpg"
+                },
+                {
+                    id: 9,
+                    title: "Facebook Ads Series",
+                    description: "Targeted social media ads that boosted conversion rate by 120% and generated over 10k sales.",
+                    image: "https://picsum.photos/seed/fbads1/600/400.jpg"
+                }
+            ],
+            analytics: [
+                {
+                    id: 10,
+                    title: "Metrics Dashboard",
+                    description: "Custom analytics dashboard that provided actionable insights and improved marketing ROI by 85%.",
+                    image: "https://picsum.photos/seed/dashboard1/600/400.jpg"
+                },
+                {
+                    id: 11,
+                    title: "Customer Journey Analysis",
+                    description: "In-depth analysis of customer behavior that identified key touchpoints and improved retention rate by 60%.",
+                    image: "https://picsum.photos/seed/journey1/600/400.jpg"
+                },
+                {
+                    id: 12,
+                    title: "Conversion Optimization",
+                    description: "Data-driven optimization of conversion funnel that increased overall conversion rate by 95%.",
+                    image: "https://picsum.photos/seed/conversion1/600/400.jpg"
+                }
+            ]
+        };
+        
         let currentFilter = 'all';
         let searchTerm = '';
+        let currentCategory = 'social';
+        let currentSlideIndex = 0;
+        let slidesPerView = 3;
+        let totalSlides = 0;
         
         // Register GSAP plugins
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
@@ -3215,10 +4188,336 @@
         `;
         document.head.appendChild(slideUpStyle);
         
-        // Initialize services section
+        // Portfolio Functions
+        // Initialize portfolio based on screen size
+        function initializePortfolio() {
+            updateSlidesPerView();
+            renderPortfolio(currentCategory);
+            updateSlider();
+        }
+        
+        // Update slides per view based on screen size
+        function updateSlidesPerView() {
+            if (window.innerWidth <= 480) {
+                slidesPerView = 1;
+            } else if (window.innerWidth <= 768) {
+                slidesPerView = 2;
+            } else {
+                slidesPerView = 3;
+            }
+        }
+        
+        // Render portfolio based on category
+        function renderPortfolio(category) {
+            const sliderContainer = document.getElementById('sliderContainer');
+            sliderContainer.innerHTML = '';
+            
+            const projects = portfolioData[category];
+            totalSlides = projects.length;
+            
+            projects.forEach(project => {
+                const slide = createProjectSlide(project);
+                sliderContainer.appendChild(slide);
+            });
+            
+            renderPagination();
+        }
+        
+        // Create project slide
+        function createProjectSlide(project) {
+            const slide = document.createElement('div');
+            slide.className = 'project-card';
+            
+            slide.innerHTML = `
+                <div class="project-image">
+                    <img src="${project.image}" alt="${project.title}">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-description">${project.description}</p>
+                    <a href="#" class="project-cta">View Case Study</a>
+                </div>
+            `;
+            
+            return slide;
+        }
+        
+        // Render pagination dots
+        function renderPagination() {
+            const pagination = document.getElementById('sliderPagination');
+            pagination.innerHTML = '';
+            
+            const totalPages = Math.ceil(totalSlides / slidesPerView);
+            
+            for (let i = 0; i < totalPages; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'pagination-dot';
+                
+                if (i === currentSlideIndex) {
+                    dot.classList.add('active');
+                }
+                
+                dot.addEventListener('click', () => {
+                    currentSlideIndex = i;
+                    updateSlider();
+                });
+                
+                pagination.appendChild(dot);
+            }
+        }
+        
+        // Update slider position
+        function updateSlider() {
+            const sliderContainer = document.getElementById('sliderContainer');
+            const slideWidth = 100 / slidesPerView;
+            const offset = currentSlideIndex * slideWidth;
+            
+            sliderContainer.style.transform = `translateX(-${offset}%)`;
+            
+            // Update pagination dots
+            const dots = document.querySelectorAll('.pagination-dot');
+            dots.forEach((dot, index) => {
+                if (index === currentSlideIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+        
+        // Setup portfolio event listeners
+        function setupPortfolioEventListeners() {
+            // Filter tabs
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Update active tab
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    // Update current category and render portfolio
+                    currentCategory = tab.getAttribute('data-filter');
+                    currentSlideIndex = 0;
+                    renderPortfolio(currentCategory);
+                    updateSlider();
+                });
+            });
+            
+            // Slider navigation
+            const prevArrow = document.getElementById('prevArrow');
+            const nextArrow = document.getElementById('nextArrow');
+            
+            prevArrow.addEventListener('click', () => {
+                if (currentSlideIndex > 0) {
+                    currentSlideIndex--;
+                    updateSlider();
+                }
+            });
+            
+            nextArrow.addEventListener('click', () => {
+                const maxIndex = Math.ceil(totalSlides / slidesPerView) - 1;
+                if (currentSlideIndex < maxIndex) {
+                    currentSlideIndex++;
+                    updateSlider();
+                }
+            });
+            
+            // Lightbox modal
+            const lightboxCard = document.getElementById('lightboxCard');
+            const lightboxModal = document.getElementById('lightboxModal');
+            const lightboxClose = document.getElementById('lightboxClose');
+            
+            lightboxCard.addEventListener('click', () => {
+                lightboxModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            lightboxClose.addEventListener('click', () => {
+                lightboxModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            lightboxModal.addEventListener('click', (e) => {
+                if (e.target === lightboxModal) {
+                    lightboxModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Video modal
+            const videoCard = document.getElementById('videoCard');
+            const videoModal = document.getElementById('videoModal');
+            const videoClose = document.getElementById('videoClose');
+            
+            videoCard.addEventListener('click', () => {
+                videoModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            videoClose.addEventListener('click', () => {
+                videoModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                
+                // Stop video playback
+                const iframe = videoModal.querySelector('iframe');
+                const src = iframe.getAttribute('src');
+                iframe.setAttribute('src', src);
+            });
+            
+            videoModal.addEventListener('click', (e) => {
+                if (e.target === videoModal) {
+                    videoModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    
+                    // Stop video playback
+                    const iframe = videoModal.querySelector('iframe');
+                    const src = iframe.getAttribute('src');
+                    iframe.setAttribute('src', src);
+                }
+            });
+            
+            // Window resize
+            window.addEventListener('resize', () => {
+                updateSlidesPerView();
+                renderPagination();
+                updateSlider();
+            });
+        }
+        
+        // Portfolio animations
+        function initializePortfolioAnimations() {
+            // Set initial states
+            gsap.set(".portfolio-title", { opacity: 0, y: 50 });
+            gsap.set(".portfolio-subtitle", { opacity: 0, y: 30 });
+            gsap.set(".filter-tab", { opacity: 0, y: 20 });
+            gsap.set(".project-card", { opacity: 0, y: 50, scale: 0.9 });
+            gsap.set(".lightbox-card, .video-card, .stats-card", { opacity: 0, y: 50, scale: 0.9 });
+            
+            // Portfolio header animation
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".portfolio-section",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            })
+            .to(".portfolio-title", { opacity: 1, y: 0, duration: 1, ease: "power2.out" })
+            .to(".portfolio-subtitle", { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, "-=0.7")
+            .to(".filter-tab", { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.8, 
+                stagger: 0.1, 
+                ease: "power2.out" 
+            }, "-=0.5")
+            .to(".project-card", { 
+                opacity: 1, 
+                y: 0, 
+                scale: 1, 
+                duration: 0.8, 
+                stagger: 0.1, 
+                ease: "back.out(1.7)" 
+            }, "-=0.3");
+            
+            // Lower section animation
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".lower-section",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            })
+            .to(".lightbox-card, .video-card, .stats-card", { 
+                opacity: 1, 
+                y: 0, 
+                scale: 1, 
+                duration: 0.8, 
+                stagger: 0.2, 
+                ease: "back.out(1.7)" 
+            });
+            
+            // Floating elements animation
+            gsap.to(".portfolio-section .float-1", {
+                y: -30,
+                duration: 4,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            gsap.to(".portfolio-section .float-2", {
+                y: -20,
+                duration: 3,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            gsap.to(".portfolio-section .float-3", {
+                y: -25,
+                duration: 3.5,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            gsap.to(".portfolio-section .float-4", {
+                y: -35,
+                duration: 4.5,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            // Parallax effect on mouse move (desktop only)
+            if (window.innerWidth > 768) {
+                document.addEventListener("mousemove", (e) => {
+                    const x = e.clientX / window.innerWidth;
+                    const y = e.clientY / window.innerHeight;
+                    
+                    // Floating elements parallax
+                    gsap.to(".portfolio-section .float-1", {
+                        x: (x - 0.5) * 30,
+                        y: (y - 0.5) * 30,
+                        rotation: 45 + (x - 0.5) * 20,
+                        duration: 1.5,
+                        ease: "power2.out"
+                    });
+                    
+                    gsap.to(".portfolio-section .float-2", {
+                        x: (x - 0.5) * 25,
+                        y: (y - 0.5) * 25,
+                        rotation: -30 + (y - 0.5) * 20,
+                        duration: 1.5,
+                        ease: "power2.out"
+                    });
+                    
+                    gsap.to(".portfolio-section .float-3", {
+                        x: (x - 0.5) * 35,
+                        y: (y - 0.5) * 35,
+                        rotation: 15 + (x - 0.5) * 15,
+                        duration: 1.5,
+                        ease: "power2.out"
+                    });
+                    
+                    gsap.to(".portfolio-section .float-4", {
+                        x: (x - 0.5) * 28,
+                        y: (y - 0.5) * 28,
+                        rotation: -45 + (y - 0.5) * 25,
+                        duration: 1.5,
+                        ease: "power2.out"
+                    });
+                });
+            }
+        }
+        
+        // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
             renderServices();
+            initializePortfolio();
+            setupPortfolioEventListeners();
+            initializePortfolioAnimations();
             
             // Initialize scroll animations for services section - ENHANCED ANIMATIONS
             gsap.from(".services-header", {
@@ -3228,7 +4527,7 @@
                     toggleActions: "play none none reverse"
                 },
                 y: 50,
-                scale: 0.95, // Naya effect
+                scale: 0.95,
                 opacity: 0,
                 duration: 1,
                 ease: "power2.out"
@@ -3255,10 +4554,10 @@
                     toggleActions: "play none none reverse"
                 },
                 y: 60,
-                scale: 0.9, // Naya effect
+                scale: 0.9,
                 opacity: 0,
                 duration: 0.8,
-                stagger: 0.15, // Staggered animation for cards
+                stagger: 0.15,
                 ease: "power2.out"
             });
 
@@ -3327,6 +4626,9 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeModal();
+                document.getElementById('lightboxModal').classList.remove('active');
+                document.getElementById('videoModal').classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
         });
         
@@ -3334,6 +4636,26 @@
         document.getElementById('serviceModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
+            }
+        });
+        
+        // Close modal on background click
+        document.getElementById('lightboxModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                
+                // Stop video playback
+                const iframe = this.querySelector('iframe');
+                const src = iframe.getAttribute('src');
+                iframe.setAttribute('src', src);
             }
         });
         
