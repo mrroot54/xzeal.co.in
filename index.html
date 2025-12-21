@@ -219,16 +219,18 @@
             background: var(--text-primary);
         }
         
-        /* Portfolio Slider */
+        /* Portfolio Slider - Fixed for mobile */
         .portfolio-slider {
             position: relative;
-            overflow: hidden;
+            width: 100%;
             margin-bottom: 40px;
+            overflow: hidden; /* Ensures no content spills out */
         }
         
         .slider-container {
             display: flex;
             transition: transform 0.5s ease;
+            width: 100%; /* Full width */
         }
         
         .slider-arrow {
@@ -261,10 +263,11 @@
             right: 10px;
         }
         
-        /* Project Cards */
+        /* Project Cards - Fixed for mobile */
         .project-card {
-            min-width: 100%;
-            margin: 0 10px;
+            width: 100%; /* Full width of container */
+            flex-shrink: 0; /* Prevents shrinking */
+            padding: 0 5px; /* Small padding for spacing */
             background: var(--card-bg);
             backdrop-filter: blur(20px);
             border-radius: 20px;
@@ -1106,11 +1109,11 @@
             }
         }
         
-        // Update slider position
+        // Update slider position - Fixed for mobile
         function updateSlider() {
             const sliderContainer = document.getElementById('sliderContainer');
-            const slideWidth = 100 / slidesPerView;
-            const offset = currentSlideIndex * slideWidth;
+            // Fixed calculation for mobile - move by full slide width
+            const offset = currentSlideIndex * 100;
             
             sliderContainer.style.transform = `translateX(-${offset}%)`;
             
