@@ -1004,30 +1004,6 @@
             --badge-color: #3b82f6;
         }
         
-        .service-card:nth-child(7) {
-            --card-gradient: linear-gradient(90deg, #f97316, #ea580c);
-            --icon-bg: rgba(249, 115, 22, 0.2);
-            --icon-color: #f97316;
-            --badge-bg: rgba(249, 115, 22, 0.2);
-            --badge-color: #f97316;
-        }
-        
-        .service-card:nth-child(8) {
-            --card-gradient: linear-gradient(90deg, #06b6d4, #0891b2);
-            --icon-bg: rgba(6, 182, 212, 0.2);
-            --icon-color: #06b6d4;
-            --badge-bg: rgba(6, 182, 212, 0.2);
-            --badge-color: #06b6d4;
-        }
-        
-        .service-card:nth-child(9) {
-            --card-gradient: linear-gradient(90deg, #10b981, #059669);
-            --icon-bg: rgba(16, 185, 129, 0.2);
-            --icon-color: #10b981;
-            --badge-bg: rgba(16, 185, 129, 0.2);
-            --badge-color: #10b981;
-        }
-        
         /* Why Choose Us Section */
         .why-choose-section {
             padding: 100px 0;
@@ -3178,7 +3154,7 @@
             <!-- Section Header -->
             <div class="why-choose-header">
                 <h2 class="why-choose-title">Why Choose Us</h2>
-                <p class="why-choose-subtitle">Show your unique strengths that set us apart from competition</p>
+                <p class="why-choose-subtitle">Show your unique strengths that set us apart from the competition</p>
             </div>
             
             <!-- Features Grid -->
@@ -3418,150 +3394,99 @@
         const servicesData = [
             {
                 id: 1,
-                title: 'Analytics & Reporting',
-                category: 'analytics',
-                description: 'Comprehensive analytics and reporting solutions to track your digital performance and make data-driven decisions.',
-                icon: 'fa-chart-line',
+                title: 'Digital Marketing',
+                category: 'marketing',
+                description: 'Strategic campaigns to boost your brand visibility and engagement across all digital platforms.',
+                icon: 'fa-bullhorn',
                 color: '#4facfe',
                 features: [
-                    { icon: 'fa-chart-pie', text: 'Data Visualization' },
-                    { icon: 'fa-chart-bar', text: 'Performance Metrics' },
-                    { icon: 'fa-file-chart', text: 'Custom Reports' },
-                    { icon: 'fa-analytics', text: 'User Behavior Analysis' },
-                    { icon: 'fa-tachometer-alt', text: 'Real-time Monitoring' }
+                    { icon: 'fa-chart-line', text: 'Social Media Marketing' },
+                    { icon: 'fa-envelope', text: 'Email Campaigns' },
+                    { icon: 'fa-users', text: 'Influencer Partnerships' },
+                    { icon: 'fa-lightbulb', text: 'Brand Strategy' },
+                    { icon: 'fa-analytics', text: 'Analytics & Reporting' }
                 ],
                 stats: { projects: 150, rating: 4.9 }
             },
             {
                 id: 2,
-                title: 'Google Ads Management',
+                title: 'PPC Advertising',
                 category: 'marketing',
-                description: 'Expert management of your Google Ads campaigns to maximize ROI and reach your target audience effectively.',
-                icon: 'fa-google',
+                description: 'Targeted pay-per-click campaigns that maximize your ROI and reach the right customers.',
+                icon: 'fa-ad',
                 color: '#a855f7',
                 features: [
-                    { icon: 'fa-search', text: 'Keyword Research' },
-                    { icon: 'fa-bullseye', text: 'Targeting Strategy' },
-                    { icon: 'fa-coins', text: 'Bid Management' },
-                    { icon: 'fa-chart-line', text: 'Performance Optimization' },
-                    { icon: 'fa-ad', text: 'Ad Creation' }
+                    { icon: 'fa-google', text: 'Google Ads Management' },
+                    { icon: 'fa-facebook', text: 'Facebook & Instagram Ads' },
+                    { icon: 'fa-linkedin', text: 'LinkedIn Advertising' },
+                    { icon: 'fa-flask', text: 'A/B Testing' },
+                    { icon: 'fa-chart-pie', text: 'Conversion Tracking' }
                 ],
                 stats: { projects: 200, rating: 4.8 }
             },
             {
                 id: 3,
-                title: 'Facebook & Instagram Ads',
-                category: 'marketing',
-                description: 'Strategic social media advertising on Facebook and Instagram to boost engagement and conversions.',
-                icon: 'fa-facebook',
+                title: 'SEO Optimization',
+                category: 'analytics',
+                description: 'Improve your search rankings and drive organic traffic with proven SEO strategies.',
+                icon: 'fa-search',
                 color: '#ec4899',
                 features: [
-                    { icon: 'fa-users', text: 'Audience Targeting' },
-                    { icon: 'fa-image', text: 'Creative Development' },
-                    { icon: 'fa-clock', text: 'Campaign Scheduling' },
-                    { icon: 'fa-chart-bar', text: 'A/B Testing' },
-                    { icon: 'fa-sync', text: 'Campaign Optimization' }
+                    { icon: 'fa-key', text: 'Keyword Research' },
+                    { icon: 'fa-file-code', text: 'On-Page Optimization' },
+                    { icon: 'fa-cogs', text: 'Technical SEO' },
+                    { icon: 'fa-link', text: 'Link Building' },
+                    { icon: 'fa-map-marker-alt', text: 'Local SEO' }
                 ],
                 stats: { projects: 180, rating: 4.9 }
             },
             {
                 id: 4,
-                title: 'LinkedIn Advertising',
-                category: 'marketing',
-                description: 'Professional B2B advertising on LinkedIn to reach decision-makers and generate quality leads.',
-                icon: 'fa-linkedin',
+                title: 'Web Development',
+                category: 'development',
+                description: 'Custom websites that impress visitors and deliver exceptional user experiences.',
+                icon: 'fa-code',
                 color: '#14b8a6',
                 features: [
-                    { icon: 'fa-briefcase', text: 'B2B Targeting' },
-                    { icon: 'fa-user-tie', text: 'Decision Maker Reach' },
-                    { icon: 'fa-building', text: 'Company Targeting' },
-                    { icon: 'fa-envelope', text: 'Lead Generation' },
-                    { icon: 'fa-chart-line', text: 'Performance Tracking' }
+                    { icon: 'fa-mobile-alt', text: 'Responsive Design' },
+                    { icon: 'fa-shopping-cart', text: 'E-commerce Solutions' },
+                    { icon: 'fa-cms', text: 'CMS Development' },
+                    { icon: 'fa-tachometer-alt', text: 'Website Optimization' },
+                    { icon: 'fa-plug', text: 'API Integration' }
+                ],
+                stats: { projects: 250, rating: 5.0 }
+            },
+            {
+                id: 5,
+                title: 'Lead Generation',
+                category: 'marketing',
+                description: 'Quality lead generation strategies that convert prospects into loyal customers.',
+                icon: 'fa-user-plus',
+                color: '#f59e0b',
+                features: [
+                    { icon: 'fa-seedling', text: 'Lead Nurturing' },
+                    { icon: 'fa-landing', text: 'Landing Page Optimization' },
+                    { icon: 'fa-database', text: 'CRM Integration' },
+                    { icon: 'fa-star-half-alt', text: 'Lead Scoring' },
+                    { icon: 'fa-robot', text: 'Marketing Automation' }
                 ],
                 stats: { projects: 120, rating: 4.7 }
             },
             {
-                id: 5,
-                title: 'CMS Development',
-                category: 'development',
-                description: 'Custom content management systems that make updating your website content simple and efficient.',
-                icon: 'fa-cms',
-                color: '#f59e0b',
-                features: [
-                    { icon: 'fa-wordpress', text: 'WordPress Solutions' },
-                    { icon: 'fa-drupal', text: 'Drupal Development' },
-                    { icon: 'fa-joomla', text: 'Joomla Implementation' },
-                    { icon: 'fa-code', text: 'Custom CMS' },
-                    { icon: 'fa-database', text: 'Content Architecture' }
-                ],
-                stats: { projects: 90, rating: 4.8 }
-            },
-            {
                 id: 6,
-                title: 'Landing Page Optimization',
-                category: 'development',
-                description: 'High-converting landing pages designed to capture leads and maximize your marketing ROI.',
-                icon: 'fa-landing',
+                title: 'Content Creation',
+                category: 'content',
+                description: 'Engaging content that tells your brand story and connects with your audience.',
+                icon: 'fa-pen-nib',
                 color: '#3b82f6',
                 features: [
-                    { icon: 'fa-mobile-alt', text: 'Responsive Design' },
-                    { icon: 'fa-pencil-ruler', text: 'A/B Testing' },
-                    { icon: 'fa-bullseye', text: 'Conversion Optimization' },
-                    { icon: 'fa-tachometer-alt', text: 'Page Speed Optimization' },
-                    { icon: 'fa-mouse-pointer', text: 'CTA Enhancement' }
+                    { icon: 'fa-blog', text: 'Blog Writing' },
+                    { icon: 'fa-video', text: 'Video Production' },
+                    { icon: 'fa-chart-bar', text: 'Infographics' },
+                    { icon: 'fa-book', text: 'Whitepapers & E-books' },
+                    { icon: 'fa-compass', text: 'Content Strategy' }
                 ],
-                stats: { projects: 160, rating: 4.9 }
-            },
-            {
-                id: 7,
-                title: 'iOS App Development',
-                category: 'development',
-                description: 'Native iOS applications that deliver exceptional user experiences and leverage the latest Apple technologies.',
-                icon: 'fa-apple',
-                color: '#f97316',
-                features: [
-                    { icon: 'fa-mobile', text: 'Native Development' },
-                    { icon: 'fa-code', text: 'Swift Programming' },
-                    { icon: 'fa-sync', text: 'App Store Deployment' },
-                    { icon: 'fa-paint-brush', text: 'UI/UX Design' },
-                    { icon: 'fa-shield-alt', text: 'App Security' }
-                ],
-                stats: { projects: 75, rating: 4.8 }
-            },
-            {
-                id: 8,
-                title: 'Android App Development',
-                category: 'development',
-                description: 'Custom Android applications that provide seamless experiences across a wide range of devices.',
-                icon: 'fa-android',
-                color: '#06b6d4',
-                features: [
-                    { icon: 'fa-mobile', text: 'Native Development' },
-                    { icon: 'fa-code', text: 'Kotlin/Java Programming' },
-                    { icon: 'fa-sync', text: 'Play Store Deployment' },
-                    { icon: 'fa-paint-brush', text: 'Material Design' },
-                    { icon: 'fa-shield-alt', text: 'App Security' }
-                ],
-                stats: { projects: 85, rating: 4.9 }
-            },
-            {
-                id: 9,
-                title: 'Maintenance Services',
-                category: 'maintenance',
-                description: 'Comprehensive maintenance solutions to keep your digital assets running smoothly and securely.',
-                icon: 'fa-tools',
-                color: '#10b981',
-                features: [
-                    { icon: 'fa-sync-alt', text: 'Content Update' },
-                    { icon: 'fa-bug', text: 'Bug Fixing' },
-                    { icon: 'fa-shield-alt', text: 'Security Maintenance' },
-                    { icon: 'fa-database', text: 'Backup Management' },
-                    { icon: 'fa-tachometer-alt', text: 'Performance Optimization' },
-                    { icon: 'fa-server', text: 'Database Maintenance' },
-                    { icon: 'fa-clock', text: 'Uptime Monitoring' },
-                    { icon: 'fa-headset', text: 'Technical Support' }
-                ],
-                stats: { projects: 180, rating: 4.7 }
+                stats: { projects: 300, rating: 4.8 }
             }
         ];
         
