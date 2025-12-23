@@ -37,19 +37,19 @@
             color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.6;
-            /* Ensure body takes full height */
             min-height: 100vh;
         }
 
         /* Section Layout */
         .team-section {
-            padding: 60px 20px 100px; /* Reduced top/bottom padding for mobile */
+            padding: 60px 20px 100px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             position: relative;
             justify-content: center;
+            width: 100%;
         }
 
         /* Section Header */
@@ -59,7 +59,8 @@
             opacity: 0;
             transform: translateY(30px);
             width: 100%;
-            padding: 0 10px;
+            max-width: 800px;
+            z-index: 10;
         }
 
         .section-title {
@@ -81,11 +82,12 @@
         .slider-viewport {
             width: 100%;
             max-width: 1000px;
-            overflow: hidden; /* Hides the scrollbar */
+            overflow: hidden; /* Important for clean sliding */
             position: relative;
-            padding: 60px 0; /* Space for scaling effect */
+            padding: 50px 0; /* Vertical space for scaling on desktop */
             opacity: 0;
             margin: 0 auto;
+            z-index: 5;
         }
 
         /* Slider Track */
@@ -95,7 +97,8 @@
             width: 100%;
             transform: translateX(0); 
             cursor: grab;
-            /* Will be controlled by JS */
+            /* Ensure track doesn't shrink smaller than content */
+            min-width: min-content; 
         }
 
         .slider-track:active {
@@ -104,7 +107,7 @@
 
         /* Team Card */
         .team-card {
-            /* Default Desktop Width */
+            /* Desktop Dimensions */
             min-width: 300px;
             width: 320px; 
             max-width: 350px;
@@ -120,7 +123,7 @@
             border: 1px solid transparent;
         }
 
-        /* Active Card Styling */
+        /* Active Card Styling (Desktop) */
         .team-card.active {
             transform: scale(1.05);
             box-shadow: 0 20px 50px var(--accent-glow);
@@ -140,13 +143,8 @@
         .card-image {
             width: 100%;
             height: 100%;
-            
-            /* Fill the box completely */
             object-fit: cover; 
-            
-            /* Focus on the top (head) so it doesn't crop the person's face */
             object-position: top center; 
-            
             transform-origin: center;
         }
 
@@ -201,7 +199,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* RED COLOR ICONS */
             color: #ff4757; 
             text-decoration: none;
             transition: all 0.3s ease;
@@ -216,14 +213,14 @@
         .slider-nav {
             position: absolute;
             top: 50%;
-            width: 100%; /* Full width of section */
-            display: flex;
-            justify-content: space-between;
-            padding: 0 10px; /* Safer padding for mobile edges */
-            pointer-events: none;
-            max-width: 1200px; /* Match container roughly */
+            width: 100%;
+            max-width: 1100px;
             left: 50%;
             transform: translateX(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px;
+            pointer-events: none;
             z-index: 20;
         }
 
@@ -261,37 +258,48 @@
 
         /* --- RESPONSIVE MEDIA QUERIES --- */
         
-        /* Tablets and Small Laptops */
+        /* Tablets */
         @media (max-width: 900px) {
             .team-card {
                 width: 45vw;
                 max-width: 320px;
             }
-            .slider-viewport {
-                padding: 50px 0;
-            }
         }
 
-        /* Mobile Phones */
+        /* Mobile Phones - FIXING CROP */
         @media (max-width: 768px) {
-            .section-title { 
-                font-size: 2rem; 
-            }
-            
             .team-section {
-                padding: 40px 15px 80px;
+                padding: 40px 10px 80px;
             }
 
+            /* Remove extra vertical padding since we aren't scaling cards */
+            .slider-viewport {
+                padding: 20px 0;
+            }
+
+            .section-title { 
+                font-size: 1.8rem; 
+            }
+            
+            /* Fix Width */
             .team-card {
-                /* Use percentage width for flexibility on mobile */
-                width: 85vw; 
-                min-width: 280px; /* Still ensures it's not too tiny */
-                max-width: 350px;
-                margin: 0 5px; /* Less margin on mobile to maximize space */
+                /* Use 85% of viewport width */
+                width: 85%; 
+                max-width: 320px;
+                min-width: 280px;
+                margin: 0 5px; /* Reduce margin */
+                height: auto; /* Let content determine height */
             }
 
             .card-image-wrapper {
-                height: 250px; /* Shorter image on mobile */
+                height: 240px; /* Adjust image height for mobile */
+            }
+
+            /* IMPORTANT FIX: REMOVE SCALE ON MOBILE */
+            .team-card.active {
+                transform: none !important; 
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                border: 1px solid rgba(255,255,255,0.1); /* Subtle border instead of glow */
             }
 
             .member-name {
@@ -299,35 +307,19 @@
             }
 
             .member-position {
-                font-size: 0.75rem; /* Smaller font for long titles */
-                letter-spacing: 0.5px; /* Reduce letter spacing to fit text */
+                font-size: 0.7rem;
+                letter-spacing: 0.5px;
             }
 
             .member-intro {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
             
+            /* Better visibility for nav buttons */
             .nav-btn {
                 width: 40px;
                 height: 40px;
-                background: rgba(0,0,0,0.5); /* Darker background for better visibility over images */
-            }
-            
-            .slider-nav {
-                padding: 0 5px; /* Push buttons inward slightly */
-            }
-        }
-
-        /* Very Small Phones (iPhone SE, etc.) */
-        @media (max-width: 375px) {
-            .section-title {
-                font-size: 1.8rem;
-            }
-            .card-content {
-                padding: 20px;
-            }
-            .member-position {
-                font-size: 0.7rem;
+                background: rgba(0,0,0,0.6);
             }
         }
     </style>
@@ -335,7 +327,6 @@
 <body>
 
     <section class="team-section" id="teamSection">
-        <!-- Background Decoration -->
         <div class="bg-glow" style="top: -100px; left: -100px;"></div>
         <div class="bg-glow" style="bottom: -100px; right: -100px;"></div>
 
@@ -412,7 +403,6 @@
             </div>
         </div>
 
-        <!-- Navigation Buttons -->
         <div class="slider-nav">
             <button class="nav-btn" id="prevBtn" aria-label="Previous Slide">
                 <i class="fas fa-chevron-left"></i>
@@ -466,25 +456,26 @@
             let currentIndex = 1; 
             const totalCards = cards.length;
             let cardWidth = 0;
-            let gap = 20; // Default gap matching CSS
+            let gap = 20; // Default CSS gap
 
             // Auto Slide Variables
             let autoSlideInterval;
-            const autoSlideDelay = 3500; // 3.5 seconds
+            const autoSlideDelay = 3500;
 
             function updateDimensions() {
-                // Calculate exact width of the first card to handle responsive widths
-                cardWidth = cards[0].offsetWidth;
-                // Calculate gap dynamically if needed, or stick to CSS gap
-                const trackStyle = window.getComputedStyle(track);
-                if(trackStyle.gap) {
-                    gap = parseInt(trackStyle.gap) || 20;
+                // Get actual width from DOM element (handles responsiveness)
+                if(cards.length > 0) {
+                    cardWidth = cards[0].offsetWidth;
                 }
+                // Get gap from computed style
+                const trackStyle = window.getComputedStyle(track);
+                gap = parseInt(trackStyle.gap) || 20;
             }
 
             // Initialize dimensions
             updateDimensions();
-            // Update on resize to handle responsive changes
+            
+            // Update on resize
             window.addEventListener('resize', () => {
                 updateDimensions();
                 goToSlide(currentIndex, true);
@@ -499,14 +490,11 @@
 
                 const viewportWidth = viewport.offsetWidth;
                 
-                // CORRECTED LOGIC: Center alignment
-                // 1. Find the center point of the target card in the track
+                // Calculate center of target card within the track
                 // Position = (CardWidth + Gap) * Index + (CardWidth / 2)
                 const centerOfCard = (cardWidth + gap) * index + (cardWidth / 2);
                 
-                // 2. Calculate how much to move the track so that centerOfCard aligns with viewport center
-                // Viewport center is at (viewportWidth / 2)
-                // xPos needs to be negative to move left
+                // Calculate movement: Move track so card center aligns with viewport center
                 const xPos = centerOfCard - (viewportWidth / 2);
 
                 gsap.to(track, {
@@ -531,11 +519,11 @@
                 const img = card.querySelector(".card-image");
                 const socials = card.querySelector(".social-links");
 
-                // Very subtle zoom to ensure no cropping feels unnatural
+                // Slight zoom only on desktop via CSS, but let's do a small opacity/scale pop here
                 gsap.fromTo(img, 
-                    { scale: 1.0, opacity: 0.8 }, 
+                    { scale: 1.0, opacity: 0.9 }, 
                     { 
-                        scale: 1.03, 
+                        scale: 1.05, 
                         opacity: 1,
                         duration: 1.2,
                         ease: "expo.out"
@@ -556,7 +544,6 @@
                 const socials = card.querySelector(".social-links");
                 const name = card.querySelector(".member-name");
                 
-                // Reset scale to 1
                 gsap.to(img, {
                     scale: 1.0,
                     duration: 0.5
@@ -637,7 +624,6 @@
 
                 card.addEventListener("mouseenter", () => {
                     if(card.classList.contains("active")) {
-                        // Name Turns Indigo
                         gsap.to(name, {
                             x: 5,
                             color: ACCENT_COLOR,
