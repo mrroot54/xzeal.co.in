@@ -1191,7 +1191,7 @@
             --icon-color: #14b8a6;
         }
         
-        /* Testimonials Section - AUTO SLIDER ONLY */
+        /* Testimonials Section - ENHANCED WITH AUTO SLIDER */
         .testimonials-section {
             padding: 100px 0;
             position: relative;
@@ -1442,6 +1442,51 @@
         .nav-dot:hover {
             background: rgba(255, 255, 255, 0.4);
             transform: scale(1.2);
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: var(--primary-gradient);
+            border-radius: 3px;
+            transition: width 0.1s linear;
+        }
+        
+        /* Auto-play indicator */
+        .auto-play-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        
+        .play-pause-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .play-pause-btn:hover {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+        
+        .auto-play-text {
+            font-size: 14px;
+            color: var(--text-secondary);
         }
         
         /* Modal Styles */
@@ -2358,6 +2403,15 @@
                 height: 35px;
                 font-size: 14px;
             }
+            
+            /* WhatsApp Button Responsive */
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                bottom: 20px;
+                right: 20px;
+            }
         }
         
         @media (max-width: 380px) {
@@ -2902,7 +2956,7 @@
         </div>
     </section>
     
-    <!-- Enhanced Testimonials Section with Auto Slider Only -->
+    <!-- Enhanced Testimonials Section with Auto Slider -->
     <section class="testimonials-section" id="testimonials">
         <!-- Geometric Background -->
         <div class="testimonials-bg">
@@ -2934,7 +2988,7 @@
                 </div>
             </div>
             
-            <!-- Enhanced Navigation Controls (No Auto-play Button) -->
+            <!-- Enhanced Navigation Controls -->
             <div class="testimonial-controls">
                 <button class="nav-arrow" id="prevBtn">
                     <i class="fas fa-chevron-left"></i>
@@ -2947,6 +3001,14 @@
                 <button class="nav-arrow" id="nextBtn">
                     <i class="fas fa-chevron-right"></i>
                 </button>
+            </div>
+            
+            <!-- Auto-play Controls -->
+            <div class="auto-play-indicator">
+                <button class="play-pause-btn" id="playPauseBtn">
+                    <i class="fas fa-pause" id="playPauseIcon"></i>
+                </button>
+                <span class="auto-play-text" id="autoPlayText">Auto-playing</span>
             </div>
         </div>
     </section>
@@ -3228,6 +3290,8 @@
         let searchTerm = '';
         let currentTestimonialSlide = 0;
         let autoPlayInterval;
+        let isAutoPlaying = true;
+        let progressInterval;
         
         // Register GSAP plugins
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
@@ -3815,7 +3879,7 @@
         `;
         document.head.appendChild(slideUpStyle);
         
-        // Enhanced Testimonials Section Functions (AUTO SLIDER ONLY)
+        // Enhanced Testimonials Section Functions
         function initTestimonials() {
             const wrapper = document.getElementById('testimonialsWrapper');
             const nav = document.getElementById('testimonialNav');
@@ -3902,8 +3966,10 @@
             animateSlideIn(slideIndex);
             
             // Reset auto-play
-            stopAutoPlay();
-            startAutoPlay();
+            if (isAutoPlaying) {
+                stopAutoPlay();
+                startAutoPlay();
+            }
         }
         
         function animateSlideIn(slideIndex) {
@@ -3960,6 +4026,8 @@
         }
         
         function startAutoPlay() {
+            if (!isAutoPlaying) return;
+            
             autoPlayInterval = setInterval(() => {
                 nextSlide();
             }, 5000); // Change slide every 5 seconds
@@ -3967,6 +4035,24 @@
         
         function stopAutoPlay() {
             clearInterval(autoPlayInterval);
+        }
+        
+        function toggleAutoPlay() {
+            const btn = document.getElementById('playPauseBtn');
+            const icon = document.getElementById('playPauseIcon');
+            const text = document.getElementById('autoPlayText');
+            
+            isAutoPlaying = !isAutoPlaying;
+            
+            if (isAutoPlaying) {
+                icon.className = 'fas fa-pause';
+                text.textContent = 'Auto-playing';
+                startAutoPlay();
+            } else {
+                icon.className = 'fas fa-play';
+                text.textContent = 'Paused';
+                stopAutoPlay();
+            }
         }
         
         // Initialize everything when DOM is loaded
@@ -3978,6 +4064,21 @@
             // Add event listeners for testimonials
             document.getElementById('nextBtn').addEventListener('click', nextSlide);
             document.getElementById('prevBtn').addEventListener('click', prevSlide);
+            document.getElementById('playPauseBtn').addEventListener('click', toggleAutoPlay);
+            
+            // Pause auto-play on hover
+            const slider = document.querySelector('.testimonials-slider');
+            slider.addEventListener('mouseenter', () => {
+                if (isAutoPlaying) {
+                    stopAutoPlay();
+                }
+            });
+            
+            slider.addEventListener('mouseleave', () => {
+                if (isAutoPlaying) {
+                    startAutoPlay();
+                }
+            });
             
             // Initialize scroll animations for services section - ENHANCED ANIMATIONS
             gsap.from(".services-header", {
@@ -4089,7 +4190,13 @@
                 duration: 0.8, 
                 stagger: 0.1,
                 ease: "power2.out" 
-            }, "-=0.2");
+            }, "-=0.2")
+            .to(".auto-play-indicator", { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.8, 
+                ease: "power2.out" 
+            }, "-=0.1");
         });
         
         // Close modal on escape key
