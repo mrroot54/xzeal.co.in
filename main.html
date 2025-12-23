@@ -54,45 +54,6 @@
             --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
             --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
             --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
-            --mobile-nav-bg: linear-gradient(135deg, #151932 0%, #0a0e27 100%);
-        }
-        
-        /* WhatsApp Floating Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: #25D366;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            animation: pulse 2s infinite;
-        }
-        
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-        }
-        
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-            }
         }
         
         /* Navigation */
@@ -214,7 +175,7 @@
             transform: rotate(45deg) translate(-6px, -7px);
         }
         
-        /* Mobile Navigation - Updated Design */
+        /* Mobile Navigation */
         .mobile-nav {
             position: fixed;
             top: 0;
@@ -222,65 +183,23 @@
             width: 85%;
             max-width: 400px;
             height: 100vh;
-            background: var(--mobile-nav-bg);
+            background: rgba(26, 25, 80, 0.98);
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
             transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             z-index: 1001;
-            padding: 0;
+            padding: 100px 30px 30px;
             overflow-y: auto;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
         }
         
         .mobile-nav.active {
             right: 0;
         }
         
-        /* Mobile Nav Header with Logo and Close Button */
-        .mobile-nav-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .mobile-nav-logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-        
-        .mobile-nav-logo img {
-            height: 40px;
-            width: auto;
-        }
-        
-        .mobile-nav-close {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 18px;
-        }
-        
-        .mobile-nav-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(90deg);
-        }
-        
         .mobile-nav-links {
             display: flex;
             flex-direction: column;
-            padding: 30px;
-            gap: 0;
+            gap: 30px;
         }
         
         .mobile-nav-links a {
@@ -289,92 +208,40 @@
             font-weight: 500;
             font-size: 18px;
             transition: all 0.3s ease;
-            padding: 18px 20px;
-            border-radius: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-bottom: 10px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .mobile-nav-links a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            transition: left 0.3s ease;
-            z-index: -1;
-        }
-        
-        .mobile-nav-links a:hover::before {
-            left: 0;
         }
         
         .mobile-nav-links a:hover {
             color: var(--text-primary);
-            transform: translateX(5px);
+            padding-left: 10px;
         }
         
         .mobile-nav-links a i {
-            color: var(--accent-purple);
+            color: var(--primary-color);
             width: 24px;
-            font-size: 20px;
         }
         
         .mobile-nav-cta {
-            background: var(--primary-gradient) !important;
-            color: white !important;
-            padding: 18px 20px !important;
-            border-radius: 12px;
+            background: var(--cta-color) !important;
+            color: var(--text-primary) !important;
+            padding: 16px 28px !important;
+            border-radius: 30px;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 25px;
             border: none !important;
             font-weight: 600;
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 25px rgba(39, 38, 104, 0.2);
             transition: all 0.3s ease;
-            justify-content: center;
         }
         
         .mobile-nav-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
-        }
-        
-        /* Mobile Nav Footer */
-        .mobile-nav-footer {
-            padding: 20px 30px 30px;
-            margin-top: auto;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-3px);
+            background: var(--cta-hover) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(39, 38, 104, 0.3);
         }
         
         /* Overlay */
@@ -404,6 +271,56 @@
             position: relative;
             overflow: hidden;
             background: #0a0a0a;
+        }
+        
+        /* Geometric Background Pattern */
+        .hero-bg, .services-bg, .about-bg, .why-choose-bg, .portfolio-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .geometric-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+        }
+        
+        .geo-line {
+            position: absolute;
+            background: var(--primary-color);
+        }
+        
+        .geo-line-1 {
+            width: 1px;
+            height: 100%;
+            left: 20%;
+            transform: rotate(15deg);
+        }
+        
+        .geo-line-2 {
+            width: 1px;
+            height: 100%;
+            right: 25%;
+            transform: rotate(-10deg);
+        }
+        
+        .geo-line-3 {
+            width: 100%;
+            height: 1px;
+            top: 30%;
+            transform: rotate(5deg);
+        }
+        
+        .geo-line-4 {
+            width: 100%;
+            height: 1px;
+            bottom: 35%;
+            transform: rotate(-3deg);
         }
         
         /* Modern Floating Elements */
@@ -858,7 +775,7 @@
         /* Services Header */
         .services-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 30px; /* Reduced from 60px */
         }
         
         .services-title {
@@ -881,7 +798,7 @@
         /* Search Bar */
         .search-container {
             max-width: 500px;
-            margin: 0 auto 30px;
+            margin: 0 auto 30px; /* Increased bottom margin */
             position: relative;
         }
         
@@ -1099,30 +1016,6 @@
             --badge-color: #3b82f6;
         }
         
-        .service-card:nth-child(7) {
-            --card-gradient: linear-gradient(90deg, #f97316, #ef4444);
-            --icon-bg: rgba(249, 115, 22, 0.2);
-            --icon-color: #f97316;
-            --badge-bg: rgba(249, 115, 22, 0.2);
-            --badge-color: #f97316;
-        }
-        
-        .service-card:nth-child(8) {
-            --card-gradient: linear-gradient(90deg, #8b5cf6, #7c3aed);
-            --icon-bg: rgba(139, 92, 246, 0.2);
-            --icon-color: #8b5cf6;
-            --badge-bg: rgba(139, 92, 246, 0.2);
-            --badge-color: #8b5cf6;
-        }
-        
-        .service-card:nth-child(9) {
-            --card-gradient: linear-gradient(90deg, #10b981, #059669);
-            --icon-bg: rgba(16, 185, 129, 0.2);
-            --icon-color: #10b981;
-            --badge-bg: rgba(16, 185, 129, 0.2);
-            --badge-color: #10b981;
-        }
-        
         /* Why Choose Us Section */
         .why-choose-section {
             padding: 100px 0;
@@ -1274,7 +1167,7 @@
         
         /* Portfolio Section Styles */
         .portfolio-section {
-            padding: 100px 0;
+            padding: 120px 0 100px;
             position: relative;
             background: #0a0a0a;
             overflow: hidden;
@@ -1298,10 +1191,7 @@
             font-size: clamp(36px, 5vw, 48px);
             font-weight: 700;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text-primary);
         }
         
         .portfolio-subtitle {
@@ -1657,7 +1547,7 @@
         }
         
         /* Statistics Card */
-        .stats-card {
+        .stats-card-portfolio {
             background: var(--card-bg);
             backdrop-filter: blur(20px);
             border-radius: 20px;
@@ -1666,7 +1556,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .stats-card:hover {
+        .stats-card-portfolio:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
@@ -1735,7 +1625,7 @@
             display: flex;
         }
         
-        .lightbox-content {
+        .lightbox-content-modal {
             max-width: 90%;
             max-height: 90%;
             position: relative;
@@ -2182,6 +2072,14 @@
             .stats-container {
                 grid-template-columns: 1fr;
             }
+            
+            .project-card {
+                min-width: 280px;
+            }
+            
+            .lower-section {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 768px) {
@@ -2198,9 +2096,9 @@
             }
             
             .hero {
-                height: auto;
-                min-height: auto;
-                padding: 100px 0 20px;
+                height: auto; /* FIXED: Changed from 100vh to auto */
+                min-height: auto; /* FIXED: Changed from 100vh to auto */
+                padding: 100px 0 20px; /* FIXED: Added bottom padding */
             }
             
             .hero-content {
@@ -2286,6 +2184,14 @@
                 opacity: 0.05;
             }
             
+            .geometric-pattern {
+                opacity: 0.05;
+            }
+            
+            .geo-line {
+                opacity: 0.05;
+            }
+            
             .central-circle {
                 opacity: 0.7;
             }
@@ -2317,26 +2223,27 @@
             
             /* Services Section Mobile Adjustments */
             .services-section {
-                padding: 20px 0;
+                padding: 20px 0; /* FIXED: Reduced from 60px to 20px */
             }
             
             .services-container {
                 padding: 0 25px;
-                gap: 16px;
+                gap: 16px; /* FIXED: Added gap control */
             }
             
             .services-header {
-                margin-bottom: 20px;
+                margin-bottom: 20px; /* Reduced from 40px */
             }
             
             .search-container {
-                margin: 0 auto 20px;
+                margin: 0 auto 20px; /* FIXED: Reduced from 30px to 20px */
             }
             
+            /* FIXED: Updated for 2x2 grid on mobile with full responsiveness */
             .services-grid {
                 display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 15px;
+                grid-template-columns: 1fr 1fr; /* Changed to 2 columns */
+                gap: 15px; /* Adjusted gap */
                 height: auto !important;
                 overflow: visible !important;
             }
@@ -2345,35 +2252,35 @@
                 height: auto !important;
                 min-height: 250px !important;
                 overflow: visible !important;
-                padding: 20px;
+                padding: 20px; /* Reduced padding for mobile */
             }
             
             .service-title {
-                font-size: 20px;
+                font-size: 20px; /* Reduced font size for mobile */
             }
             
             .service-description {
-                font-size: 14px;
-                margin-bottom: 15px;
+                font-size: 14px; /* Reduced font size for mobile */
+                margin-bottom: 15px; /* Reduced margin for mobile */
             }
             
             .service-icon-wrapper {
-                width: 50px;
-                height: 50px;
-                margin-bottom: 15px;
+                width: 50px; /* Reduced size for mobile */
+                height: 50px; /* Reduced size for mobile */
+                margin-bottom: 15px; /* Reduced margin for mobile */
             }
             
             .service-icon {
-                font-size: 24px;
+                font-size: 24px; /* Reduced font size for mobile */
             }
             
             .service-stats {
-                gap: 10px;
+                gap: 10px; /* Reduced gap for mobile */
             }
             
             .service-action {
-                width: 35px;
-                height: 35px;
+                width: 35px; /* Reduced size for mobile */
+                height: 35px; /* Reduced size for mobile */
             }
             
             /* Why Choose Us Section Mobile Adjustments */
@@ -2390,7 +2297,7 @@
             }
             
             .features-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr 1fr; /* 2 columns for mobile */
                 gap: 20px;
             }
             
@@ -2418,7 +2325,7 @@
             
             /* Portfolio Section Mobile Adjustments */
             .portfolio-section {
-                padding: 60px 0;
+                padding: 100px 0 60px;
             }
             
             .portfolio-container {
@@ -2433,8 +2340,25 @@
                 margin-bottom: 30px;
             }
             
+            .filter-tab {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+            
             .project-card {
                 min-width: 280px;
+            }
+            
+            .project-content {
+                padding: 20px;
+            }
+            
+            .project-title {
+                font-size: 20px;
+            }
+            
+            .project-description {
+                font-size: 14px;
             }
             
             .slider-arrow {
@@ -2450,9 +2374,35 @@
                 right: 10px;
             }
             
-            .lower-section {
-                grid-template-columns: 1fr;
-                margin-top: 40px;
+            .lightbox-content,
+            .video-content {
+                padding: 20px;
+            }
+            
+            .lightbox-title,
+            .video-title {
+                font-size: 20px;
+            }
+            
+            .lightbox-description,
+            .video-description {
+                font-size: 14px;
+            }
+            
+            .stats-card-portfolio {
+                padding: 25px 20px;
+            }
+            
+            .stats-title {
+                font-size: 20px;
+            }
+            
+            .stat-value {
+                font-size: 22px;
+            }
+            
+            .stat-label {
+                font-size: 14px;
             }
         }
         
@@ -2549,6 +2499,14 @@
                 opacity: 0.02;
             }
             
+            .geometric-pattern {
+                opacity: 0.02;
+            }
+            
+            .geo-line {
+                opacity: 0.02;
+            }
+            
             .central-circle {
                 opacity: 0.6;
             }
@@ -2597,17 +2555,18 @@
             }
             
             .services-header {
-                margin-bottom: 15px;
+                margin-bottom: 15px; /* Reduced from 20px */
             }
             
             .search-container {
-                margin: 0 auto 15px;
+                margin: 0 auto 15px; /* Reduced from 20px to 15px */
             }
             
+            /* FIXED: Updated for 2x2 grid on small mobile with full responsiveness */
             .services-grid {
                 display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
+                grid-template-columns: 1fr 1fr; /* Changed to 2 columns */
+                gap: 12px; /* Adjusted gap */
                 height: auto !important;
                 overflow: visible !important;
             }
@@ -2616,35 +2575,35 @@
                 height: auto !important;
                 min-height: 220px !important;
                 overflow: visible !important;
-                padding: 15px;
+                padding: 15px; /* Further reduced padding for small mobile */
             }
             
             .service-title {
-                font-size: 18px;
+                font-size: 18px; /* Further reduced font size for small mobile */
             }
             
             .service-description {
-                font-size: 13px;
-                margin-bottom: 12px;
+                font-size: 13px; /* Further reduced font size for small mobile */
+                margin-bottom: 12px; /* Further reduced margin for small mobile */
             }
             
             .service-icon-wrapper {
-                width: 45px;
-                height: 45px;
-                margin-bottom: 12px;
+                width: 45px; /* Further reduced size for small mobile */
+                height: 45px; /* Further reduced size for small mobile */
+                margin-bottom: 12px; /* Further reduced margin for small mobile */
             }
             
             .service-icon {
-                font-size: 20px;
+                font-size: 20px; /* Further reduced font size for small mobile */
             }
             
             .service-stats {
-                gap: 8px;
+                gap: 8px; /* Further reduced gap for small mobile */
             }
             
             .service-action {
-                width: 30px;
-                height: 30px;
+                width: 30px; /* Further reduced size for small mobile */
+                height: 30px; /* Further reduced size for small mobile */
             }
             
             /* Why Choose Us Section Small Mobile Adjustments */
@@ -2661,7 +2620,7 @@
             }
             
             .features-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* 1 column for very small mobile */
                 gap: 15px;
             }
             
@@ -2689,7 +2648,7 @@
             
             /* Portfolio Section Small Mobile Adjustments */
             .portfolio-section {
-                padding: 40px 0;
+                padding: 90px 0 40px;
             }
             
             .portfolio-container {
@@ -2705,8 +2664,8 @@
             }
             
             .filter-tab {
-                padding: 10px 18px;
-                font-size: 14px;
+                padding: 8px 16px;
+                font-size: 13px;
             }
             
             .project-card {
@@ -2714,55 +2673,19 @@
             }
             
             .project-content {
-                padding: 20px;
+                padding: 15px;
             }
             
             .project-title {
-                font-size: 20px;
+                font-size: 18px;
             }
             
             .project-description {
-                font-size: 14px;
+                font-size: 13px;
             }
             
-            .lightbox-content,
-            .video-content {
-                padding: 20px;
-            }
-            
-            .lightbox-title,
-            .video-title {
-                font-size: 20px;
-            }
-            
-            .lightbox-description,
-            .video-description {
-                font-size: 14px;
-            }
-            
-            .stats-card {
-                padding: 25px 20px;
-            }
-            
-            .stats-title {
-                font-size: 20px;
-            }
-            
-            .stat-value {
-                font-size: 22px;
-            }
-            
-            .stat-label {
-                font-size: 14px;
-            }
-            
-            /* WhatsApp Button Responsive */
-            .whatsapp-float {
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
-                bottom: 20px;
-                right: 20px;
+            .lower-section {
+                margin-top: 40px;
             }
         }
         
@@ -2862,17 +2785,18 @@
             }
             
             .services-header {
-                margin-bottom: 10px;
+                margin-bottom: 10px; /* Reduced from 15px */
             }
             
             .search-container {
-                margin: 0 auto 12px;
+                margin: 0 auto 12px; /* Reduced from 15px to 12px */
             }
             
+            /* FIXED: Updated for 2x2 grid on ultra small mobile with full responsiveness */
             .services-grid {
                 display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
+                grid-template-columns: 1fr 1fr; /* Changed to 2 columns */
+                gap: 10px; /* Adjusted gap */
                 height: auto !important;
                 overflow: visible !important;
             }
@@ -2881,35 +2805,35 @@
                 height: auto !important;
                 min-height: 200px !important;
                 overflow: visible !important;
-                padding: 12px;
+                padding: 12px; /* Further reduced padding for ultra small mobile */
             }
             
             .service-title {
-                font-size: 16px;
+                font-size: 16px; /* Further reduced font size for ultra small mobile */
             }
             
             .service-description {
-                font-size: 12px;
-                margin-bottom: 10px;
+                font-size: 12px; /* Further reduced font size for ultra small mobile */
+                margin-bottom: 10px; /* Further reduced margin for ultra small mobile */
             }
             
             .service-icon-wrapper {
-                width: 40px;
-                height: 40px;
-                margin-bottom: 10px;
+                width: 40px; /* Further reduced size for ultra small mobile */
+                height: 40px; /* Further reduced size for ultra small mobile */
+                margin-bottom: 10px; /* Further reduced margin for ultra small mobile */
             }
             
             .service-icon {
-                font-size: 18px;
+                font-size: 18px; /* Further reduced font size for ultra small mobile */
             }
             
             .service-stats {
-                gap: 6px;
+                gap: 6px; /* Further reduced gap for ultra small mobile */
             }
             
             .service-action {
-                width: 28px;
-                height: 28px;
+                width: 28px; /* Further reduced size for ultra small mobile */
+                height: 28px; /* Further reduced size for ultra small mobile */
             }
             
             /* Why Choose Us Section Ultra Small Mobile Adjustments */
@@ -2926,7 +2850,7 @@
             }
             
             .features-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* 1 column for ultra small mobile */
                 gap: 12px;
             }
             
@@ -2954,7 +2878,7 @@
             
             /* Portfolio Section Ultra Small Mobile Adjustments */
             .portfolio-section {
-                padding: 30px 0;
+                padding: 80px 0 30px;
             }
             
             .portfolio-container {
@@ -2970,8 +2894,8 @@
             }
             
             .filter-tab {
-                padding: 8px 16px;
-                font-size: 13px;
+                padding: 6px 14px;
+                font-size: 12px;
             }
             
             .project-card {
@@ -2979,65 +2903,24 @@
             }
             
             .project-content {
-                padding: 18px;
+                padding: 12px;
             }
             
             .project-title {
-                font-size: 18px;
+                font-size: 16px;
             }
             
             .project-description {
-                font-size: 13px;
+                font-size: 12px;
             }
             
-            .lightbox-content,
-            .video-content {
-                padding: 18px;
-            }
-            
-            .lightbox-title,
-            .video-title {
-                font-size: 18px;
-            }
-            
-            .lightbox-description,
-            .video-description {
-                font-size: 13px;
-            }
-            
-            .stats-card {
-                padding: 20px 15px;
-            }
-            
-            .stats-title {
-                font-size: 18px;
-            }
-            
-            .stat-value {
-                font-size: 20px;
-            }
-            
-            .stat-label {
-                font-size: 13px;
-            }
-            
-            /* WhatsApp Button Ultra Small Mobile */
-            .whatsapp-float {
-                width: 45px;
-                height: 45px;
-                font-size: 22px;
-                bottom: 15px;
-                right: 15px;
+            .lower-section {
+                margin-top: 30px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/919060486548" target="_blank" class="whatsapp-float">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
@@ -3050,7 +2933,7 @@
                 <a href="#services">Services</a>
                 <a href="#about">About Us</a>
                 <a href="#why-choose">Why Choose Us</a>
-                <a href="#portfolio">Portfolio</a>
+                <a href="#portfolio" class="active">Portfolio</a>
                 <a href="#">Blog</a>
                 <a href="#" class="nav-cta">Contact</a>
             </div>
@@ -3064,37 +2947,16 @@
         </div>
     </nav>
     
-    <!-- Mobile Navigation - Updated with Modern Design -->
+    <!-- Mobile Navigation -->
     <div class="mobile-nav" id="mobileNav">
-        <!-- Mobile Nav Header with Logo and Close Button -->
-        <div class="mobile-nav-header">
-            <a href="#" class="mobile-nav-logo">
-                <img src="logo.png" alt="Xzeal Logo" />
-            </a>
-            <button class="mobile-nav-close" id="mobileNavClose">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        
-        <!-- Mobile Nav Links -->
         <div class="mobile-nav-links">
             <a href="#"><i class="fas fa-home"></i> Home</a>
             <a href="#services"><i class="fas fa-cogs"></i> Services</a>
             <a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
             <a href="#why-choose"><i class="fas fa-star"></i> Why Choose Us</a>
-            <a href="#portfolio"><i class="fas fa-briefcase"></i> Portfolio</a>
+            <a href="#portfolio" class="active"><i class="fas fa-briefcase"></i> Portfolio</a>
             <a href="#"><i class="fas fa-blog"></i> Blog</a>
             <a href="#" class="mobile-nav-cta"><i class="fas fa-envelope"></i> Contact Us</a>
-        </div>
-        
-        <!-- Mobile Nav Footer with Social Links -->
-        <div class="mobile-nav-footer">
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
         </div>
     </div>
     
@@ -3103,11 +2965,21 @@
     
     <!-- Hero Section -->
     <section class="hero">
-        <!-- Floating Elements -->
-        <div class="floating-element float-1"></div>
-        <div class="floating-element float-2"></div>
-        <div class="floating-element float-3"></div>
-        <div class="floating-element float-4"></div>
+        <!-- Geometric Background -->
+        <div class="hero-bg">
+            <div class="geometric-pattern">
+                <div class="geo-line geo-line-1"></div>
+                <div class="geo-line geo-line-2"></div>
+                <div class="geo-line geo-line-3"></div>
+                <div class="geo-line geo-line-4"></div>
+            </div>
+            
+            <!-- Floating Elements -->
+            <div class="floating-element float-1"></div>
+            <div class="floating-element float-2"></div>
+            <div class="floating-element float-3"></div>
+            <div class="floating-element float-4"></div>
+        </div>
         
         <!-- Hero Content -->
         <div class="hero-content">
@@ -3221,7 +3093,7 @@
                 
                 <div class="stat-card">
                     <div class="stat-icon">
-                        <i class="fas fa-calendar-alt"></i>
+                        <i class="fas fa-award"></i>
                     </div>
                     <div class="stat-number" data-target="15">0</div>
                     <div class="stat-label">Years of Experience</div>
@@ -3294,7 +3166,7 @@
             <!-- Section Header -->
             <div class="why-choose-header">
                 <h2 class="why-choose-title">Why Choose Us</h2>
-                <p class="why-choose-subtitle">Show your unique strengths that set us apart from the competition</p>
+                <p class="why-choose-subtitle">Show your unique strengths that set us apart from competition</p>
             </div>
             
             <!-- Features Grid -->
@@ -3348,7 +3220,7 @@
     
     <!-- Portfolio Section -->
     <section class="portfolio-section" id="portfolio">
-        <!-- Geometric Background -->
+        <!-- Portfolio Background Animation (from portfolio.html) -->
         <div class="portfolio-bg">
             <div class="geometric-pattern">
                 <div class="geo-line geo-line-1"></div>
@@ -3434,7 +3306,7 @@
                 </div>
                 
                 <!-- Statistics Card -->
-                <div class="stats-card">
+                <div class="stats-card-portfolio">
                     <h3 class="stats-title">Growth Metrics</h3>
                     <div class="stat-item">
                         <div class="stat-icon">
@@ -3509,7 +3381,7 @@
     
     <!-- Lightbox Modal -->
     <div class="lightbox-modal" id="lightboxModal">
-        <div class="lightbox-content">
+        <div class="lightbox-content-modal">
             <img src="https://picsum.photos/seed/gallery1/1200/800.jpg" alt="Gallery Image" class="lightbox-image" id="lightboxImage">
             <button class="lightbox-close" id="lightboxClose">
                 <i class="fas fa-times"></i>
@@ -3544,7 +3416,7 @@
                     { icon: 'fa-envelope', text: 'Email Campaigns' },
                     { icon: 'fa-users', text: 'Influencer Partnerships' },
                     { icon: 'fa-lightbulb', text: 'Brand Strategy' },
-                    { icon: 'fa-chart-bar', text: 'Analytics & Reporting' }
+                    { icon: 'fa-analytics', text: 'Analytics & Reporting' }
                 ],
                 stats: { projects: 150, rating: 4.9 }
             },
@@ -3590,7 +3462,7 @@
                 features: [
                     { icon: 'fa-mobile-alt', text: 'Responsive Design' },
                     { icon: 'fa-shopping-cart', text: 'E-commerce Solutions' },
-                    { icon: 'fa-wordpress', text: 'CMS Development' },
+                    { icon: 'fa-cms', text: 'CMS Development' },
                     { icon: 'fa-tachometer-alt', text: 'Website Optimization' },
                     { icon: 'fa-plug', text: 'API Integration' }
                 ],
@@ -3605,7 +3477,7 @@
                 color: '#f59e0b',
                 features: [
                     { icon: 'fa-seedling', text: 'Lead Nurturing' },
-                    { icon: 'fa-window-maximize', text: 'Landing Page Optimization' },
+                    { icon: 'fa-landing', text: 'Landing Page Optimization' },
                     { icon: 'fa-database', text: 'CRM Integration' },
                     { icon: 'fa-star-half-alt', text: 'Lead Scoring' },
                     { icon: 'fa-robot', text: 'Marketing Automation' }
@@ -3627,57 +3499,6 @@
                     { icon: 'fa-compass', text: 'Content Strategy' }
                 ],
                 stats: { projects: 300, rating: 4.8 }
-            },
-            {
-                id: 7,
-                title: 'API Development',
-                category: 'development',
-                description: 'Custom API solutions that connect your systems and enable seamless data exchange.',
-                icon: 'fa-plug',
-                color: '#f97316',
-                features: [
-                    { icon: 'fa-code-branch', text: 'RESTful API Design' },
-                    { icon: 'fa-shield-alt', text: 'API Security' },
-                    { icon: 'fa-cloud', text: 'Cloud Integration' },
-                    { icon: 'fa-database', text: 'Database Integration' },
-                    { icon: 'fa-cogs', text: 'Third-party Services' }
-                ],
-                stats: { projects: 80, rating: 4.9 }
-            },
-            {
-                id: 8,
-                title: 'Mobile Application',
-                category: 'development',
-                description: 'Native and cross-platform mobile apps that deliver exceptional user experiences.',
-                icon: 'fa-mobile-alt',
-                color: '#8b5cf6',
-                features: [
-                    { icon: 'fa-android', text: 'Android Development' },
-                    { icon: 'fa-apple', text: 'iOS Development' },
-                    { icon: 'fa-react', text: 'React Native Apps' },
-                    { icon: 'fa-mobile', text: 'Flutter Development' },
-                    { icon: 'fa-store', text: 'App Store Deployment' }
-                ],
-                stats: { projects: 65, rating: 4.8 }
-            },
-            {
-                id: 9,
-                title: 'Maintenance Services',
-                category: 'support',
-                description: 'Comprehensive maintenance solutions to keep your digital assets running smoothly.',
-                icon: 'fa-tools',
-                color: '#10b981',
-                features: [
-                    { icon: 'fa-sync-alt', text: 'Content Update' },
-                    { icon: 'fa-bug', text: 'Bug Fixing' },
-                    { icon: 'fa-shield-alt', text: 'Security Maintenance' },
-                    { icon: 'fa-save', text: 'Backup Management' },
-                    { icon: 'fa-tachometer-alt', text: 'Performance Optimization' },
-                    { icon: 'fa-database', text: 'Database Maintenance' },
-                    { icon: 'fa-clock', text: 'Uptime Monitoring' },
-                    { icon: 'fa-headset', text: 'Technical Support' }
-                ],
-                stats: { projects: 200, rating: 4.9 }
             }
         ];
         
@@ -3775,59 +3596,33 @@
         // Register GSAP plugins
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
         
-        // Mobile Menu Toggle with GSAP Animations
+        // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const mobileNav = document.getElementById('mobileNav');
-        const mobileNavClose = document.getElementById('mobileNavClose');
         const overlay = document.getElementById('overlay');
         
-        // Set initial state for mobile nav elements
-        gsap.set(mobileNav, { x: "100%" });
-        gsap.set(overlay, { opacity: 0 });
-        gsap.set(".mobile-nav-links a", { x: 50, opacity: 0 });
-        gsap.set(".mobile-nav-header", { y: -20, opacity: 0 });
-        gsap.set(".mobile-nav-footer", { y: 20, opacity: 0 });
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
+        });
         
-        // Create timeline for mobile nav animation
-        const mobileNavTimeline = gsap.timeline({ paused: true });
-        
-        mobileNavTimeline
-            .to(overlay, { opacity: 1, duration: 0.3 })
-            .to(mobileNav, { x: "0%", duration: 0.5, ease: "power3.out" }, "-=0.2")
-            .to(".mobile-nav-header", { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, "-=0.3")
-            .to(".mobile-nav-links a", { 
-                x: 0, 
-                opacity: 1, 
-                duration: 0.4, 
-                stagger: 0.08, 
-                ease: "power2.out" 
-            }, "-=0.2")
-            .to(".mobile-nav-footer", { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, "-=0.2");
-        
-        // Open mobile nav
-        function openMobileNav() {
-            menuToggle.classList.add('active');
-            mobileNavTimeline.play();
-            document.body.style.overflow = 'hidden';
-        }
-        
-        // Close mobile nav
-        function closeMobileNav() {
+        overlay.addEventListener('click', () => {
             menuToggle.classList.remove('active');
-            mobileNavTimeline.reverse();
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
             document.body.style.overflow = 'auto';
-        }
-        
-        // Event listeners for mobile nav
-        menuToggle.addEventListener('click', openMobileNav);
-        mobileNavClose.addEventListener('click', closeMobileNav);
-        overlay.addEventListener('click', closeMobileNav);
+        });
         
         // Close mobile menu when clicking on a link
         const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
-                closeMobileNav();
+                menuToggle.classList.remove('active');
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
             });
         });
         
@@ -3838,6 +3633,7 @@
         gsap.set(".hero-buttons", { opacity: 0, y: 30 });
         
         // Background elements
+        gsap.set(".geo-line", { scaleX: 0, transformOrigin: "center" });
         gsap.set(".floating-element", { opacity: 0, scale: 0, rotation: 0 });
         gsap.set(".central-circle", { opacity: 0, scale: 0 });
         gsap.set(".orbit", { opacity: 0, scale: 0 });
@@ -3853,8 +3649,13 @@
         
         // Add animations to timeline
         tl.to("nav", { opacity: 1, y: 0, duration: 0.8 })
+          // Background lines
+          .to(".geo-line-1", { scaleX: 1, duration: 1.5 }, "-=0.5")
+          .to(".geo-line-2", { scaleX: 1, duration: 1.5 }, "-=1.3")
+          .to(".geo-line-3", { scaleX: 1, duration: 1.5 }, "-=1.5")
+          .to(".geo-line-4", { scaleX: 1, duration: 1.5 }, "-=1.7")
           // Floating elements
-          .to(".float-1", { opacity: 0.3, scale: 1, rotation: 45, duration: 1 }, "-=0.5")
+          .to(".float-1", { opacity: 0.3, scale: 1, rotation: 45, duration: 1 }, "-=1.2")
           .to(".float-2", { opacity: 0.3, scale: 1, rotation: -30, duration: 1 }, "-=1.1")
           .to(".float-3", { opacity: 0.3, scale: 1, rotation: 15, duration: 1 }, "-=1")
           .to(".float-4", { opacity: 0.3, scale: 1, rotation: -45, duration: 1 }, "-=0.9")
@@ -3957,7 +3758,7 @@
                     duration: 1.5,
                     ease: "power2.out",
                     onUpdate: function() {
-                        // Ensure the central circle maintains its square aspect ratio
+                        // Ensure central circle maintains its square aspect ratio
                         const circle = document.querySelector('.central-circle');
                         const currentScale = gsap.getProperty(circle, "scale");
                         circle.style.width = `${200 * currentScale}px`;
@@ -4024,14 +3825,14 @@
             const centralCircle = document.querySelector('.central-circle');
             const orbits = document.querySelectorAll('.orbit');
             
-            // Get the current width of the modern-visual container
+            // Get() current width of modern-visual container
             const width = modernVisual.offsetWidth;
             
-            // Set the height to match the width to maintain square aspect ratio
+            // Set height to match width to maintain square aspect ratio
             modernVisual.style.height = `${width}px`;
             
             // Adjust central circle size proportionally
-            const circleSize = width * 0.4; // 40% of the container width
+            const circleSize = width * 0.4; // 40% of container width
             centralCircle.style.width = `${circleSize}px`;
             centralCircle.style.height = `${circleSize}px`;
             
@@ -4106,17 +3907,12 @@
         // Logo error handling
         const logoImg = document.querySelector('.logo img');
         const centralLogo = document.querySelector('.central-circle img');
-        const mobileNavLogo = document.querySelector('.mobile-nav-logo img');
         
         logoImg.addEventListener('error', function() {
             this.style.display = 'none';
         });
         
         centralLogo.addEventListener('error', function() {
-            this.style.display = 'none';
-        });
-        
-        mobileNavLogo.addEventListener('error', function() {
             this.style.display = 'none';
         });
         
@@ -4389,7 +4185,7 @@
         `;
         document.head.appendChild(slideUpStyle);
         
-        // Portfolio Functions
+        // Portfolio Section JavaScript
         // Initialize portfolio based on screen size
         function initializePortfolio() {
             updateSlidesPerView();
@@ -4527,6 +4323,7 @@
             const lightboxCard = document.getElementById('lightboxCard');
             const lightboxModal = document.getElementById('lightboxModal');
             const lightboxClose = document.getElementById('lightboxClose');
+            const lightboxImage = document.getElementById('lightboxImage');
             
             lightboxCard.addEventListener('click', () => {
                 lightboxModal.classList.add('active');
@@ -4557,7 +4354,7 @@
             
             videoClose.addEventListener('click', () => {
                 videoModal.classList.remove('active');
-                document.body.style.overflow = 'hidden';
+                document.body.style.overflow = 'auto';
                 
                 // Stop video playback
                 const iframe = videoModal.querySelector('iframe');
@@ -4568,7 +4365,7 @@
             videoModal.addEventListener('click', (e) => {
                 if (e.target === videoModal) {
                     videoModal.classList.remove('active');
-                    document.body.style.overflow = 'hidden';
+                    document.body.style.overflow = 'auto';
                     
                     // Stop video playback
                     const iframe = videoModal.querySelector('iframe');
@@ -4585,140 +4382,12 @@
             });
         }
         
-        // Portfolio animations
-        function initializePortfolioAnimations() {
-            // Set initial states
-            gsap.set(".portfolio-title", { opacity: 0, y: 50 });
-            gsap.set(".portfolio-subtitle", { opacity: 0, y: 30 });
-            gsap.set(".filter-tab", { opacity: 0, y: 20 });
-            gsap.set(".project-card", { opacity: 0, y: 50, scale: 0.9 });
-            gsap.set(".lightbox-card, .video-card, .stats-card", { opacity: 0, y: 50, scale: 0.9 });
-            
-            // Portfolio header animation
-            gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".portfolio-section",
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
-                }
-            })
-            .to(".portfolio-title", { opacity: 1, y: 0, duration: 1, ease: "power2.out" })
-            .to(".portfolio-subtitle", { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, "-=0.7")
-            .to(".filter-tab", { 
-                opacity: 1, 
-                y: 0, 
-                duration: 0.8, 
-                stagger: 0.1, 
-                ease: "power2.out" 
-            }, "-=0.5")
-            .to(".project-card", { 
-                opacity: 1, 
-                y: 0, 
-                scale: 1, 
-                duration: 0.8, 
-                stagger: 0.1, 
-                ease: "back.out(1.7)" 
-            }, "-=0.3");
-            
-            // Lower section animation
-            gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".lower-section",
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
-                }
-            })
-            .to(".lightbox-card, .video-card, .stats-card", { 
-                opacity: 1, 
-                y: 0, 
-                scale: 1, 
-                duration: 0.8, 
-                stagger: 0.2, 
-                ease: "back.out(1.7)" 
-            });
-            
-            // Floating elements animation
-            gsap.to(".portfolio-section .float-1", {
-                y: -30,
-                duration: 4,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
-            });
-            
-            gsap.to(".portfolio-section .float-2", {
-                y: -20,
-                duration: 3,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
-            });
-            
-            gsap.to(".portfolio-section .float-3", {
-                y: -25,
-                duration: 3.5,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
-            });
-            
-            gsap.to(".portfolio-section .float-4", {
-                y: -35,
-                duration: 4.5,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
-            });
-            
-            // Parallax effect on mouse move (desktop only)
-            if (window.innerWidth > 768) {
-                document.addEventListener("mousemove", (e) => {
-                    const x = e.clientX / window.innerWidth;
-                    const y = e.clientY / window.innerHeight;
-                    
-                    // Floating elements parallax
-                    gsap.to(".portfolio-section .float-1", {
-                        x: (x - 0.5) * 30,
-                        y: (y - 0.5) * 30,
-                        rotation: 45 + (x - 0.5) * 20,
-                        duration: 1.5,
-                        ease: "power2.out"
-                    });
-                    
-                    gsap.to(".portfolio-section .float-2", {
-                        x: (x - 0.5) * 25,
-                        y: (y - 0.5) * 25,
-                        rotation: -30 + (y - 0.5) * 20,
-                        duration: 1.5,
-                        ease: "power2.out"
-                    });
-                    
-                    gsap.to(".portfolio-section .float-3", {
-                        x: (x - 0.5) * 35,
-                        y: (y - 0.5) * 35,
-                        rotation: 15 + (x - 0.5) * 15,
-                        duration: 1.5,
-                        ease: "power2.out"
-                    });
-                    
-                    gsap.to(".portfolio-section .float-4", {
-                        x: (x - 0.5) * 28,
-                        y: (y - 0.5) * 28,
-                        rotation: -45 + (y - 0.5) * 25,
-                        duration: 1.5,
-                        ease: "power2.out"
-                    });
-                });
-            }
-        }
-        
-        // Initialize everything when DOM is loaded
+        // Initialize services section
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
             renderServices();
             initializePortfolio();
             setupPortfolioEventListeners();
-            initializePortfolioAnimations();
             
             // Initialize scroll animations for services section - ENHANCED ANIMATIONS
             gsap.from(".services-header", {
@@ -4728,7 +4397,7 @@
                     toggleActions: "play none none reverse"
                 },
                 y: 50,
-                scale: 0.95,
+                scale: 0.95, // Naya effect
                 opacity: 0,
                 duration: 1,
                 ease: "power2.out"
@@ -4755,11 +4424,33 @@
                     toggleActions: "play none none reverse"
                 },
                 y: 60,
-                scale: 0.9,
+                scale: 0.9, // Naya effect
                 opacity: 0,
                 duration: 0.8,
-                stagger: 0.15,
+                stagger: 0.15, // Staggered animation for cards
                 ease: "power2.out"
+            });
+
+            // Naya background animation for services section
+            gsap.to(".services-bg .geo-line-1", {
+                rotation: 360,
+                scrollTrigger: {
+                    trigger: ".services-section",
+                    scrub: 1,
+                    start: "top bottom",
+                    end: "bottom top"
+                },
+                ease: "none"
+            });
+            gsap.to(".services-bg .geo-line-2", {
+                rotation: -360,
+                scrollTrigger: {
+                    trigger: ".services-section",
+                    scrub: 1,
+                    start: "top bottom",
+                    end: "bottom top"
+                },
+                ease: "none"
             });
             
             // Why Choose Us Section Animations
@@ -4799,6 +4490,126 @@
                     });
                 });
             });
+            
+            // Portfolio Section Animations
+            // Set initial states for Portfolio section
+            gsap.set(".portfolio-title", { opacity: 0, y: 50 });
+            gsap.set(".portfolio-subtitle", { opacity: 0, y: 30 });
+            gsap.set(".filter-tab", { opacity: 0, y: 20 });
+            gsap.set(".project-card", { opacity: 0, y: 50, scale: 0.9 });
+            gsap.set(".lightbox-card, .video-card, .stats-card-portfolio", { opacity: 0, y: 50, scale: 0.9 });
+            
+            // Portfolio section animation with ScrollTrigger
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".portfolio-section",
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            })
+            .to(".portfolio-title", { opacity: 1, y: 0, duration: 1, ease: "power2.out" })
+            .to(".portfolio-subtitle", { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, "-=0.7")
+            .to(".filter-tab", { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.8, 
+                stagger: 0.1, 
+                ease: "power2.out" 
+            }, "-=0.5")
+            .to(".project-card", { 
+                opacity: 1, 
+                y: 0, 
+                scale: 1, 
+                duration: 0.8, 
+                stagger: 0.1, 
+                ease: "back.out(1.7)" 
+            }, "-=0.3")
+            .to(".lightbox-card, .video-card, .stats-card-portfolio", { 
+                opacity: 1, 
+                y: 0, 
+                scale: 1, 
+                duration: 0.8, 
+                stagger: 0.2, 
+                ease: "back.out(1.7)" 
+            }, "-=0.3");
+
+            // PORTFOLIO BACKGROUND ANIMATION (from portfolio.html)
+            // Floating elements animation
+            gsap.to(".portfolio-bg .float-1", {
+                y: -30,
+                duration: 4,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            gsap.to(".portfolio-bg .float-2", {
+                y: -20,
+                duration: 3,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            gsap.to(".portfolio-bg .float-3", {
+                y: -25,
+                duration: 3.5,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            gsap.to(".portfolio-bg .float-4", {
+                y: -35,
+                duration: 4.5,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            // Parallax effect on mouse move for portfolio section (desktop only)
+            if (window.innerWidth > 768) {
+                const portfolioSection = document.querySelector('.portfolio-section');
+                
+                portfolioSection.addEventListener("mousemove", (e) => {
+                    const x = e.clientX / window.innerWidth;
+                    const y = e.clientY / window.innerHeight;
+                    
+                    // Floating elements parallax
+                    gsap.to(".portfolio-bg .float-1", {
+                        x: (x - 0.5) * 30,
+                        y: (y - 0.5) * 30,
+                        rotation: 45 + (x - 0.5) * 20,
+                        duration: 1.5,
+                        ease: "power2.out"
+                    });
+                    
+                    gsap.to(".portfolio-bg .float-2", {
+                        x: (x - 0.5) * 25,
+                        y: (y - 0.5) * 25,
+                        rotation: -30 + (y - 0.5) * 20,
+                        duration: 1.5,
+                        ease: "power2.out"
+                    });
+                    
+                    gsap.to(".portfolio-bg .float-3", {
+                        x: (x - 0.5) * 35,
+                        y: (y - 0.5) * 35,
+                        rotation: 15 + (x - 0.5) * 15,
+                        duration: 1.5,
+                        ease: "power2.out"
+                    });
+                    
+                    gsap.to(".portfolio-bg .float-4", {
+                        x: (x - 0.5) * 28,
+                        y: (y - 0.5) * 28,
+                        rotation: -45 + (y - 0.5) * 25,
+                        duration: 1.5,
+                        ease: "power2.out"
+                    });
+                });
+            }
         });
         
         // Close modal on escape key
@@ -4808,7 +4619,6 @@
                 document.getElementById('lightboxModal').classList.remove('active');
                 document.getElementById('videoModal').classList.remove('active');
                 document.body.style.overflow = 'auto';
-                closeMobileNav();
             }
         });
         
@@ -4816,26 +4626,6 @@
         document.getElementById('serviceModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
-            }
-        });
-        
-        // Close modal on background click
-        document.getElementById('lightboxModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-        
-        document.getElementById('videoModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('active');
-                document.body.style.overflow = 'auto';
-                
-                // Stop video playback
-                const iframe = this.querySelector('iframe');
-                const src = iframe.getAttribute('src');
-                iframe.setAttribute('src', src);
             }
         });
         
