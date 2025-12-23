@@ -116,7 +116,7 @@
             border-radius: 20px;
             overflow: hidden;
             position: relative;
-            margin: 0 10px;
+            margin: 0 10px; /* This margin was causing calculation issues */
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             user-select: none;
@@ -266,7 +266,7 @@
             }
         }
 
-        /* Mobile Phones - FIXING CROP */
+        /* Mobile Phones */
         @media (max-width: 768px) {
             .team-section {
                 padding: 40px 10px 80px;
@@ -455,29 +455,20 @@
 
             let currentIndex = 1; 
             const totalCards = cards.length;
-            let cardWidth = 0;
-            let gap = 20; // Default CSS gap
 
             // Auto Slide Variables
             let autoSlideInterval;
             const autoSlideDelay = 3500;
 
+            // We don't strictly need to updateDimensions manually for centering anymore
+            // because we will use offsetLeft, but it's good practice for sanity checks.
             function updateDimensions() {
-                // Get actual width from DOM element (handles responsiveness)
-                if(cards.length > 0) {
-                    cardWidth = cards[0].offsetWidth;
-                }
-                // Get gap from computed style
-                const trackStyle = window.getComputedStyle(track);
-                gap = parseInt(trackStyle.gap) || 20;
+                // Just ensure layout is stable
             }
 
-            // Initialize dimensions
             updateDimensions();
             
-            // Update on resize
             window.addEventListener('resize', () => {
-                updateDimensions();
                 goToSlide(currentIndex, true);
             });
 
@@ -487,15 +478,22 @@
                 if (index >= totalCards) index = 0; 
                 
                 currentIndex = index;
-
+                
+                // Get the specific card element
+                const card = cards[index];
+                
+                // FIX: Use offsetLeft to get the exact position relative to the track
+                // This accounts for margins, gaps, and widths automatically
+                const cardLeft = card.offsetLeft;
+                const cardWidth = card.offsetWidth;
                 const viewportWidth = viewport.offsetWidth;
-                
-                // Calculate center of target card within the track
-                // Position = (CardWidth + Gap) * Index + (CardWidth / 2)
-                const centerOfCard = (cardWidth + gap) * index + (cardWidth / 2);
-                
-                // Calculate movement: Move track so card center aligns with viewport center
-                const xPos = centerOfCard - (viewportWidth / 2);
+
+                // Calculate center points
+                const centerOfCard = cardLeft + (cardWidth / 2);
+                const centerOfViewport = viewportWidth / 2;
+
+                // Calculate the required translateX for the track
+                const xPos = centerOfCard - centerOfViewport;
 
                 gsap.to(track, {
                     x: -xPos,
@@ -504,13 +502,13 @@
                     overwrite: true
                 });
 
-                cards.forEach((card, i) => {
+                cards.forEach((c, i) => {
                     if (i === currentIndex) {
-                        card.classList.add("active");
-                        animateCardEntry(card);
+                        c.classList.add("active");
+                        animateCardEntry(c);
                     } else {
-                        card.classList.remove("active");
-                        resetCard(card);
+                        c.classList.remove("active");
+                        resetCard(c);
                     }
                 });
             }
@@ -571,7 +569,6 @@
             }
 
             setTimeout(() => {
-                updateDimensions();
                 goToSlide(currentIndex, true);
                 startAutoSlide();
             }, 100);
