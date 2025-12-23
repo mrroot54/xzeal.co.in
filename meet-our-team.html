@@ -37,11 +37,13 @@
             color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.6;
+            /* Ensure body takes full height */
+            min-height: 100vh;
         }
 
         /* Section Layout */
         .team-section {
-            padding: 80px 20px 120px;
+            padding: 60px 20px 100px; /* Reduced top/bottom padding for mobile */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -53,9 +55,11 @@
         /* Section Header */
         .section-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             opacity: 0;
             transform: translateY(30px);
+            width: 100%;
+            padding: 0 10px;
         }
 
         .section-title {
@@ -65,6 +69,7 @@
             background: linear-gradient(90deg, #fff, #a5a5a5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.2;
         }
 
         .section-subtitle {
@@ -76,10 +81,11 @@
         .slider-viewport {
             width: 100%;
             max-width: 1000px;
-            overflow: hidden;
+            overflow: hidden; /* Hides the scrollbar */
             position: relative;
-            padding: 40px 0;
+            padding: 60px 0; /* Space for scaling effect */
             opacity: 0;
+            margin: 0 auto;
         }
 
         /* Slider Track */
@@ -89,6 +95,7 @@
             width: 100%;
             transform: translateX(0); 
             cursor: grab;
+            /* Will be controlled by JS */
         }
 
         .slider-track:active {
@@ -97,8 +104,9 @@
 
         /* Team Card */
         .team-card {
+            /* Default Desktop Width */
             min-width: 300px;
-            width: 100%; 
+            width: 320px; 
             max-width: 350px;
             flex: 0 0 auto;
             background-color: var(--card-bg);
@@ -126,7 +134,7 @@
             height: 300px;
             overflow: hidden;
             position: relative;
-            background-color: #000; /* Black bg ensures no white gaps if image loads slow */
+            background-color: #000; 
         }
 
         .card-image {
@@ -160,7 +168,7 @@
         }
 
         .member-position {
-            font-size: 0.85rem; /* Slightly smaller to fit longer text */
+            font-size: 0.85rem; 
             line-height: 1.4;
             color: var(--accent-color);
             font-weight: 600;
@@ -208,12 +216,12 @@
         .slider-nav {
             position: absolute;
             top: 50%;
-            width: 100%;
+            width: 100%; /* Full width of section */
             display: flex;
             justify-content: space-between;
-            padding: 0 20px;
+            padding: 0 10px; /* Safer padding for mobile edges */
             pointer-events: none;
-            max-width: 1100px;
+            max-width: 1200px; /* Match container roughly */
             left: 50%;
             transform: translateX(-50%);
             z-index: 20;
@@ -251,18 +259,75 @@
             z-index: 0;
         }
 
-        @media (max-width: 768px) {
-            .section-title { font-size: 2rem; }
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        
+        /* Tablets and Small Laptops */
+        @media (max-width: 900px) {
             .team-card {
-                min-width: 280px;
-                margin: 0 5px;
+                width: 45vw;
+                max-width: 320px;
             }
+            .slider-viewport {
+                padding: 50px 0;
+            }
+        }
+
+        /* Mobile Phones */
+        @media (max-width: 768px) {
+            .section-title { 
+                font-size: 2rem; 
+            }
+            
+            .team-section {
+                padding: 40px 15px 80px;
+            }
+
+            .team-card {
+                /* Use percentage width for flexibility on mobile */
+                width: 85vw; 
+                min-width: 280px; /* Still ensures it's not too tiny */
+                max-width: 350px;
+                margin: 0 5px; /* Less margin on mobile to maximize space */
+            }
+
+            .card-image-wrapper {
+                height: 250px; /* Shorter image on mobile */
+            }
+
+            .member-name {
+                font-size: 1.2rem;
+            }
+
+            .member-position {
+                font-size: 0.75rem; /* Smaller font for long titles */
+                letter-spacing: 0.5px; /* Reduce letter spacing to fit text */
+            }
+
+            .member-intro {
+                font-size: 0.9rem;
+            }
+            
             .nav-btn {
                 width: 40px;
                 height: 40px;
+                background: rgba(0,0,0,0.5); /* Darker background for better visibility over images */
             }
+            
             .slider-nav {
-                padding: 0 10px;
+                padding: 0 5px; /* Push buttons inward slightly */
+            }
+        }
+
+        /* Very Small Phones (iPhone SE, etc.) */
+        @media (max-width: 375px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .card-content {
+                padding: 20px;
+            }
+            .member-position {
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -288,7 +353,6 @@
                     </div>
                     <div class="card-content">
                         <h3 class="member-name">Jay Prakash</h3>
-                        <!-- UPDATED TEXT -->
                         <span class="member-position">CEO (Chief Executive Officer)</span>
                         <p class="member-intro">Visionary leader driving strategic growth and innovation.</p>
                         <div class="social-links">
@@ -305,7 +369,6 @@
                     </div>
                     <div class="card-content">
                         <h3 class="member-name">Atul Rajput</h3>
-                        <!-- UPDATED TEXT -->
                         <span class="member-position">CTO (Chief Technology Officer)</span>
                         <p class="member-intro">Tech architect building robust scalable solutions.</p>
                         <div class="social-links">
@@ -403,19 +466,25 @@
             let currentIndex = 1; 
             const totalCards = cards.length;
             let cardWidth = 0;
-            let gap = 0;
+            let gap = 20; // Default gap matching CSS
 
             // Auto Slide Variables
             let autoSlideInterval;
             const autoSlideDelay = 3500; // 3.5 seconds
 
             function updateDimensions() {
-                const style = window.getComputedStyle(cards[0]);
+                // Calculate exact width of the first card to handle responsive widths
                 cardWidth = cards[0].offsetWidth;
-                gap = parseInt(style.marginLeft) + parseInt(style.marginRight);
+                // Calculate gap dynamically if needed, or stick to CSS gap
+                const trackStyle = window.getComputedStyle(track);
+                if(trackStyle.gap) {
+                    gap = parseInt(trackStyle.gap) || 20;
+                }
             }
 
+            // Initialize dimensions
             updateDimensions();
+            // Update on resize to handle responsive changes
             window.addEventListener('resize', () => {
                 updateDimensions();
                 goToSlide(currentIndex, true);
@@ -429,9 +498,16 @@
                 currentIndex = index;
 
                 const viewportWidth = viewport.offsetWidth;
-                const centerOfViewport = viewportWidth / 2;
-                const centerOfCard = (cardWidth * (index + 0.5)) + (gap * index);
-                const xPos = centerOfCard - centerOfViewport;
+                
+                // CORRECTED LOGIC: Center alignment
+                // 1. Find the center point of the target card in the track
+                // Position = (CardWidth + Gap) * Index + (CardWidth / 2)
+                const centerOfCard = (cardWidth + gap) * index + (cardWidth / 2);
+                
+                // 2. Calculate how much to move the track so that centerOfCard aligns with viewport center
+                // Viewport center is at (viewportWidth / 2)
+                // xPos needs to be negative to move left
+                const xPos = centerOfCard - (viewportWidth / 2);
 
                 gsap.to(track, {
                     x: -xPos,
