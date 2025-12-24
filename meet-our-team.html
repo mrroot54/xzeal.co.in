@@ -17,12 +17,8 @@
             --card-bg: #1a1d24;
             --text-main: #ffffff;
             --text-secondary: #a0a0a0;
-            
-            /* Original Indigo Theme */
             --accent-color: #6366f1; 
             --accent-glow: rgba(99, 102, 241, 0.15);
-            
-            --transition-speed: 0.4s;
         }
 
         * {
@@ -35,12 +31,11 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            overflow-x: hidden;
+            overflow-x: hidden; /* Prevent horizontal scroll */
             line-height: 1.6;
             min-height: 100vh;
         }
 
-        /* Section Layout */
         .team-section {
             padding: 60px 20px 100px;
             min-height: 100vh;
@@ -52,7 +47,6 @@
             width: 100%;
         }
 
-        /* Section Header */
         .section-header {
             text-align: center;
             margin-bottom: 40px;
@@ -70,7 +64,6 @@
             background: linear-gradient(90deg, #fff, #a5a5a5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            line-height: 1.2;
         }
 
         .section-subtitle {
@@ -78,26 +71,24 @@
             color: var(--text-secondary);
         }
 
-        /* Slider Viewport */
+        /* Slider Container */
         .slider-viewport {
             width: 100%;
             max-width: 1000px;
-            overflow: hidden; /* Important for clean sliding */
+            overflow: hidden; 
             position: relative;
-            padding: 50px 0; /* Vertical space for scaling on desktop */
+            padding: 50px 0; 
             opacity: 0;
             margin: 0 auto;
             z-index: 5;
         }
 
-        /* Slider Track */
         .slider-track {
             display: flex;
             gap: 20px;
             width: 100%;
             transform: translateX(0); 
             cursor: grab;
-            /* Ensure track doesn't shrink smaller than content */
             min-width: min-content; 
         }
 
@@ -105,9 +96,8 @@
             cursor: grabbing;
         }
 
-        /* Team Card */
+        /* Card Styles */
         .team-card {
-            /* Desktop Dimensions */
             min-width: 300px;
             width: 320px; 
             max-width: 350px;
@@ -123,7 +113,7 @@
             border: 1px solid transparent;
         }
 
-        /* Active Card Styling (Desktop) */
+        /* Active State Desktop */
         .team-card.active {
             transform: scale(1.05);
             box-shadow: 0 20px 50px var(--accent-glow);
@@ -131,7 +121,6 @@
             z-index: 10;
         }
 
-        /* Image Container */
         .card-image-wrapper {
             width: 100%;
             height: 300px;
@@ -148,7 +137,6 @@
             transform-origin: center;
         }
 
-        /* Card Content */
         .card-content {
             padding: 25px;
             position: relative;
@@ -167,7 +155,6 @@
 
         .member-position {
             font-size: 0.85rem; 
-            line-height: 1.4;
             color: var(--accent-color);
             font-weight: 600;
             text-transform: uppercase;
@@ -183,7 +170,6 @@
             line-height: 1.5;
         }
 
-        /* Social Icons */
         .social-links {
             display: flex;
             gap: 15px;
@@ -266,60 +252,105 @@
             }
         }
 
-        /* Mobile Phones - FIXING CROP */
+        /* Mobile Phones - STRICT RESPONSIVE FIX */
         @media (max-width: 768px) {
             .team-section {
-                padding: 40px 10px 80px;
-            }
-
-            /* Remove extra vertical padding since we aren't scaling cards */
-            .slider-viewport {
-                padding: 20px 0;
+                padding: 40px 0 100px; /* Side padding 0 */
             }
 
             .section-title { 
-                font-size: 1.8rem; 
+                font-size: 1.6rem; 
+                margin-bottom: 15px;
             }
-            
-            /* Fix Width */
+
+            .section-subtitle {
+                font-size: 0.9rem;
+            }
+
+            /* Reduce viewport padding to give more vertical space */
+            .slider-viewport {
+                padding: 30px 0; 
+            }
+
+            /* THE FIX: Adjust Card Width properly */
             .team-card {
-                /* Use 85% of viewport width */
-                width: 85%; 
-                max-width: 320px;
-                min-width: 280px;
-                margin: 0 5px; /* Reduce margin */
-                height: auto; /* Let content determine height */
+                /* 85vw means 85% of the Viewport Width */
+                width: 85vw; 
+                max-width: 380px; /* Max width limit */
+                min-width: 280px; /* Min width for small screens */
+                margin: 0; /* Remove side margins to prevent overflow */
+                border-radius: 15px;
+                height: auto;
             }
 
+            .slider-track {
+                gap: 15px; /* Reduce gap on mobile */
+            }
+
+            /* Adjust Image Height */
             .card-image-wrapper {
-                height: 240px; /* Adjust image height for mobile */
+                height: 230px; 
             }
 
-            /* IMPORTANT FIX: REMOVE SCALE ON MOBILE */
+            /* Content Padding */
+            .card-content {
+                padding: 20px;
+            }
+
+            /* Remove Scale Transform on Mobile */
             .team-card.active {
                 transform: none !important; 
                 box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-                border: 1px solid rgba(255,255,255,0.1); /* Subtle border instead of glow */
+                border: 1px solid rgba(255,255,255,0.1);
             }
 
+            /* Typography Adjustments */
             .member-name {
                 font-size: 1.2rem;
             }
 
             .member-position {
                 font-size: 0.7rem;
-                letter-spacing: 0.5px;
+                margin-bottom: 10px;
             }
 
             .member-intro {
                 font-size: 0.85rem;
+                margin-bottom: 15px;
+                /* Clamp lines */
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
             }
             
-            /* Better visibility for nav buttons */
+            /* Nav Buttons Position */
+            .slider-nav {
+                max-width: 100%;
+                width: 100%;
+                padding: 0 10px; /* Keep buttons inside slightly */
+            }
+
             .nav-btn {
                 width: 40px;
                 height: 40px;
-                background: rgba(0,0,0,0.6);
+                background: rgba(0,0,0,0.8); /* Darker bg for visibility */
+                border: 1px solid rgba(255,255,255,0.3);
+            }
+
+            .social-btn {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        
+        /* Extra Small Phones */
+        @media (max-width: 350px) {
+            .team-card {
+                width: 90vw; /* Use 90% width on very small screens */
+            }
+            .card-image-wrapper {
+                height: 200px;
             }
         }
     </style>
@@ -337,7 +368,7 @@
 
         <div class="slider-viewport" id="sliderViewport">
             <div class="slider-track" id="sliderTrack">
-                <!-- Member 1 -->
+                <!-- Member 1: Jay Prakash -->
                 <div class="team-card">
                     <div class="card-image-wrapper">
                         <img src="rahul.jpeg" alt="Jay Prakash" class="card-image">
@@ -347,13 +378,13 @@
                         <span class="member-position">CEO (Chief Executive Officer)</span>
                         <p class="member-intro">Visionary leader driving strategic growth and innovation.</p>
                         <div class="social-links">
-                            <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-btn"><i class="fas fa-envelope"></i></a>
+                            <a href="https://www.linkedin.com/in/jay-prakash-19a08427b/" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto:imjayprakash18@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Member 2 -->
+                <!-- Member 2: Atul Rajput -->
                 <div class="team-card">
                     <div class="card-image-wrapper">
                         <img src="asr.jpg" alt="Atul Rajput" class="card-image">
@@ -369,7 +400,7 @@
                     </div>
                 </div>
 
-                <!-- Member 3 -->
+                <!-- Member 3: Harsh Srivastava -->
                 <div class="team-card">
                     <div class="card-image-wrapper">
                         <img src="harsh.jpg" alt="Harsh Srivastava" class="card-image">
@@ -380,12 +411,12 @@
                         <p class="member-intro">Crafting visual stories that captivate and inspire.</p>
                         <div class="social-links">
                             <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-btn"><i class="fas fa-envelope"></i></a>
+                            <a href="mailto:harshsrivastava358@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Member 4 -->
+                <!-- Member 4: Siddhi Kumari -->
                 <div class="team-card">
                     <div class="card-image-wrapper">
                         <img src="siddhi.jpg" alt="Siddhi Kumari" class="card-image">
@@ -395,8 +426,8 @@
                         <span class="member-position">Creative Director</span>
                         <p class="member-intro">Leading design direction with passion and precision.</p>
                         <div class="social-links">
-                            <a href="https://www.linkedin.com/in/siddhi-kumari-787a84281/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="siddhi1182kumari@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                            <a href="https://www.linkedin.com/in/siddhi-kumari-787a84281/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto:siddhi1182kumari@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
@@ -456,14 +487,14 @@
             let currentIndex = 1; 
             const totalCards = cards.length;
             let cardWidth = 0;
-            let gap = 20; // Default CSS gap
+            let gap = 20; 
 
             // Auto Slide Variables
             let autoSlideInterval;
             const autoSlideDelay = 3500;
 
             function updateDimensions() {
-                // Get actual width from DOM element (handles responsiveness)
+                // Get actual width from DOM element
                 if(cards.length > 0) {
                     cardWidth = cards[0].offsetWidth;
                 }
@@ -490,11 +521,10 @@
 
                 const viewportWidth = viewport.offsetWidth;
                 
-                // Calculate center of target card within the track
-                // Position = (CardWidth + Gap) * Index + (CardWidth / 2)
+                // Calculate center of target card
                 const centerOfCard = (cardWidth + gap) * index + (cardWidth / 2);
                 
-                // Calculate movement: Move track so card center aligns with viewport center
+                // Calculate movement to center the card
                 const xPos = centerOfCard - (viewportWidth / 2);
 
                 gsap.to(track, {
@@ -519,7 +549,6 @@
                 const img = card.querySelector(".card-image");
                 const socials = card.querySelector(".social-links");
 
-                // Slight zoom only on desktop via CSS, but let's do a small opacity/scale pop here
                 gsap.fromTo(img, 
                     { scale: 1.0, opacity: 0.9 }, 
                     { 
@@ -651,6 +680,3 @@
     </script>
 </body>
 </html>
-
-
-
