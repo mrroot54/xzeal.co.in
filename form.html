@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquiry Form - Build Your Brand</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0b0d10;
+            --card-bg: rgba(26, 29, 36, 0.8);
+            --text-main: #ffffff;
+            --text-secondary: #94a3b8;
+            --accent-color: #6366f1; 
+            --accent-hover: #818cf8;
+            --input-bg: #13151a;
+            --border-color: #2d3748;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif; /* Modern Font */
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+            /* Flexbox to center everything perfectly */
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            background-image: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%);
+        }
+
+        /* Main Wrapper */
+        .enquiry-wrapper {
+            width: 100%;
+            max-width: 600px; /* Narrower, focused width */
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Text Section */
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .main-heading {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            color: #fff;
+            opacity: 0; /* JS will animate */
+            transform: translateY(20px);
+        }
+
+        .sub-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            opacity: 0; /* JS will animate */
+            transform: translateY(20px);
+        }
+
+        /* Form Card */
+        .form-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            opacity: 0; /* JS will animate */
+            transform: translateY(30px);
+        }
+
+        /* Input Groups */
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+            opacity: 0; /* Stagger Animation start state */
+            transform: translateX(-20px);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            background-color: var(--input-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px 20px;
+            font-size: 1rem;
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            outline: none;
+            transition: all 0.3s ease;
+            appearance: none; /* Remove default arrow */
+        }
+
+        /* Custom Arrow for Select */
+        .select-wrapper {
+            position: relative;
+        }
+        .select-wrapper::after {
+            content: '\f107'; /* FontAwesome down arrow */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+
+        .form-textarea {
+            resize: none;
+            min-height: 120px;
+        }
+
+        /* Labels */
+        .form-label {
+            position: absolute;
+            left: 20px;
+            top: 19px;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: transparent;
+            padding: 0 4px;
+        }
+
+        /* Focus & Filled States */
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+        }
+
+        .form-input:focus ~ .form-label,
+        .form-select:focus ~ .form-label,
+        .form-textarea:focus ~ .form-label,
+        .form-input:not(:placeholder-shown) ~ .form-label,
+        .form-textarea:not(:placeholder-shown) ~ .form-label,
+        .form-select:valid ~ .form-label {
+            top: -10px;
+            left: 15px;
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            background-color: var(--card-bg);
+            font-weight: 600;
+        }
+        
+        .select-wrapper:focus-within::after {
+            color: var(--accent-color);
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        /* Button Ripple/Hover Effect */
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .enquiry-wrapper {
+                padding: 15px;
+            }
+            .main-heading {
+                font-size: 2rem;
+            }
+            .form-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="enquiry-wrapper">
+        
+        <!-- Text Header -->
+        <div class="header-section">
+            <h1 class="main-heading">Let’s Build Your Brand Together</h1>
+            <p class="sub-text">Tell us about your project. We will get back to you within 24 hours.</p>
+        </div>
+
+        <!-- Form Card -->
+        <form class="form-card" id="enquiryForm" onsubmit="event.preventDefault();">
+            
+            <!-- Name -->
+            <div class="input-group">
+                <input type="text" id="name" class="form-input" placeholder=" " required autocomplete="off">
+                <label for="name" class="form-label">Full Name</label>
+            </div>
+
+            <!-- Email -->
+            <div class="input-group">
+                <input type="email" id="email" class="form-input" placeholder=" " required autocomplete="off">
+                <label for="email" class="form-label">Email Address</label>
+            </div>
+
+            <!-- Phone -->
+            <div class="input-group">
+                <input type="tel" id="phone" class="form-input" placeholder=" " required autocomplete="off">
+                <label for="phone" class="form-label">Phone Number</label>
+            </div>
+
+            <!-- Service Dropdown -->
+            <div class="input-group select-wrapper">
+                <select id="service" class="form-select" required>
+                    <option value="" disabled selected hidden></option>
+                    <option value="Digital Marketing">Digital Marketing</option>
+                    <option value="PPC Advertising">PPC Advertising</option>
+                    <option value="SEO Optimization">SEO Optimization</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="Lead Generation">Lead Generation</option>
+                    <option value="Content Creation">Content Creation</option>
+                    <option value="API Development">API Development</option>
+                    <option value="Mobile Application">Mobile Application</option>
+                    <option value="Maintenance Services">Maintenance Services</option>
+                </select>
+                <label for="service" class="form-label">Select Service</label>
+            </div>
+
+            <!-- Message -->
+            <div class="input-group">
+                <textarea id="message" class="form-textarea" placeholder=" " required></textarea>
+                <label for="message" class="form-label">Project Details / Message</label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <span>Send Enquiry</span>
+                <i class="fas fa-paper-plane"></i>
+            </button>
+
+        </form>
+    </div>
+
+    <!-- GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Optional ScrollTrigger, though we might not strictly need it for a centered page, adding just in case -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // --- 1. Section & Header Entry Animation ---
+            const tl = gsap.timeline();
+
+            // Main Heading drops in
+            tl.to(".main-heading", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "back.out(1.7)"
+            })
+            // Sub Text fades in
+            .to(".sub-text", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.4")
+            // Form Card slides up
+            .to(".form-card", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out"
+            }, "-=0.3")
+            // Staggered Input Entry (One by one)
+            .to(".input-group", {
+                opacity: 1,
+                x: 0,
+                duration: 0.5,
+                stagger: 0.08,
+                ease: "power2.out"
+            }, "-=0.4");
+
+
+            // --- 2. Input Interactions (Focus/Blur) ---
+            const inputs = document.querySelectorAll(".form-input, .form-textarea");
+            
+            inputs.forEach(input => {
+                // Focus Animation
+                input.addEventListener("focus", () => {
+                    gsap.to(input, {
+                        borderColor: "#6366f1",
+                        boxShadow: "0 0 0 4px rgba(99, 102, 241, 0.15)",
+                        duration: 0.3
+                    });
+                    // GSAP handles label movement via CSS transition mostly, 
+                    // but we can add a slight scale effect to the label via JS if needed.
+                });
+
+                // Blur Animation
+                input.addEventListener("blur", () => {
+                    if(input.value.trim() === "") {
+                        gsap.to(input, {
+                            borderColor: "#2d3748",
+                            boxShadow: "none",
+                            duration: 0.3
+                        });
+                    }
+                });
+            });
+
+            // --- 3. Submit Button Interaction ---
+            const btn = document.getElementById("submitBtn");
+            const btnSpan = btn.querySelector("span");
+            const btnIcon = btn.querySelector("i");
+
+            btn.addEventListener("mouseenter", () => {
+                gsap.to(btn, { scale: 1.02, duration: 0.3 });
+            });
+
+            btn.addEventListener("mouseleave", () => {
+                gsap.to(btn, { scale: 1, duration: 0.3 });
+            });
+
+            btn.addEventListener("click", () => {
+                // Click Pulse Effect
+                gsap.to(btn, { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1 });
+
+                // Simulate Sending State
+                const originalText = btnSpan.innerText;
+                
+                btnSpan.innerText = "Sending...";
+                btnIcon.classList.remove("fa-paper-plane");
+                btnIcon.classList.add("fa-spinner", "fa-spin");
+                btn.style.cursor = "wait";
+                btn.disabled = true;
+
+                // GSAP Animation for "Sending" color
+                gsap.to(btn, { backgroundColor: "#4338ca", duration: 0.3 });
+
+                setTimeout(() => {
+                    // Success State
+                    btnSpan.innerText = "Sent Successfully!";
+                    btnIcon.classList.remove("fa-spinner", "fa-spin");
+                    btnIcon.classList.add("fa-check");
+                    gsap.to(btn, { backgroundColor: "#10b981", duration: 0.3 }); // Green
+
+                    // Reset Form
+                    setTimeout(() => {
+                        document.getElementById("enquiryForm").reset();
+                        btnSpan.innerText = originalText;
+                        btnIcon.classList.remove("fa-check");
+                        btnIcon.classList.add("fa-paper-plane");
+                        btn.style.cursor = "pointer";
+                        btn.disabled = false;
+                        gsap.to(btn, { backgroundColor: "#6366f1", duration: 0.5 }); // Back to original
+                    }, 3000);
+
+                }, 2000);
+            });
+
+        });
+    </script>
+</body>
+</html>
