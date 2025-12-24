@@ -7,7 +7,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -21,6 +21,7 @@
             --accent-hover: #818cf8;
             --input-bg: #13151a;
             --border-color: #2d3748;
+            --success-color: #10b981;
         }
 
         * {
@@ -30,69 +31,144 @@
         }
 
         body {
-            font-family: 'Outfit', sans-serif; /* Modern Font */
+            font-family: 'Outfit', sans-serif;
             background-color: var(--bg-color);
+            background-image: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%);
             color: var(--text-main);
             overflow-x: hidden;
             min-height: 100vh;
-            /* Flexbox to center everything perfectly */
             display: flex; 
             align-items: center;
             justify-content: center;
-            background-image: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%);
         }
 
         /* Main Wrapper */
         .enquiry-wrapper {
             width: 100%;
-            max-width: 600px; /* Narrower, focused width */
+            max-width: 600px; /* Thoda width badhaya heading ke liye */
             padding: 20px;
             position: relative;
             z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 25px; /* Gap thoda kam kiya taaki layout tight rahe */
         }
 
-        /* Text Section */
-        .header-section {
+        /* --- NEW: Main Heading Section --- */
+        .main-heading-section {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
+            opacity: 0; /* JS se animate hoga */
+            transform: translateY(-30px); /* Initial position for animation */
         }
 
-        .main-heading {
-            font-size: 2.8rem;
+        .main-heading-section h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            /* Gradient Text Effect */
+            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        /* --- Upper Branding Box --- */
+        .branding-box {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+            opacity: 0; 
+            transform: translateY(-30px);
+        }
+
+        .branding-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), #ec4899);
+        }
+
+        /* FIX: Logo Wrapper Styles */
+        .brand-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            position: relative;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+            border: 2px solid #e0e7ff;
+        }
+
+        .brand-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            z-index: 2; 
+            display: block;
+            padding: 12px;
+        }
+
+        .brand-icon-wrapper::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+            opacity: 0;
+            animation: ripple 2s infinite;
+            z-index: 1;
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+
+        .branding-box h2 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
             font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 15px;
-            color: #fff;
-            opacity: 0; /* JS will animate */
-            transform: translateY(20px);
         }
 
-        .sub-text {
-            font-size: 1.1rem;
+        .branding-box p {
+            font-size: 0.95rem;
             color: var(--text-secondary);
-            line-height: 1.6;
-            opacity: 0; /* JS will animate */
-            transform: translateY(20px);
         }
 
-        /* Form Card */
+        /* --- Form Card Styles --- */
         .form-card {
             background: var(--card-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 40px;
+            padding: 35px;
             border-radius: 24px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            opacity: 0; /* JS will animate */
+            opacity: 0; 
             transform: translateY(30px);
         }
 
         /* Input Groups */
         .input-group {
             position: relative;
-            margin-bottom: 25px;
-            opacity: 0; /* Stagger Animation start state */
+            margin-bottom: 20px;
+            opacity: 0; 
             transform: translateX(-20px);
         }
 
@@ -101,25 +177,25 @@
             background-color: var(--input-bg);
             border: 2px solid var(--border-color);
             border-radius: 12px;
-            padding: 18px 20px;
-            font-size: 1rem;
+            padding: 16px 18px;
+            font-size: 0.95rem;
             color: #fff;
             font-family: 'Outfit', sans-serif;
             outline: none;
             transition: all 0.3s ease;
-            appearance: none; /* Remove default arrow */
+            appearance: none;
         }
 
-        /* Custom Arrow for Select */
         .select-wrapper {
             position: relative;
         }
+        
         .select-wrapper::after {
-            content: '\f107'; /* FontAwesome down arrow */
+            content: '\f107';
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             position: absolute;
-            right: 20px;
+            right: 18px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-secondary);
@@ -129,23 +205,22 @@
 
         .form-textarea {
             resize: none;
-            min-height: 120px;
+            min-height: 100px;
         }
 
-        /* Labels */
         .form-label {
             position: absolute;
-            left: 20px;
-            top: 19px;
+            left: 18px;
+            top: 17px;
             color: var(--text-secondary);
-            font-size: 1rem;
+            font-size: 0.95rem;
             pointer-events: none;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             background-color: transparent;
             padding: 0 4px;
         }
 
-        /* Focus & Filled States */
+        /* Focus States */
         .form-input:focus, .form-select:focus, .form-textarea:focus {
             border-color: var(--accent-color);
             box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
@@ -158,8 +233,8 @@
         .form-textarea:not(:placeholder-shown) ~ .form-label,
         .form-select:valid ~ .form-label {
             top: -10px;
-            left: 15px;
-            font-size: 0.8rem;
+            left: 14px;
+            font-size: 0.75rem;
             color: var(--accent-color);
             background-color: var(--card-bg);
             font-weight: 600;
@@ -172,34 +247,22 @@
         /* Submit Button */
         .submit-btn {
             width: 100%;
-            padding: 18px;
+            padding: 16px;
             background: var(--accent-color);
             color: #fff;
             border: none;
             border-radius: 12px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-        }
-        
-        /* Button Ripple/Hover Effect */
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
         }
 
         .submit-btn:hover {
@@ -208,12 +271,13 @@
             box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
         }
 
-        .submit-btn:hover::before {
-            left: 100%;
-        }
-
         .submit-btn:active {
             transform: scale(0.98);
+        }
+
+        .submit-btn.success-state {
+            background-color: var(--success-color);
+            pointer-events: none;
         }
 
         /* Mobile Responsive */
@@ -221,11 +285,14 @@
             .enquiry-wrapper {
                 padding: 15px;
             }
-            .main-heading {
-                font-size: 2rem;
+            .main-heading-section h1 {
+                font-size: 1.8rem; /* Mobile pe font size kam */
+            }
+            .branding-box h2 {
+                font-size: 1.3rem;
             }
             .form-card {
-                padding: 30px 20px;
+                padding: 25px 20px;
             }
         }
     </style>
@@ -234,10 +301,19 @@
 
     <div class="enquiry-wrapper">
         
-        <!-- Text Header -->
-        <div class="header-section">
-            <h1 class="main-heading">Let’s Build Your Brand Together</h1>
-            <p class="sub-text">Tell us about your project. We will get back to you within 24 hours.</p>
+        <!-- NEW: Main Heading Section -->
+        <div class="main-heading-section">
+            <h1>Let’s Build Your Brand Together</h1>
+        </div>
+
+        <!-- Upper Branding Box -->
+        <div class="branding-box" id="brandingBox">
+            <div class="brand-icon-wrapper">
+                <!-- Logo Image -->
+                <img src="logo.png" alt="Xzeal Logo" class="brand-logo-img">
+            </div>
+            <h2>Start Your Journey</h2>
+            <p>Fill the form below and let's build something amazing together.</p>
         </div>
 
         <!-- Form Card -->
@@ -295,81 +371,76 @@
 
     <!-- GSAP Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <!-- Optional ScrollTrigger, though we might not strictly need it for a centered page, adding just in case -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            gsap.registerPlugin(ScrollTrigger);
-
-            // --- 1. Section & Header Entry Animation ---
+            
+            // --- 1. Entry Animations ---
             const tl = gsap.timeline();
 
-            // Main Heading drops in
-            tl.to(".main-heading", {
+            // NEW: Main Heading Animation (Sabse pehle aayega)
+            tl.to(".main-heading-section", {
                 opacity: 1,
                 y: 0,
                 duration: 0.8,
-                ease: "back.out(1.7)"
+                ease: "power3.out"
             })
-            // Sub Text fades in
-            .to(".sub-text", {
+            // Upper Box slides down
+            .to("#brandingBox", {
                 opacity: 1,
                 y: 0,
-                duration: 0.6,
-                ease: "power2.out"
-            }, "-=0.4")
+                duration: 0.8,
+                ease: "power3.out"
+            }, "-=0.4") // Thoda overlap karega smoothness ke liye
+            // Icon Float Animation
+            .to(".brand-icon-wrapper", {
+                y: -5,
+                duration: 1.5,
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut"
+            }, "-=0.5")
             // Form Card slides up
             .to(".form-card", {
                 opacity: 1,
                 y: 0,
                 duration: 0.8,
                 ease: "power3.out"
-            }, "-=0.3")
-            // Staggered Input Entry (One by one)
+            }, "-=0.4")
+            // Staggered Inputs
             .to(".input-group", {
                 opacity: 1,
                 x: 0,
                 duration: 0.5,
-                stagger: 0.08,
-                ease: "power2.out"
-            }, "-=0.4");
+                stagger: 0.06,
+                ease: "back.out(1.2)"
+            }, "-=0.3");
 
 
-            // --- 2. Input Interactions (Focus/Blur) ---
+            // --- 2. Interactions ---
             const inputs = document.querySelectorAll(".form-input, .form-textarea");
             
             inputs.forEach(input => {
-                // Focus Animation
                 input.addEventListener("focus", () => {
-                    gsap.to(input, {
-                        borderColor: "#6366f1",
-                        boxShadow: "0 0 0 4px rgba(99, 102, 241, 0.15)",
-                        duration: 0.3
-                    });
-                    // GSAP handles label movement via CSS transition mostly, 
-                    // but we can add a slight scale effect to the label via JS if needed.
+                    gsap.to(input, { borderColor: "#6366f1", scale: 1.01, duration: 0.3 });
                 });
 
-                // Blur Animation
                 input.addEventListener("blur", () => {
                     if(input.value.trim() === "") {
-                        gsap.to(input, {
-                            borderColor: "#2d3748",
-                            boxShadow: "none",
-                            duration: 0.3
-                        });
+                        gsap.to(input, { borderColor: "#2d3748", scale: 1, duration: 0.3 });
                     }
                 });
             });
 
-            // --- 3. Submit Button Interaction ---
+            // --- 3. Submit Logic & Animation ---
             const btn = document.getElementById("submitBtn");
             const btnSpan = btn.querySelector("span");
             const btnIcon = btn.querySelector("i");
 
             btn.addEventListener("mouseenter", () => {
-                gsap.to(btn, { scale: 1.02, duration: 0.3 });
+                if(!btn.classList.contains("success-state")) {
+                    gsap.to(btn, { scale: 1.02, duration: 0.3 });
+                }
             });
 
             btn.addEventListener("mouseleave", () => {
@@ -377,37 +448,47 @@
             });
 
             btn.addEventListener("click", () => {
-                // Click Pulse Effect
+                const form = document.getElementById('enquiryForm');
+                if(!form.checkValidity()) {
+                    gsap.to(".form-card", { x: [-10, 10, -10, 10, 0], duration: 0.4 });
+                    return;
+                }
+
+                // Click Pulse
                 gsap.to(btn, { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1 });
 
-                // Simulate Sending State
-                const originalText = btnSpan.innerText;
-                
+                // Loading State
                 btnSpan.innerText = "Sending...";
-                btnIcon.classList.remove("fa-paper-plane");
-                btnIcon.classList.add("fa-spinner", "fa-spin");
-                btn.style.cursor = "wait";
-                btn.disabled = true;
-
-                // GSAP Animation for "Sending" color
-                gsap.to(btn, { backgroundColor: "#4338ca", duration: 0.3 });
+                btnIcon.className = "fas fa-spinner fa-spin";
+                btn.style.pointerEvents = "none";
 
                 setTimeout(() => {
                     // Success State
                     btnSpan.innerText = "Sent Successfully!";
-                    btnIcon.classList.remove("fa-spinner", "fa-spin");
-                    btnIcon.classList.add("fa-check");
-                    gsap.to(btn, { backgroundColor: "#10b981", duration: 0.3 }); // Green
+                    btnIcon.className = "fas fa-check-circle";
+                    btn.classList.add("success-state");
 
-                    // Reset Form
+                    // Success Color Change
+                    gsap.to(btn, { 
+                        backgroundColor: "#10b981", 
+                        boxShadow: "0 0 20px rgba(16, 185, 129, 0.6)",
+                        duration: 0.3 
+                    });
+
+                    // Reset after delay
                     setTimeout(() => {
-                        document.getElementById("enquiryForm").reset();
-                        btnSpan.innerText = originalText;
-                        btnIcon.classList.remove("fa-check");
-                        btnIcon.classList.add("fa-paper-plane");
-                        btn.style.cursor = "pointer";
-                        btn.disabled = false;
-                        gsap.to(btn, { backgroundColor: "#6366f1", duration: 0.5 }); // Back to original
+                        form.reset();
+                        btnSpan.innerText = "Send Enquiry";
+                        btnIcon.className = "fas fa-paper-plane";
+                        btn.classList.remove("success-state");
+                        btn.style.pointerEvents = "auto";
+                        
+                        // Reset button style
+                        gsap.to(btn, { 
+                            backgroundColor: "#6366f1", 
+                            boxShadow: "0 4px 15px rgba(99, 102, 241, 0.3)",
+                            duration: 0.5 
+                        });
                     }, 3000);
 
                 }, 2000);
