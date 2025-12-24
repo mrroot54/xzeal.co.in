@@ -31,7 +31,7 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden;
             line-height: 1.6;
             min-height: 100vh;
         }
@@ -252,10 +252,10 @@
             }
         }
 
-        /* Mobile Phones - STRICT RESPONSIVE FIX */
+        /* Mobile Phones - CENTERED BOXES & EDGE BUTTONS */
         @media (max-width: 768px) {
             .team-section {
-                padding: 40px 0 100px; /* Side padding 0 */
+                padding: 40px 0 100px; /* Remove side padding */
             }
 
             .section-title { 
@@ -267,75 +267,74 @@
                 font-size: 0.9rem;
             }
 
-            /* Reduce viewport padding to give more vertical space */
+            /* Reduce viewport padding */
             .slider-viewport {
                 padding: 30px 0; 
             }
 
-            /* THE FIX: Adjust Card Width properly */
+            /* BOX SIZING */
             .team-card {
-                /* 85vw means 85% of the Viewport Width */
-                width: 85vw; 
-                max-width: 380px; /* Max width limit */
-                min-width: 280px; /* Min width for small screens */
-                margin: 0; /* Remove side margins to prevent overflow */
+                width: 85vw; /* Card takes 85% width */
+                max-width: 360px; 
+                min-width: 280px;
+                margin: 0; /* Remove margins */
                 border-radius: 15px;
                 height: auto;
             }
 
             .slider-track {
-                gap: 15px; /* Reduce gap on mobile */
+                gap: 15px; /* Gap between cards */
             }
 
-            /* Adjust Image Height */
             .card-image-wrapper {
                 height: 230px; 
             }
 
-            /* Content Padding */
             .card-content {
                 padding: 20px;
             }
 
-            /* Remove Scale Transform on Mobile */
             .team-card.active {
                 transform: none !important; 
                 box-shadow: 0 10px 30px rgba(0,0,0,0.5);
                 border: 1px solid rgba(255,255,255,0.1);
             }
 
-            /* Typography Adjustments */
-            .member-name {
-                font-size: 1.2rem;
-            }
-
-            .member-position {
-                font-size: 0.7rem;
-                margin-bottom: 10px;
-            }
-
+            /* TYPOGRAPHY */
+            .member-name { font-size: 1.2rem; }
+            .member-position { font-size: 0.7rem; margin-bottom: 10px; }
             .member-intro {
                 font-size: 0.85rem;
                 margin-bottom: 15px;
-                /* Clamp lines */
                 display: -webkit-box;
                 -webkit-line-clamp: 3;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
             }
             
-            /* Nav Buttons Position */
+            /* NAVIGATION BUTTONS FIX */
             .slider-nav {
+                /* Reset positioning for full width control */
+                left: 0; 
+                transform: none;
+                width: 100%; /* Full screen width */
                 max-width: 100%;
-                width: 100%;
-                padding: 0 10px; /* Keep buttons inside slightly */
+                padding: 0 10px; /* Buttons 10px from screen edge */
+                top: 40%; /* Adjust vertical alignment slightly to look good with card height */
+                z-index: 30; /* Ensure buttons are on top of cards */
             }
 
             .nav-btn {
                 width: 40px;
                 height: 40px;
-                background: rgba(0,0,0,0.8); /* Darker bg for visibility */
-                border: 1px solid rgba(255,255,255,0.3);
+                background: rgba(0,0,0,0.6); /* Dark semi-transparent */
+                border: 1px solid rgba(255,255,255,0.2);
+                backdrop-filter: blur(4px); /* Blurry background */
+            }
+            
+            .nav-btn:hover {
+                background: rgba(99, 102, 241, 0.9);
+                transform: scale(1.1);
             }
 
             .social-btn {
@@ -347,7 +346,7 @@
         /* Extra Small Phones */
         @media (max-width: 350px) {
             .team-card {
-                width: 90vw; /* Use 90% width on very small screens */
+                width: 90vw; /* Wider on tiny screens */
             }
             .card-image-wrapper {
                 height: 200px;
@@ -434,6 +433,7 @@
             </div>
         </div>
 
+        <!-- Nav buttons positioned absolutely by CSS -->
         <div class="slider-nav">
             <button class="nav-btn" id="prevBtn" aria-label="Previous Slide">
                 <i class="fas fa-chevron-left"></i>
@@ -494,37 +494,28 @@
             const autoSlideDelay = 3500;
 
             function updateDimensions() {
-                // Get actual width from DOM element
                 if(cards.length > 0) {
                     cardWidth = cards[0].offsetWidth;
                 }
-                // Get gap from computed style
                 const trackStyle = window.getComputedStyle(track);
                 gap = parseInt(trackStyle.gap) || 20;
             }
 
-            // Initialize dimensions
             updateDimensions();
             
-            // Update on resize
             window.addEventListener('resize', () => {
                 updateDimensions();
                 goToSlide(currentIndex, true);
             });
 
             function goToSlide(index, immediate = false) {
-                // Handle Looping
                 if (index < 0) index = totalCards - 1; 
                 if (index >= totalCards) index = 0; 
                 
                 currentIndex = index;
 
                 const viewportWidth = viewport.offsetWidth;
-                
-                // Calculate center of target card
                 const centerOfCard = (cardWidth + gap) * index + (cardWidth / 2);
-                
-                // Calculate movement to center the card
                 const xPos = centerOfCard - (viewportWidth / 2);
 
                 gsap.to(track, {
@@ -605,7 +596,6 @@
                 startAutoSlide();
             }, 100);
 
-            // Stop auto slide on interaction
             section.addEventListener("mouseenter", stopAutoSlide);
             section.addEventListener("mouseleave", startAutoSlide);
             section.addEventListener("touchstart", stopAutoSlide);
