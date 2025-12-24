@@ -116,7 +116,7 @@
             border-radius: 20px;
             overflow: hidden;
             position: relative;
-            margin: 0 10px; /* This margin was causing calculation issues */
+            margin: 0 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             user-select: none;
@@ -266,7 +266,7 @@
             }
         }
 
-        /* Mobile Phones */
+        /* Mobile Phones - FIXING CROP */
         @media (max-width: 768px) {
             .team-section {
                 padding: 40px 10px 80px;
@@ -337,7 +337,7 @@
 
         <div class="slider-viewport" id="sliderViewport">
             <div class="slider-track" id="sliderTrack">
-                <!-- Member 1 -->
+                <!-- Member 1: Jay Prakash -->
                 <div class="team-card">
                     <div class="card-image-wrapper">
                         <img src="rahul.jpeg" alt="Jay Prakash" class="card-image">
@@ -347,13 +347,15 @@
                         <span class="member-position">CEO (Chief Executive Officer)</span>
                         <p class="member-intro">Visionary leader driving strategic growth and innovation.</p>
                         <div class="social-links">
-                            <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-btn"><i class="fas fa-envelope"></i></a>
+                            <!-- Updated LinkedIn -->
+                            <a href="https://www.linkedin.com/in/jay-prakash-19a08427b/" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <!-- Updated Email -->
+                            <a href="mailto:imjayprakash18@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Member 2 -->
+                <!-- Member 2: Atul Rajput -->
                 <div class="team-card">
                     <div class="card-image-wrapper">
                         <img src="asr.jpg" alt="Atul Rajput" class="card-image">
@@ -369,7 +371,7 @@
                     </div>
                 </div>
 
-                <!-- Member 3 -->
+                <!-- Member 3: Harsh Srivastava -->
                 <div class="team-card">
                     <div class="card-image-wrapper">
                         <img src="harsh.jpg" alt="Harsh Srivastava" class="card-image">
@@ -379,24 +381,28 @@
                         <span class="member-position">Head of Video Production</span>
                         <p class="member-intro">Crafting visual stories that captivate and inspire.</p>
                         <div class="social-links">
+                            <!-- LinkedIn Link not provided, kept as placeholder -->
                             <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-btn"><i class="fas fa-envelope"></i></a>
+                            <!-- Updated Email -->
+                            <a href="mailto:harshsrivastava358@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Member 4 -->
+                <!-- Member 4: Siddhi Kumari -->
                 <div class="team-card">
                     <div class="card-image-wrapper">
-                        <img src="https://picsum.photos/seed/siddhikumari/400/500" alt="Siddhi Kumari" class="card-image">
+                        <img src="siddhi.jpg" alt="Siddhi Kumari" class="card-image">
                     </div>
                     <div class="card-content">
                         <h3 class="member-name">Siddhi Kumari</h3>
                         <span class="member-position">Creative Director</span>
                         <p class="member-intro">Leading design direction with passion and precision.</p>
                         <div class="social-links">
-                            <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-btn"><i class="fas fa-envelope"></i></a>
+                            <!-- LinkedIn link kept as provided -->
+                            <a href="https://www.linkedin.com/in/siddhi-kumari-787a84281/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <!-- Updated Email (added mailto: for proper functionality) -->
+                            <a href="mailto:siddhi1182kumari@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
@@ -455,20 +461,29 @@
 
             let currentIndex = 1; 
             const totalCards = cards.length;
+            let cardWidth = 0;
+            let gap = 20; // Default CSS gap
 
             // Auto Slide Variables
             let autoSlideInterval;
             const autoSlideDelay = 3500;
 
-            // We don't strictly need to updateDimensions manually for centering anymore
-            // because we will use offsetLeft, but it's good practice for sanity checks.
             function updateDimensions() {
-                // Just ensure layout is stable
+                // Get actual width from DOM element (handles responsiveness)
+                if(cards.length > 0) {
+                    cardWidth = cards[0].offsetWidth;
+                }
+                // Get gap from computed style
+                const trackStyle = window.getComputedStyle(track);
+                gap = parseInt(trackStyle.gap) || 20;
             }
 
+            // Initialize dimensions
             updateDimensions();
             
+            // Update on resize
             window.addEventListener('resize', () => {
+                updateDimensions();
                 goToSlide(currentIndex, true);
             });
 
@@ -478,22 +493,15 @@
                 if (index >= totalCards) index = 0; 
                 
                 currentIndex = index;
-                
-                // Get the specific card element
-                const card = cards[index];
-                
-                // FIX: Use offsetLeft to get the exact position relative to the track
-                // This accounts for margins, gaps, and widths automatically
-                const cardLeft = card.offsetLeft;
-                const cardWidth = card.offsetWidth;
+
                 const viewportWidth = viewport.offsetWidth;
-
-                // Calculate center points
-                const centerOfCard = cardLeft + (cardWidth / 2);
-                const centerOfViewport = viewportWidth / 2;
-
-                // Calculate the required translateX for the track
-                const xPos = centerOfCard - centerOfViewport;
+                
+                // Calculate center of target card within the track
+                // Position = (CardWidth + Gap) * Index + (CardWidth / 2)
+                const centerOfCard = (cardWidth + gap) * index + (cardWidth / 2);
+                
+                // Calculate movement: Move track so card center aligns with viewport center
+                const xPos = centerOfCard - (viewportWidth / 2);
 
                 gsap.to(track, {
                     x: -xPos,
@@ -502,13 +510,13 @@
                     overwrite: true
                 });
 
-                cards.forEach((c, i) => {
+                cards.forEach((card, i) => {
                     if (i === currentIndex) {
-                        c.classList.add("active");
-                        animateCardEntry(c);
+                        card.classList.add("active");
+                        animateCardEntry(card);
                     } else {
-                        c.classList.remove("active");
-                        resetCard(c);
+                        card.classList.remove("active");
+                        resetCard(card);
                     }
                 });
             }
@@ -569,6 +577,7 @@
             }
 
             setTimeout(() => {
+                updateDimensions();
                 goToSlide(currentIndex, true);
                 startAutoSlide();
             }, 100);
