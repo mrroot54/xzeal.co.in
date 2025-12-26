@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Enquiry Form - Build Your Brand</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,15 +12,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         :root {
             --bg-color: #0b0d10;
-            --card-bg: rgba(26, 29, 36, 0.6);
+            --card-bg: rgba(26, 29, 36, 0.75); 
             --glass-border: rgba(255, 255, 255, 0.1);
             --text-main: #ffffff;
             --text-secondary: #94a3b8;
             --accent-color: #6366f1; 
             --accent-hover: #818cf8;
-            --input-bg: rgba(19, 21, 26, 0.7);
+            --input-bg: rgba(19, 21, 26, 0.8);
             --border-color: #2d3748;
             --success-color: #10b981;
         }
@@ -29,12 +33,12 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             font-family: 'Outfit', sans-serif;
             background-color: var(--bg-color);
-            /* Background Glow Effect */
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 40%);
@@ -43,51 +47,55 @@
             display: flex; 
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Default Desktop Center */
+            justify-content: center; 
             padding: 20px;
             position: relative;
-            /* FIX: Changed from overflow: hidden to overflow-x: hidden to allow scrolling */
-            overflow-x: hidden; 
+            overflow-x: hidden;
+            width: 100%;
         }
 
-        /* Decorative Background Blob */
+        /* FIX 1: Background Blob Optimization - Removed Scale Animation */
         .bg-blob {
-            position: absolute;
-            width: 600px;
-            height: 600px;
+            position: fixed;
+            width: 500px; /* Thoda chhota kiya */
+            height: 500px;
             background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            filter: blur(80px);
-            z-index: 0;
-            animation: pulseBg 8s infinite alternate;
+            filter: blur(60px); /* Blur kam kiya */
+            z-index: -1;
+            /* Performance Fix: Ab sirf opacity pulse hoga, scale nahi */
+            animation: pulseBg 10s infinite alternate;
+            pointer-events: none;
+            will-change: opacity;
         }
 
         @keyframes pulseBg {
-            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
-            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+            0% { opacity: 0.5; }
+            100% { opacity: 0.8; }
         }
 
-        /* --- TOP MAIN HEADING (Global) --- */
+        /* --- TOP MAIN HEADING --- */
         .main-heading-section {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             position: relative;
             z-index: 20;
-            opacity: 0; /* JS Animation start state */
-            transform: translateY(-30px);
+            opacity: 0;
+            transform: translateY(-20px);
+            width: 100%;
+            padding: 0 15px;
         }
 
         .main-heading-section h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem); /* Responsive Font Sizing */
             font-weight: 800;
             background: linear-gradient(135deg, #ffffff 20%, #a5b4fc 60%, #6366f1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            line-height: 1.1;
-            letter-spacing: -1.5px;
-            text-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+            line-height: 1.2;
+            letter-spacing: -1px;
         }
 
         /* --- SPLIT WRAPPER --- */
@@ -95,10 +103,11 @@
             width: 100%;
             max-width: 1100px;
             display: flex;
-            flex-direction: column; /* Default Mobile: Stack */
-            gap: 40px;
+            flex-direction: column;
+            gap: 30px;
             position: relative;
             z-index: 10;
+            margin-bottom: 30px;
         }
 
         /* --- LEFT SIDE (Branding) --- */
@@ -106,9 +115,9 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center; /* Mobile center */
+            align-items: center;
             text-align: center;
-            padding: 20px;
+            padding: 0 20px;
         }
 
         /* --- RIGHT SIDE (Form) --- */
@@ -118,23 +127,23 @@
             width: 100%;
         }
 
-        /* Content Styling inside Branding Box */
+        /* Content Styling */
         .branding-content {
-            max-width: 90%;
-            opacity: 0; /* JS Animation */
+            max-width: 500px;
+            opacity: 0;
         }
 
         .brand-icon-wrapper {
-            width: 100px;
-            height: 100px;
+            width: 70px;
+            height: 70px;
             background: #ffffff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 30px;
+            margin: 0 auto 20px;
             position: relative;
-            box-shadow: 0 0 40px rgba(99, 102, 241, 0.5);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
             border: 2px solid #e0e7ff;
         }
 
@@ -144,10 +153,10 @@
             object-fit: contain;
             z-index: 2; 
             display: block;
-            padding: 18px;
+            padding: 12px;
         }
 
-        /* Ripple Effect */
+        /* Simple ripple, low cost */
         .brand-icon-wrapper::after {
             content: '';
             position: absolute;
@@ -156,68 +165,70 @@
             border-radius: 50%;
             border: 2px solid var(--accent-color);
             opacity: 0;
-            animation: ripple 2.5s infinite;
+            animation: ripple 3s infinite;
             z-index: 1;
         }
 
         @keyframes ripple {
             0% { transform: scale(1); opacity: 0.6; }
-            100% { transform: scale(1.6); opacity: 0; }
+            100% { transform: scale(1.5); opacity: 0; }
         }
 
         .branding-content h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
+            font-size: 1.6rem;
+            margin-bottom: 12px;
             font-weight: 700;
             color: #fff;
         }
 
         .branding-content p {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
-            line-height: 1.7;
-            margin: 0 auto;
+            line-height: 1.5;
         }
 
         /* --- FORM CARD --- */
         .form-card {
             background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 40px;
-            border-radius: 30px;
+            /* FIX 2: Kam Blur for better performance */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 30px 20px;
+            border-radius: 20px;
             border: 1px solid var(--glass-border);
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
             width: 100%;
-            opacity: 0; /* JS Animation */
+            opacity: 0;
+            transform: translateY(20px); /* JS animation ke liye */
         }
 
         /* Input Fields */
         .input-group {
             position: relative;
-            margin-bottom: 24px;
-            opacity: 0; /* JS Animation */
-            transform: translateY(10px);
+            margin-bottom: 18px;
+            opacity: 0;
+            transform: translateY(15px);
         }
 
         .form-input, .form-select, .form-textarea {
             width: 100%;
             background-color: var(--input-bg);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 18px 20px;
-            font-size: 1rem;
+            border-radius: 12px;
+            padding: 15px 16px;
+            font-size: 16px; /* Prevent zoom */
             color: #fff;
             font-family: 'Outfit', sans-serif;
             outline: none;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.2s ease-out; /* CSS handles interactions now */
             appearance: none;
         }
 
+        /* FIX 3: CSS Hover/Focus instead of JS for performance */
         .form-input:focus, .form-select:focus, .form-textarea:focus {
             border-color: var(--accent-color);
-            background-color: rgba(19, 21, 26, 0.9);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+            background-color: rgba(19, 21, 26, 0.95);
+            transform: scale(1.01); /* Subtle scale via CSS */
         }
 
         .select-wrapper {
@@ -229,7 +240,7 @@
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             position: absolute;
-            right: 20px;
+            right: 16px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-secondary);
@@ -238,19 +249,19 @@
 
         .form-textarea {
             resize: none;
-            min-height: 110px;
+            min-height: 90px;
         }
 
         .form-label {
             position: absolute;
-            left: 20px;
-            top: 19px;
+            left: 16px;
+            top: 16px;
             color: var(--text-secondary);
-            font-size: 1rem;
+            font-size: 16px;
             pointer-events: none;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
             background-color: transparent;
-            padding: 0 4px;
+            padding: 0 2px;
         }
 
         .form-input:focus ~ .form-label,
@@ -259,40 +270,33 @@
         .form-input:not(:placeholder-shown) ~ .form-label,
         .form-textarea:not(:placeholder-shown) ~ .form-label,
         .form-select:valid ~ .form-label {
-            top: -11px;
-            left: 16px;
-            font-size: 0.8rem;
+            top: -9px;
+            left: 12px;
+            font-size: 0.75rem;
             color: var(--accent-color);
             background-color: var(--card-bg);
             font-weight: 600;
-            border-radius: 4px;
+            border-radius: 2px;
         }
 
         /* Submit Button */
         .submit-btn {
             width: 100%;
-            padding: 18px;
+            padding: 15px;
             background: var(--accent-color);
             color: #fff;
             border: none;
-            border-radius: 16px;
-            font-size: 1.05rem;
+            border-radius: 12px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px -5px rgba(99, 102, 241, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-        }
-
-        .submit-btn:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.6);
+            gap: 10px;
         }
 
         .submit-btn:active {
@@ -304,13 +308,16 @@
             pointer-events: none;
         }
 
-        /* --- DESKTOP LAYOUT (Split) --- */
+        /* --- DESKTOP LAYOUT --- */
         @media (min-width: 992px) {
+            body {
+                justify-content: center;
+            }
             .split-wrapper {
                 flex-direction: row;
                 align-items: center;
                 justify-content: space-between;
-                gap: 60px;
+                gap: 80px;
             }
 
             .branding-column {
@@ -325,49 +332,36 @@
             }
 
             .brand-icon-wrapper {
-                margin: 0 0 35px 0;
+                margin: 0 0 30px 0;
+                width: 100px;
+                height: 100px;
             }
 
             .branding-content h2 {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
             }
 
             .branding-content p {
-                text-align: left;
+                font-size: 1.1rem;
                 margin: 0;
-                font-size: 1.15rem;
-                color: #cbd5e1;
             }
 
             .form-column {
                 flex: 0 0 auto;
-                width: 500px;
+                width: 480px;
             }
 
             .form-card {
-                height: 100%;
-                display: flex;
-                flex-direction: column;
+                padding: 40px;
             }
         }
 
-        /* --- MOBILE RESPONSIVENESS & FIX --- */
+        /* --- MOBILE LAYOUT --- */
         @media (max-width: 991px) {
-            /* FIX: Mobile par centering hatao taaki scroll kaam kare */
             body {
                 justify-content: flex-start;
-                padding-top: 60px;
-            }
-
-            .main-heading-section h1 {
-                font-size: 2.2rem;
-            }
-            .form-card {
-                padding: 30px 20px;
-            }
-            /* Thoda extra padding bottom mobile par button visibility ke liye */
-            .form-column {
-                padding-bottom: 40px;
+                padding-top: 50px;
+                padding-bottom: 50px;
             }
         }
     </style>
@@ -377,7 +371,7 @@
     <!-- Background Glow Blob -->
     <div class="bg-blob"></div>
 
-    <!-- Top Main Heading (Global) -->
+    <!-- Top Main Heading -->
     <div class="main-heading-section">
         <h1>Let’s Build Your Brand Together</h1>
     </div>
@@ -388,7 +382,6 @@
         <div class="branding-column">
             <div class="branding-content" id="brandingContent">
                 <div class="brand-icon-wrapper">
-                    <!-- Logo Image -->
                     <img src="logo.png" alt="Xzeal Logo" class="brand-logo-img">
                 </div>
                 <h2>Start Your Journey</h2>
@@ -458,89 +451,64 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             
-            // --- SMOOTH ENHANCED ANIMATIONS ---
-            const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+            // FIX 4: Lighter GSAP Easing (power2 instead of power4)
+            const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
-            // 1. Top Heading fades in from top
+            // 1. Heading
             tl.to(".main-heading-section", {
                 opacity: 1,
                 y: 0,
-                duration: 1,
-                ease: "power3.out"
+                duration: 0.8
             })
             
-            // 2. Left Content slides from Left
+            // 2. Left Content
             .to("#brandingContent", {
                 opacity: 1,
                 x: 0,
-                duration: 1.2
-            }, "-=0.6")
+                duration: 0.8
+            }, "-=0.5")
 
-            // 3. Right Form Card slides from Right
+            // 3. Right Form
             .to(".form-card", {
                 opacity: 1,
-                x: 0,
-                duration: 1.2
-            }, "-=0.9") 
+                y: 0,
+                duration: 0.8
+            }, "-=0.6")
 
-            // 4. Icon Float (Continuous)
+            // 4. Icon Float (Simple)
             .to(".brand-icon-wrapper", {
-                y: -8,
+                y: -5,
                 duration: 2,
                 repeat: -1,
                 yoyo: true,
                 ease: "sine.inOut"
-            }, "-=0.5")
+            }, "-=0.3")
 
-            // 5. Inputs Stagger In
+            // 5. Inputs Stagger (Reduced duration)
             .to(".input-group", {
                 opacity: 1,
                 y: 0,
-                duration: 0.8,
-                stagger: 0.08,
-                ease: "back.out(1.7)"
-            }, "-=0.6");
+                duration: 0.5,
+                stagger: 0.05
+            }, "-=0.4");
 
 
-            // --- INTERACTIONS ---
-            const inputs = document.querySelectorAll(".form-input, .form-textarea");
-            
-            inputs.forEach(input => {
-                input.addEventListener("focus", () => {
-                    gsap.to(input, { borderColor: "#6366f1", scale: 1.01, duration: 0.3 });
-                });
-
-                input.addEventListener("blur", () => {
-                    if(input.value.trim() === "") {
-                        gsap.to(input, { borderColor: "#2d3748", scale: 1, duration: 0.3 });
-                    }
-                });
-            });
-
-            // --- SUBMIT LOGIC ---
+            // --- SUBMIT LOGIC (Optimized) ---
             const btn = document.getElementById("submitBtn");
             const btnSpan = btn.querySelector("span");
             const btnIcon = btn.querySelector("i");
 
-            btn.addEventListener("mouseenter", () => {
-                if(!btn.classList.contains("success-state")) {
-                    gsap.to(btn, { scale: 1.02, duration: 0.3 });
-                }
-            });
-
-            btn.addEventListener("mouseleave", () => {
-                gsap.to(btn, { scale: 1, duration: 0.3 });
-            });
+            // JS hover hata diya hai, ab CSS use ho raha hai
 
             btn.addEventListener("click", () => {
                 const form = document.getElementById('enquiryForm');
                 if(!form.checkValidity()) {
                     // Shake animation for error
-                    gsap.to(".form-card", { x: [-10, 10, -10, 10, 0], duration: 0.4, ease: "power2.inOut" });
+                    gsap.to(".form-card", { x: [-10, 10, -10, 10, 0], duration: 0.3 });
                     return;
                 }
 
-                // Click Pulse
+                // Button Click Pulse
                 gsap.to(btn, { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1 });
 
                 // Loading State
@@ -554,12 +522,10 @@
                     btnIcon.className = "fas fa-check-circle";
                     btn.classList.add("success-state");
 
-                    // Success Color Change
+                    // Color Change
                     gsap.to(btn, { 
                         backgroundColor: "#10b981", 
-                        boxShadow: "0 0 30px rgba(16, 185, 129, 0.5)",
-                        duration: 0.4,
-                        ease: "power2.out"
+                        duration: 0.3
                     });
 
                     // Reset after delay
@@ -570,15 +536,13 @@
                         btn.classList.remove("success-state");
                         btn.style.pointerEvents = "auto";
                         
-                        // Reset button style smoothly
                         gsap.to(btn, { 
                             backgroundColor: "#6366f1", 
-                            boxShadow: "0 10px 25px -5px rgba(99, 102, 241, 0.4)",
                             duration: 0.5 
                         });
-                    }, 3000);
+                    }, 2500); // Thoda fast reset
 
-                }, 2000);
+                }, 1500); // Thoda fast response
             });
 
         });
