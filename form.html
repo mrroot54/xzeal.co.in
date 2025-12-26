@@ -14,7 +14,7 @@
     <style>
         :root {
             --bg-color: #0b0d10;
-            --card-bg: rgba(26, 29, 36, 0.6); /* Thoda transparent kiya */
+            --card-bg: rgba(26, 29, 36, 0.6);
             --glass-border: rgba(255, 255, 255, 0.1);
             --text-main: #ffffff;
             --text-secondary: #94a3b8;
@@ -43,10 +43,11 @@
             display: flex; 
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* Default Desktop Center */
             padding: 20px;
             position: relative;
-            overflow: hidden;
+            /* FIX: Changed from overflow: hidden to overflow-x: hidden to allow scrolling */
+            overflow-x: hidden; 
         }
 
         /* Decorative Background Blob */
@@ -81,7 +82,6 @@
         .main-heading-section h1 {
             font-size: 3rem;
             font-weight: 800;
-            /* Enhanced Gradient Text */
             background: linear-gradient(135deg, #ffffff 20%, #a5b4fc 60%, #6366f1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -263,7 +263,7 @@
             left: 16px;
             font-size: 0.8rem;
             color: var(--accent-color);
-            background-color: var(--card-bg); /* Matches card bg for clean look */
+            background-color: var(--card-bg);
             font-weight: 600;
             border-radius: 4px;
         }
@@ -351,13 +351,23 @@
             }
         }
 
-        /* --- MOBILE RESPONSIVENESS --- */
+        /* --- MOBILE RESPONSIVENESS & FIX --- */
         @media (max-width: 991px) {
+            /* FIX: Mobile par centering hatao taaki scroll kaam kare */
+            body {
+                justify-content: flex-start;
+                padding-top: 60px;
+            }
+
             .main-heading-section h1 {
                 font-size: 2.2rem;
             }
             .form-card {
                 padding: 30px 20px;
+            }
+            /* Thoda extra padding bottom mobile par button visibility ke liye */
+            .form-column {
+                padding-bottom: 40px;
             }
         }
     </style>
@@ -471,7 +481,7 @@
                 opacity: 1,
                 x: 0,
                 duration: 1.2
-            }, "-=0.9") // Overlap for smoother feel
+            }, "-=0.9") 
 
             // 4. Icon Float (Continuous)
             .to(".brand-icon-wrapper", {
@@ -488,7 +498,7 @@
                 y: 0,
                 duration: 0.8,
                 stagger: 0.08,
-                ease: "back.out(1.7)" // Slight spring effect
+                ease: "back.out(1.7)"
             }, "-=0.6");
 
 
