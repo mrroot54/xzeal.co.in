@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Admin Dashboard - Xzeal</title>
+    <title>Admin Login - Digital Marketing</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,15 +14,14 @@
     <style>
         :root {
             --bg-color: #0f172a;
-            --sidebar-bg: rgba(30, 41, 59, 0.95);
-            --card-bg: rgba(30, 41, 59, 0.5);
-            --glass-border: rgba(255, 255, 255, 0.05);
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
             --text-main: #ffffff;
             --text-secondary: #94a3b8;
-            --accent-color: #38bdf8;
+            --accent-color: #38bdf8; /* Digital Blue */
             --accent-hover: #0ea5e9;
-            --danger-color: #ef4444;
-            --success-color: #10b981;
+            --input-bg: rgba(15, 23, 42, 0.6);
+            --border-color: #334155;
         }
 
         * {
@@ -37,466 +36,431 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             min-height: 100vh;
-            display: flex;
-            overflow-x: hidden;
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Default Desktop Center */
+            /* FIX 1: Vertical scrolling enable ki */
+            overflow-x: hidden; 
+            position: relative;
+            width: 100%;
         }
 
-        /* --- SIDEBAR --- */
-        .sidebar {
-            width: 260px;
-            background: var(--sidebar-bg);
-            border-right: 1px solid var(--glass-border);
-            height: 100vh;
-            position: fixed;
-            left: 0;
+        /* Canvas for Digital Marketing Animation */
+        #networkCanvas {
+            position: fixed; /* Fixed taaki scroll karne par bhi rahe */
             top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            /* FIX 2: Touch blocking rokne ke liye */
+            pointer-events: none; 
+        }
+
+        /* Login Container */
+        .login-container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 1000px;
+            min-height: 600px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Left Side: Branding */
+        .branding-section {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, transparent 100%);
+            padding: 60px;
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s ease;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-        }
-
-        .sidebar-header {
-            padding: 30px 20px;
-            display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 15px;
-            border-bottom: 1px solid var(--glass-border);
+            border-right: 1px solid var(--glass-border);
+            text-align: center;
         }
 
-        /* Logo Circle Style */
+        /* --- LOGO CONTAINER ANIMATION --- */
+        .logo-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 40px;
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        /* --- CIRCLE WITH SOLID BACKGROUND --- */
         .logo-circle {
-            width: 45px;
-            height: 45px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
-            border: 2px solid var(--accent-color); 
-            background: #0f172a;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            border: 3px solid var(--accent-color); 
+            /* Solid Dark Background for clarity */
+            background: #0f172a; 
+            
+            /* Strong Glow */
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.6); 
+            
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 15px;
             overflow: hidden;
+            position: relative;
         }
 
         .brand-logo-img {
-            width: 70%;
-            height: 70%;
+            width: 80%;
+            height: 80%;
             object-fit: contain;
             display: block;
         }
 
-        .logo-text {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .nav-links {
-            list-style: none;
-            padding: 20px;
-            flex: 1;
-        }
-
-        .nav-item {
-            margin-bottom: 10px;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 12px 15px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--accent-color);
-        }
-
-        .nav-link i {
-            font-size: 1.1rem;
-            width: 20px;
-        }
-
-        /* User Profile Section */
-        .user-profile {
-            padding: 20px;
-            border-top: 1px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-top: auto; 
-        }
-
-        /* Profile Image - Default */
-        .user-avatar-img {
-            width: 50px; 
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid var(--accent-color);
-            object-fit: cover;
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
-        }
-
-        .user-info p {
-            font-size: 0.9rem;
-        }
-        .user-name {
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 2px;
-        }
-        .user-role {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-        }
-
-        /* --- MAIN CONTENT --- */
-        .main-content {
-            margin-left: 260px;
-            flex: 1;
-            padding: 30px;
-            transition: margin-left 0.3s ease;
-            position: relative;
-        }
-
-        /* Top Header */
-        .top-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-
-        .menu-toggle {
-            display: none; 
+        /* Logo Text below image */
+        .brand-name {
             font-size: 1.5rem;
-            color: var(--text-main);
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .header-title h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .stat-card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .stat-info h3 {
-            font-size: 2.5rem; 
             font-weight: 700;
-            margin-bottom: 5px;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .branding-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
             background: linear-gradient(to right, #fff, #38bdf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.2;
         }
 
-        .stat-info p {
-            color: var(--text-secondary);
+        .branding-section p {
             font-size: 1rem;
-            font-weight: 500;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 400px;
         }
 
-        .stat-icon {
-            width: 55px;
-            height: 55px;
+        /* Right Side: Form */
+        .form-section {
+            flex: 0 0 450px;
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-header {
+            margin-bottom: 40px;
+        }
+
+        .form-header h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            color: var(--text-secondary);
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .form-input {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
+            padding: 16px 20px 16px 45px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .form-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.1);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .form-input:focus + .input-icon {
+            color: var(--accent-color);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-        }
-
-        .stat-blue { background: rgba(56, 189, 248, 0.1); color: #38bdf8; }
-
-        /* Recent Enquiries Section */
-        .recent-section {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 25px;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap; 
             gap: 10px;
         }
 
-        .section-header h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
+        .login-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(56, 189, 248, 0.4);
         }
 
-        .view-all-btn {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        .login-btn:active {
+            transform: translateY(0);
         }
 
-        /* --- RESPONSIVE FIXES (MOBILE - NO SCROLL FIX) --- */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 280px; 
-                transform: translateX(-100%);
-                box-shadow: 5px 0 15px rgba(0,0,0,0.5);
-                
-                /* FIX: Prevent Sidebar scrolling */
-                overflow: hidden; 
-                /* Force content to fit in 100vh */
-                height: 100vh; 
+        /* Responsive Design */
+        @media (max-width: 991px) {
+            /* FIX 3: Mobile par content top se start ho */
+            body {
+                justify-content: flex-start;
+                padding-top: 50px;
+                padding-bottom: 50px;
             }
 
-            .sidebar.active {
-                transform: translateX(0);
+            .login-container {
+                flex-direction: column;
+                min-height: auto;
+                margin: 20px 0;
             }
 
-            .main-content {
-                margin-left: 0;
-                padding: 20px; 
+            .branding-section {
+                padding: 50px 30px;
+                border-right: none;
+                border-bottom: 1px solid var(--glass-border);
             }
 
-            .menu-toggle {
-                display: block;
+            .logo-circle {
+                width: 90px;
+                height: 90px;
             }
 
-            .header-title h2 {
-                font-size: 1.6rem;
-            }
-
-            /* --- TIGHT PACKING FOR ONE FRAME --- */
-
-            /* Header: Kam Padding */
-            .sidebar-header {
-                padding: 15px 20px; 
-            }
-            
-            .logo-text {
-                font-size: 1rem;
-            }
-
-            /* Nav Links: Kam Padding & Gaps */
-            .nav-links {
-                padding: 5px 20px; /* Bahut kam padding */
-            }
-
-            .nav-item {
-                margin-bottom: 5px; /* Chhota gap */
-            }
-
-            .nav-link {
-                padding: 10px 15px; /* Chhota padding */
-                font-size: 0.9rem; /* Chhota font */
-            }
-
-            /* Logout Button: Remove Margin Auto, keep it close */
-            .nav-item[style*="margin-top: auto"] {
-                margin-top: 5px !important; /* Sirf thoda gap, nahi toh push karega */
-                margin-bottom: 2px;
-            }
-
-            /* Profile: Compact Size */
-            .user-profile {
-                padding: 10px 20px; /* Kam padding */
-                margin-top: 5px; /* Gap kam kiya */
-                border-top: 1px solid var(--glass-border);
-            }
-
-            .user-avatar-img {
-                width: 38px;    /* Chhota image */
-                height: 38px;
-            }
-
-            .user-info p {
-                font-size: 0.8rem;
-            }
-            
-            .user-name {
-                font-size: 0.85rem;
-            }
-            
-            .user-role {
-                font-size: 0.7rem;
-            }
-
-            /* Stats Stack 1 Column */
-            .stats-grid {
-                grid-template-columns: 1fr !important;
-                gap: 20px;
-            }
-
-            .stat-card {
-                padding: 20px;
-            }
-
-            .stat-info h3 {
+            .branding-section h2 {
                 font-size: 2rem;
             }
 
-            .stat-icon {
-                width: 45px;
-                height: 45px;
-                font-size: 1.5rem;
-            }
-
-            .section-header h3 {
-                font-size: 1.2rem;
+            .form-section {
+                padding: 40px 30px;
+                flex: auto;
             }
         }
 
         @media (max-width: 480px) {
-            .main-content {
-                padding: 15px; 
-            }
-
-            .stat-info h3 {
+            .branding-section h2 {
                 font-size: 1.8rem;
+            }
+            .form-header h3 {
+                font-size: 1.6rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar -->
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <!-- Logo.png -->
-            <div class="logo-circle">
-                <img src="logo.png" alt="Xzeal Logo" class="brand-logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-bolt\'></i>'">
-            </div>
-            <span class="logo-text">Xzeal Admin</span>
-        </div>
+    <!-- Background Canvas for Digital Marketing Animation -->
+    <canvas id="networkCanvas"></canvas>
 
-        <ul class="nav-links">
-            <!-- Dashboard -->
-            <li class="nav-item">
-                <a href="#" class="nav-link active">
-                    <i class="fas fa-th-large"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <!-- Enquiries -->
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-envelope-open-text"></i>
-                    <span>Enquiries</span>
-                </a>
-            </li>
+    <!-- Main Login Card -->
+    <div class="login-container">
+        
+        <!-- Left: Branding -->
+        <div class="branding-section">
             
-            <!-- Logout -->
-            <li class="nav-item" style="margin-top: auto;">
-                <a href="index.html" class="nav-link" style="color: var(--danger-color);">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Logout</span>
-                </a>
-            </li>
-        </ul>
-
-        <!-- Profile Section -->
-        <div class="user-profile">
-            <!-- profile.jpeg -->
-            <img src="profile.jpeg" alt="Jay Parkash" class="user-avatar-img" onerror="this.src='https://picsum.photos/seed/jay/100/100'">
-            <div class="user-info">
-                <p class="user-name">Jay Parkash</p>
-                <p class="user-role">Admin</p>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Header -->
-        <header class="top-header">
-            <div class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </div>
-            <div class="header-title">
-                <h2>Overview</h2>
-                <p style="color: var(--text-secondary); font-size: 0.9rem;">Welcome back, here's what's happening today.</p>
-            </div>
-        </header>
-
-        <!-- Stats Grid -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-info">
-                    <h3>124</h3>
-                    <p>Total Enquiries</p>
+            <!-- Logo Wrapper (Animation applied here) -->
+            <div class="logo-wrapper">
+                <!-- Circle with Solid Background -->
+                <div class="logo-circle">
+                    <!-- onerror: Agar logo load nahi hua to Lightning icon dikhega -->
+                    <img src="logo.png" alt="Xzeal Logo" class="brand-logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-bolt\' style=\'font-size:40px; color:#fff;\'></i>'">
                 </div>
-                <div class="stat-icon stat-blue">
-                    <i class="fas fa-envelope"></i>
-                </div>
+                <!-- Text Below Logo -->
+                <div class="brand-name">Xzeal Admin</div>
             </div>
+            
+            <h2>Hey 👋, Jay Parkash</h2>
+            <p>Welcome back to the Digital Marketing Control Center. Manage your campaigns, track SEO, and analyze growth from a single dashboard.</p>
         </div>
 
-        <!-- Recent Enquiries -->
-        <div class="recent-section">
-            <div class="section-header">
-                <h3>Recent Enquiries</h3>
-                <a href="#" class="view-all-btn">
-                    View All <i class="fas fa-arrow-right"></i>
-                </a>
+        <!-- Right: Login Form -->
+        <div class="form-section">
+            <div class="form-header">
+                <h3>Admin Login</h3>
+                <p>Enter your credentials to access the dashboard.</p>
             </div>
-            <!-- Placeholder Data -->
-            <p style="color: var(--text-secondary); text-align: center; padding: 40px 0; font-size: 0.95rem;">
-                <i class="fas fa-spinner fa-spin"></i> Loading latest enquiries...
-            </p>
+
+            <form id="loginForm" onsubmit="event.preventDefault();">
+                <div class="input-group">
+                    <input type="email" id="email" class="form-input" placeholder=" " required>
+                    <i class="fas fa-envelope input-icon"></i>
+                    <label for="email" style="position:absolute; left:45px; top:16px; color:var(--text-secondary); pointer-events:none; transition:0.3s; background:transparent; padding:0 4px; font-size:1rem;">Email Address</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="password" class="form-input" placeholder=" " required>
+                    <i class="fas fa-lock input-icon"></i>
+                    <label for="password" style="position:absolute; left:45px; top:16px; color:var(--text-secondary); pointer-events:none; transition:0.3s; background:transparent; padding:0 4px; font-size:1rem;">Password</label>
+                </div>
+
+                <button type="submit" class="login-btn" id="loginBtn">
+                    <span>Access Dashboard</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
         </div>
-    </main>
+    </div>
 
     <script>
-        // --- Sidebar Toggle Logic (Mobile) ---
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebar = document.getElementById('sidebar');
+        // --- 1. DIGITAL MARKETING NETWORK ANIMATION (CANVAS) ---
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
 
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-        });
+        let width, height;
+        let particles = [];
+        const particleCount = window.innerWidth < 768 ? 40 : 80;
+        const connectionDistance = 150;
 
-        // Click outside to close sidebar
-        document.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
-                    sidebar.classList.remove('active');
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 1;
+                this.vy = (Math.random() - 0.5) * 1;
+                this.size = Math.random() * 2 + 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = '#38bdf8';
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < connectionDistance) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(56, 189, 248, ${1 - distance / connectionDistance})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
                 }
             }
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            resize();
+            initParticles();
         });
+
+        resize();
+        initParticles();
+        animate();
+
+
+        // --- 2. FORM INTERACTION (Label Floating) ---
+        const inputs = document.querySelectorAll('.form-input');
+
+        inputs.forEach(input => {
+            const label = input.nextElementSibling.nextElementSibling;
+            
+            input.addEventListener('focus', () => {
+                label.style.top = '-10px';
+                label.style.left = '10px';
+                label.style.fontSize = '0.8rem';
+                label.style.color = '#38bdf8';
+                label.style.backgroundColor = 'rgba(15, 23, 42, 0.8)';
+            });
+
+            input.addEventListener('blur', () => {
+                if(input.value === '') {
+                    label.style.top = '16px';
+                    label.style.left = '45px';
+                    label.style.fontSize = '1rem';
+                    label.style.color = '#94a3b8';
+                }
+            });
+
+            if(input.value !== '') {
+                label.style.top = '-10px';
+                label.style.left = '10px';
+                label.style.fontSize = '0.8rem';
+            }
+        });
+
     </script>
 </body>
 </html>
