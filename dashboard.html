@@ -131,6 +131,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            /* Default (Desktop): Push to bottom */
             margin-top: auto; 
         }
 
@@ -270,17 +271,14 @@
             gap: 5px;
         }
 
-        /* --- RESPONSIVE FIXES (MOBILE - NO SCROLL FIX) --- */
+        /* --- RESPONSIVE FIXES (MOBILE - NO SCROLL FINAL) --- */
         @media (max-width: 768px) {
             .sidebar {
                 width: 280px; 
                 transform: translateX(-100%);
                 box-shadow: 5px 0 15px rgba(0,0,0,0.5);
-                
-                /* FIX: Prevent Sidebar scrolling */
-                overflow: hidden; 
-                /* Force content to fit in 100vh */
-                height: 100vh; 
+                overflow: hidden; /* Ensure no scroll */
+                height: 100vh; /* Strict height */
             }
 
             .sidebar.active {
@@ -300,47 +298,50 @@
                 font-size: 1.6rem;
             }
 
-            /* --- TIGHT PACKING FOR ONE FRAME --- */
+            /* --- COMPACT LAYOUT --- */
 
-            /* Header: Kam Padding */
             .sidebar-header {
-                padding: 15px 20px; 
+                padding: 10px 20px; /* Bahut kam padding */
+            }
+
+            .logo-circle {
+                width: 40px;
+                height: 40px;
             }
             
             .logo-text {
                 font-size: 1rem;
             }
 
-            /* Nav Links: Kam Padding & Gaps */
             .nav-links {
-                padding: 5px 20px; /* Bahut kam padding */
+                padding: 5px 20px; /* Min padding */
             }
 
             .nav-item {
                 margin-bottom: 5px; /* Chhota gap */
             }
 
-            .nav-link {
-                padding: 10px 15px; /* Chhota padding */
-                font-size: 0.9rem; /* Chhota font */
-            }
-
-            /* Logout Button: Remove Margin Auto, keep it close */
+            /* Logout Button Fix */
             .nav-item[style*="margin-top: auto"] {
-                margin-top: 5px !important; /* Sirf thoda gap, nahi toh push karega */
+                margin-top: 5px !important; /* Space kam kiya */
                 margin-bottom: 2px;
             }
 
-            /* Profile: Compact Size */
+            .nav-link {
+                padding: 10px 15px; 
+                font-size: 0.9rem;
+            }
+
+            /* --- FIX: Force Profile to not push down --- */
             .user-profile {
-                padding: 10px 20px; /* Kam padding */
-                margin-top: 5px; /* Gap kam kiya */
+                padding: 12px 20px; /* Compact padding */
+                margin-top: 0 !important; /* FIX: Auto margin hata diya */
                 border-top: 1px solid var(--glass-border);
             }
 
             .user-avatar-img {
-                width: 38px;    /* Chhota image */
-                height: 38px;
+                width: 36px;    /* Chhota image */
+                height: 36px;
             }
 
             .user-info p {
