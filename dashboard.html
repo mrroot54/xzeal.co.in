@@ -135,7 +135,7 @@
 
         /* Profile Image - Bigger Size */
         .user-avatar-img {
-            width: 50px; /* Thoda bada kiya */
+            width: 50px; 
             height: 50px;
             border-radius: 50%;
             border: 2px solid var(--accent-color);
@@ -174,10 +174,11 @@
         }
 
         .menu-toggle {
-            display: none;
+            display: none; 
             font-size: 1.5rem;
             color: var(--text-main);
             cursor: pointer;
+            padding: 5px;
         }
 
         .header-title h2 {
@@ -210,7 +211,7 @@
         }
 
         .stat-info h3 {
-            font-size: 2.5rem; /* Stats number bada */
+            font-size: 2.5rem; 
             font-weight: 700;
             margin-bottom: 5px;
             background: linear-gradient(to right, #fff, #38bdf8);
@@ -249,6 +250,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            flex-wrap: wrap; /* Agar screen chhoti ho toh wrap ho jayega */
+            gap: 10px;
         }
 
         .section-header h3 {
@@ -266,10 +269,12 @@
             gap: 5px;
         }
 
-        /* Responsive */
-        @media (max-width: 991px) {
+        /* --- RESPONSIVE FIXES (Mobile) --- */
+        @media (max-width: 768px) {
             .sidebar {
+                width: 280px; /* Mobile par thoda chhota drawer */
                 transform: translateX(-100%);
+                box-shadow: 5px 0 15px rgba(0,0,0,0.5);
             }
 
             .sidebar.active {
@@ -278,14 +283,50 @@
 
             .main-content {
                 margin-left: 0;
-                padding: 20px;
+                padding: 20px; /* Kam padding for more space */
             }
 
             .menu-toggle {
                 display: block;
             }
 
-            .stat-info h3 { font-size: 2rem; }
+            .header-title h2 {
+                font-size: 1.6rem;
+            }
+
+            /* Stats Stack 1 Column */
+            .stats-grid {
+                grid-template-columns: 1fr !important; /* Ek niche ek card aayega */
+                gap: 20px;
+            }
+
+            .stat-card {
+                padding: 20px;
+            }
+
+            .stat-info h3 {
+                font-size: 2rem; /* Thoda chhota */
+            }
+
+            .stat-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5rem;
+            }
+
+            .section-header h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 15px; /* Bahut chhote phones par kam padding */
+            }
+
+            .stat-info h3 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
@@ -345,7 +386,7 @@
             </div>
             <div class="header-title">
                 <h2>Overview</h2>
-                <p style="color: var(--text-secondary);">Welcome back, here's what's happening today.</p>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">Welcome back, here's what's happening today.</p>
             </div>
         </header>
 
@@ -381,6 +422,7 @@
         // --- Sidebar Toggle Logic (Mobile) ---
         const menuToggle = document.getElementById('menuToggle');
         const sidebar = document.getElementById('sidebar');
+        const mainContent = document.querySelector('.main-content');
 
         menuToggle.addEventListener('click', () => {
             sidebar.classList.toggle('active');
@@ -388,7 +430,7 @@
 
         // Click outside to close sidebar
         document.addEventListener('click', (e) => {
-            if (window.innerWidth <= 991) {
+            if (window.innerWidth <= 768) {
                 if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
                     sidebar.classList.remove('active');
                 }
