@@ -16,6 +16,8 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -1190,6 +1192,323 @@
             --icon-bg: rgba(20, 184, 166, 0.2);
             --icon-color: #14b8a6;
         }
+
+        /* =========================================
+           MEET OUR TEAM SECTION (INTEGRATED)
+           ========================================= */
+        .team-section {
+            padding: 80px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            justify-content: center;
+            width: 100%;
+            background: #0a0a0a;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .team-section-header {
+            text-align: center;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            width: 100%;
+            max-width: 800px;
+            z-index: 10;
+        }
+
+        .team-section-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #fff, #a5a5a5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .team-section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Team Slider Container */
+        .team-slider-viewport {
+            width: 100%;
+            max-width: 1000px;
+            overflow: hidden; 
+            position: relative;
+            padding: 50px 0; 
+            opacity: 0;
+            margin: 0 auto;
+            z-index: 5;
+        }
+
+        .team-slider-track {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            transform: translateX(0); 
+            cursor: grab;
+            min-width: min-content; 
+        }
+
+        .team-slider-track:active {
+            cursor: grabbing;
+        }
+
+        /* Team Card Styles */
+        .team-card {
+            min-width: 300px;
+            width: 320px; 
+            max-width: 350px;
+            flex: 0 0 auto;
+            background-color: #1a1d24;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            margin: 0 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            user-select: none;
+            border: 1px solid transparent;
+        }
+
+        /* Active State Desktop */
+        .team-card.active {
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.15);
+            border: 1px solid #6366f1;
+            z-index: 10;
+        }
+
+        .card-image-wrapper {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            background-color: #000; 
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            object-position: top center; 
+            transform-origin: center;
+        }
+
+        .card-content {
+            padding: 25px;
+            position: relative;
+            z-index: 2;
+            background: #1a1d24;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .member-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #ffffff;
+            transition: color 0.3s ease;
+        }
+
+        .member-position {
+            font-size: 0.85rem; 
+            color: #6366f1;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .member-intro {
+            font-size: 0.95rem;
+            color: #a0a0a0;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff4757; 
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: #ff4757;
+            color: #fff;
+        }
+
+        /* Team Navigation Buttons */
+        .team-slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            max-width: 1100px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .team-nav-btn {
+            pointer-events: auto;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .team-nav-btn:hover {
+            background: #6366f1;
+            transform: scale(1.1);
+        }
+
+        /* Team Background Glows */
+        .team-bg-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Team Responsive Media Queries */
+        @media (max-width: 900px) {
+            .team-card {
+                width: 45vw;
+                max-width: 320px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .team-section {
+                padding: 40px 0 100px;
+            }
+
+            .team-section-title { 
+                font-size: 1.6rem; 
+                margin-bottom: 15px;
+            }
+
+            .team-section-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .team-slider-viewport {
+                padding: 30px 0; 
+            }
+
+            .team-card {
+                width: 85vw;
+                max-width: 360px; 
+                min-width: 280px;
+                margin: 0;
+                border-radius: 15px;
+                height: auto;
+            }
+
+            .team-slider-track {
+                gap: 15px; 
+            }
+
+            .card-image-wrapper {
+                height: 230px; 
+            }
+
+            .card-content {
+                padding: 20px;
+            }
+
+            .team-card.active {
+                transform: none !important; 
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                border: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .member-name { font-size: 1.2rem; }
+            .member-position { font-size: 0.7rem; margin-bottom: 10px; }
+            .member-intro {
+                font-size: 0.85rem;
+                margin-bottom: 15px;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            
+            .team-slider-nav {
+                left: 0; 
+                transform: none;
+                width: 100%;
+                max-width: 100%;
+                padding: 0 10px;
+                top: 40%;
+                z-index: 30;
+            }
+
+            .team-nav-btn {
+                width: 40px;
+                height: 40px;
+                background: rgba(0,0,0,0.6);
+                border: 1px solid rgba(255,255,255,0.2);
+                backdrop-filter: blur(4px);
+            }
+            
+            .team-nav-btn:hover {
+                background: rgba(99, 102, 241, 0.9);
+                transform: scale(1.1);
+            }
+
+            .social-btn {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        
+        @media (max-width: 350px) {
+            .team-card {
+                width: 90vw;
+            }
+            .card-image-wrapper {
+                height: 200px;
+            }
+        }
         
         /* Portfolio Section - NEW */
         .portfolio-section {
@@ -1597,17 +1916,17 @@
             color: var(--text-primary);
         }
         
-        .stat-item {
+        .stats-card .stat-item {
             display: flex;
             align-items: center;
             margin-bottom: 15px;
         }
         
-        .stat-item:last-child {
+        .stats-card .stat-item:last-child {
             margin-bottom: 0;
         }
         
-        .stat-icon {
+        .stats-card .stat-icon {
             width: clamp(40px, 5vw, 50px);
             height: clamp(40px, 5vw, 50px);
             border-radius: 50%;
@@ -1620,18 +1939,18 @@
             font-size: clamp(16px, 2.5vw, 20px);
         }
         
-        .stat-info {
+        .stats-card .stat-info {
             flex: 1;
         }
         
-        .stat-value {
+        .stats-card .stat-value {
             font-size: clamp(20px, 3vw, 24px);
             font-weight: 700;
             margin-bottom: 5px;
             color: var(--text-primary);
         }
         
-        .stat-label {
+        .stats-card .stat-label {
             font-size: clamp(14px, 2vw, 16px);
             color: var(--text-secondary);
         }
@@ -1653,10 +1972,11 @@
             display: flex;
         }
         
-        .lightbox-content {
+        .lightbox-modal .lightbox-content {
             max-width: 90%;
             max-height: 90%;
             position: relative;
+            padding: 0;
         }
         
         .lightbox-image {
@@ -2195,6 +2515,331 @@
         .modal-btn-secondary:hover {
             background: rgba(255, 255, 255, 0.12);
             color: var(--text-primary);
+        }
+
+        /* =========================================
+           ENQUIRY FORM SECTION (NEW)
+           ========================================= */
+        .contact-section {
+            padding: 80px 20px 100px;
+            min-height: 100vh;
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; 
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            background-color: #0b0d10;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 40%);
+            color: #ffffff;
+        }
+
+        /* Background Blob Optimization */
+        .contact-section .bg-blob {
+            position: absolute;
+            width:500px;
+            height:500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(60px);
+            z-index: -1;
+            animation: pulseBg 10s infinite alternate;
+            pointer-events: none;
+            will-change: opacity;
+        }
+
+        @keyframes pulseBg {
+            0% { opacity: 0.5; }
+            100% { opacity: 0.8; }
+        }
+
+        /* --- TOP MAIN HEADING --- */
+        .contact-heading-section {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 20;
+            opacity: 0;
+            transform: translateY(-20px);
+            width: 100%;
+            padding: 0 15px;
+        }
+
+        .contact-heading-section h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 20%, #a5b4fc 60%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height:1.2;
+            letter-spacing: -1px;
+        }
+
+        /* --- SPLIT WRAPPER --- */
+        .contact-split-wrapper {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            position: relative;
+            z-index: 10;
+            margin-bottom: 30px;
+        }
+
+        /* --- LEFT SIDE (Branding) --- */
+        .contact-branding-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .contact-form-column {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .contact-branding-content {
+            max-width: 500px;
+            opacity: 0;
+        }
+
+        .contact-brand-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            position: relative;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+            border: 2px solid #e0e7ff;
+        }
+
+        .contact-brand-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            z-index: 2; 
+            display: block;
+            padding: 12px;
+        }
+
+        .contact-brand-icon-wrapper::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+            opacity: 0;
+            animation: ripple 3s infinite;
+            z-index: 1;
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .contact-branding-content h2 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .contact-branding-content p {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        /* --- FORM CARD --- */
+        .contact-form-card {
+            background: rgba(26, 29, 36, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 30px 20px;
+            border-radius: 20px;
+            border:1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Input Fields */
+        .contact-input-group {
+            position: relative;
+            margin-bottom: 18px;
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        .contact-input, .contact-select, .contact-textarea {
+            width: 100%;
+            background-color: rgba(19, 21, 26, 0.8);
+            border:1px solid #2d3748;
+            border-radius: 12px;
+            padding: 15px 16px;
+            font-size: 16px;
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            outline: none;
+            transition: all 0.2s ease-out;
+            appearance: none;
+        }
+
+        .contact-input:focus, .contact-select:focus, .contact-textarea:focus {
+            border-color: #6366f1;
+            background-color: rgba(19, 21, 26, 0.95);
+            transform: scale(1.01);
+        }
+
+        .contact-select-wrapper {
+            position: relative;
+        }
+        
+        .contact-select-wrapper::after {
+            content: '\f107';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            pointer-events: none;
+        }
+
+        .contact-textarea {
+            resize: none;
+            min-height: 90px;
+        }
+
+        .contact-label {
+            position: absolute;
+            left: 16px;
+            top: 16px;
+            color: #94a3b8;
+            font-size: 16px;
+            pointer-events: none;
+            transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background-color: transparent;
+            padding: 0 2px;
+        }
+
+        .contact-input:focus ~ .contact-label,
+        .contact-select:focus ~ .contact-label,
+        .contact-textarea:focus ~ .contact-label,
+        .contact-input:not(:placeholder-shown) ~ .contact-label,
+        .contact-textarea:not(:placeholder-shown) ~ .contact-label,
+        .contact-select:valid ~ .contact-label {
+            top: -9px;
+            left: 12px;
+            font-size: 0.75rem;
+            color: #6366f1;
+            background-color: rgba(26, 29, 36, 0.75);
+            font-weight: 600;
+            border-radius: 2px;
+        }
+
+        /* Submit Button */
+        .contact-submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #6366f1;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size:1rem;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px -5px rgba(99, 102, 241, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .contact-submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        .contact-submit-btn.success-state {
+            background-color: #10b981;
+            pointer-events: none;
+        }
+
+        /* --- DESKTOP LAYOUT --- */
+        @media (min-width: 992px) {
+            .contact-section {
+                justify-content: center;
+            }
+            .contact-split-wrapper {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 80px;
+            }
+
+            .contact-branding-column {
+                flex: 1;
+                align-items: flex-start;
+                text-align: left;
+                padding: 0;
+            }
+
+            .contact-branding-content {
+                max-width: 100%;
+            }
+
+            .contact-brand-icon-wrapper {
+                margin: 0 0 30px 0;
+                width: 100px;
+                height: 100px;
+            }
+
+            .contact-branding-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .contact-branding-content p {
+                font-size: 1.1rem;
+                margin: 0;
+            }
+
+            .contact-form-column {
+                flex: 0 0 auto;
+                width: 480px;
+            }
+
+            .contact-form-card {
+                padding: 40px;
+            }
+        }
+
+        /* --- MOBILE LAYOUT --- */
+        @media (max-width: 991px) {
+            .contact-section {
+                justify-content: flex-start;
+                padding-top: 50px;
+                padding-bottom: 50px;
+            }
         }
         
         /* Responsive Styles */
@@ -3258,10 +3903,11 @@
                 <a href="#services">Services</a>
                 <a href="#about">About Us</a>
                 <a href="#why-choose">Why Choose Us</a>
+                <a href="#team">Meet Our Team</a>
                 <a href="#portfolio">Portfolio</a>
                 <a href="#testimonials">Testimonials</a>
-                <a href="#">Blog</a>
-                <a href="#" class="nav-cta">Contact</a>
+                <a href="#contact">Contact</a>
+                <a href="#contact" class="nav-cta">Get a Quote</a>
             </div>
             
             <!-- Mobile Menu Toggle -->
@@ -3283,10 +3929,10 @@
             <a href="#services"><i class="fas fa-cogs"></i> Services</a>
             <a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
             <a href="#why-choose"><i class="fas fa-star"></i> Why Choose Us</a>
+            <a href="#team"><i class="fas fa-users"></i> Meet Our Team</a>
             <a href="#portfolio"><i class="fas fa-briefcase"></i> Portfolio</a>
             <a href="#testimonials"><i class="fas fa-comments"></i> Testimonials</a>
-            <a href="#"><i class="fas fa-blog"></i> Blog</a>
-            <a href="#" class="mobile-nav-cta"><i class="fas fa-envelope"></i> Contact Us</a>
+            <a href="#contact"><i class="fas fa-envelope"></i> Contact Us</a>
         </div>
     </div>
     
@@ -3537,6 +4183,95 @@
             </div>
         </div>
     </section>
+
+    <!-- Meet Our Team Section -->
+    <section class="team-section" id="team">
+        <div class="team-bg-glow" style="top: -100px; left: -100px;"></div>
+        <div class="team-bg-glow" style="bottom: -100px; right: -100px;"></div>
+
+        <div class="team-section-header">
+            <h2 class="team-section-title">Meet Our Team</h2>
+            <p class="team-section-subtitle">The minds behind the magic</p>
+        </div>
+
+        <div class="team-slider-viewport" id="teamSliderViewport">
+            <div class="team-slider-track" id="teamSliderTrack">
+                <!-- Member 1: Jay Prakash -->
+                <div class="team-card">
+                    <div class="card-image-wrapper">
+                        <img src="rahul.jpeg" alt="Jay Prakash" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="member-name">Jay Prakash</h3>
+                        <span class="member-position">CEO (Chief Executive Officer)</span>
+                        <p class="member-intro">Visionary leader driving strategic growth and innovation.</p>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/jay-prakash-19a08427b/" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto:imjayprakash18@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 2: Atul Rajput -->
+                <div class="team-card">
+                    <div class="card-image-wrapper">
+                        <img src="asr.jpg" alt="Atul Rajput" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="member-name">Atul Rajput</h3>
+                        <span class="member-position">CTO (Chief Technology Officer)</span>
+                        <p class="member-intro">Tech architect building robust scalable solutions.</p>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/atul54kumar/" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto:atulkumar841207@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 3: Harsh Srivastava -->
+                <div class="team-card">
+                    <div class="card-image-wrapper">
+                        <img src="harsh.jpg" alt="Harsh Srivastava" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="member-name">Harsh Srivastava</h3>
+                        <span class="member-position">Head of Video Production</span>
+                        <p class="member-intro">Crafting visual stories that captivate and inspire.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto:harshsrivastava358@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 4: Siddhi Kumari -->
+                <div class="team-card">
+                    <div class="card-image-wrapper">
+                        <img src="siddhi.jpg" alt="Siddhi Kumari" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="member-name">Siddhi Kumari</h3>
+                        <span class="member-position">Creative Director</span>
+                        <p class="member-intro">Leading design direction with passion and precision.</p>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/siddhi-kumari-787a84281/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto:siddhi1182kumari@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nav buttons positioned absolutely by CSS -->
+        <div class="team-slider-nav">
+            <button class="team-nav-btn" id="teamPrevBtn" aria-label="Previous Slide">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="team-nav-btn" id="teamNextBtn" aria-label="Next Slide">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </section>
     
     <!-- Portfolio Section - NEW -->
     <section class="portfolio-section" id="portfolio">
@@ -3710,6 +4445,89 @@
             <!-- Auto-play indicator REMOVED -->
         </div>
     </section>
+
+    <!-- =========================================
+         CONTACT / ENQUIRY SECTION (INTEGRATED)
+         ========================================= -->
+    <section class="contact-section" id="contact">
+        <!-- Background Glow Blob -->
+        <div class="bg-blob"></div>
+
+        <!-- Top Main Heading -->
+        <div class="contact-heading-section">
+            <h1>Let’s Build Your Brand Together</h1>
+        </div>
+
+        <div class="contact-split-wrapper">
+            
+            <!-- Left Side: Content -->
+            <div class="contact-branding-column">
+                <div class="contact-branding-content" id="contactBrandingContent">
+                    <div class="contact-brand-icon-wrapper">
+                        <img src="logo.png" alt="Xzeal Logo" class="contact-brand-logo-img">
+                    </div>
+                    <h2>Start Your Journey</h2>
+                    <p>Ready to scale? We combine creative design with data-driven strategies to build brands that stand out. Fill the form and let's make it happen.</p>
+                </div>
+            </div>
+
+            <!-- Right Side: Form -->
+            <div class="contact-form-column">
+                <form class="contact-form-card" id="enquiryForm" onsubmit="event.preventDefault();">
+                    
+                    <!-- Name -->
+                    <div class="contact-input-group">
+                        <input type="text" id="name" class="contact-input" placeholder=" " required autocomplete="off">
+                        <label for="name" class="contact-label">Full Name</label>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="contact-input-group">
+                        <input type="email" id="email" class="contact-input" placeholder=" " required autocomplete="off">
+                        <label for="email" class="contact-label">Email Address</label>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="contact-input-group">
+                        <input type="tel" id="phone" class="contact-input" placeholder=" " required autocomplete="off">
+                        <label for="phone" class="contact-label">Phone Number</label>
+                    </div>
+
+                    <!-- Service Dropdown -->
+                    <div class="contact-input-group contact-select-wrapper">
+                        <select id="service" class="contact-select" required>
+                            <option value="" disabled selected hidden></option>
+                            <option value="Digital Marketing">Digital Marketing</option>
+                            <option value="PPC Advertising">PPC Advertising</option>
+                            <option value="SEO Optimization">SEO Optimization</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Lead Generation">Lead Generation</option>
+                            <option value="Content Creation">Content Creation</option>
+                            <option value="API Development">API Development</option>
+                            <option value="Mobile Application">Mobile Application</option>
+                            <option value="Maintenance Services">Maintenance Services</option>
+                        </select>
+                        <label for="service" class="contact-label">Select Service</label>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="contact-input-group">
+                        <textarea id="message" class="contact-textarea" placeholder=" " required></textarea>
+                        <label for="message" class="contact-label">Project Details / Message</label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="contact-submit-btn" id="contactSubmitBtn">
+                        <span>Send Enquiry</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+    </section>
+    <!-- END ENQUIRY FORM SECTION -->
     
     <!-- Service Modal -->
     <div class="modal" id="serviceModal">
@@ -4603,6 +5421,225 @@
         `;
         document.head.appendChild(slideUpStyle);
         
+        // ---------------------- TEAM SECTION LOGIC (INTEGRATED & FIXED) ----------------------
+        
+        function initTeamSlider() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const ACCENT_COLOR = "#6366f1"; 
+
+            // --- 1. Section Entrance Animation ---
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".team-section",
+                    start: "top 80%",
+                }
+            });
+
+            tl.to(".team-section-header", {
+                opacity:1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out"
+            })
+            .to(".team-slider-viewport", {
+                opacity:1,
+                duration: 0.8,
+                ease: "power3.out"
+            }, "-=0.4");
+
+
+            // --- 2. Slider Logic ---
+            const track = document.getElementById("teamSliderTrack");
+            const cards = document.querySelectorAll(".team-card");
+            const prevBtn = document.getElementById("teamPrevBtn");
+            const nextBtn = document.getElementById("teamNextBtn");
+            const viewport = document.getElementById("teamSliderViewport");
+            const section = document.getElementById("team");
+
+            let currentTeamIndex = 1; 
+            const totalTeamCards = cards.length;
+            let cardWidth = 0;
+            let gap = 20; 
+
+            // Auto Slide Variables
+            let autoSlideInterval;
+            const autoSlideDelay = 3500;
+
+            function updateTeamDimensions() {
+                if(cards.length > 0) {
+                    cardWidth = cards[0].offsetWidth;
+                }
+                const trackStyle = window.getComputedStyle(track);
+                gap = parseInt(trackStyle.gap) || 20;
+            }
+
+            updateTeamDimensions();
+            
+            window.addEventListener('resize', () => {
+                updateTeamDimensions();
+                goToTeamSlide(currentTeamIndex, true);
+            });
+
+            function goToTeamSlide(index, immediate = false) {
+                if (index < 0) index = totalTeamCards - 1; 
+                if (index >= totalTeamCards) index = 0; 
+                
+                currentTeamIndex = index;
+
+                const viewportWidth = viewport.offsetWidth;
+                const centerOfCard = (cardWidth + gap) * index + (cardWidth / 2);
+                const xPos = centerOfCard - (viewportWidth / 2);
+
+                gsap.to(track, {
+                    x: -xPos,
+                    duration: immediate ? 0 : 0.8,
+                    ease: "power2.inOut",
+                    overwrite: true
+                });
+
+                cards.forEach((card, i) => {
+                    if (i === currentTeamIndex) {
+                        card.classList.add("active");
+                        animateTeamCardEntry(card);
+                    } else {
+                        card.classList.remove("active");
+                        resetTeamCard(card);
+                    }
+                });
+            }
+
+            function animateTeamCardEntry(card) {
+                const img = card.querySelector(".card-image");
+                const socials = card.querySelector(".social-links");
+
+                gsap.fromTo(img, 
+                    { scale: 1.0, opacity: 0.9 }, 
+                    { 
+                        scale:1.05, 
+                        opacity: 1,
+                        duration: 1.2,
+                        ease: "expo.out"
+                    }
+                );
+
+                gsap.to(socials, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    delay: 0.2,
+                    stagger: 0.05
+                });
+            }
+
+            function resetTeamCard(card) {
+                const img = card.querySelector(".card-image");
+                const socials = card.querySelector(".social-links");
+                const name = card.querySelector(".member-name");
+                
+                gsap.to(img, {
+                    scale:1.0,
+                    duration: 0.5
+                });
+
+                gsap.to(socials, {
+                    opacity: 0,
+                    y: 10,
+                    duration: 0.3
+                });
+
+                gsap.to(name, { color: "#ffffff" });
+            }
+
+            // --- 3. Auto Slide Logic ---
+            function startTeamAutoSlide() {
+                stopTeamAutoSlide();
+                autoSlideInterval = setInterval(() => {
+                    goToTeamSlide(currentTeamIndex + 1);
+                }, autoSlideDelay);
+            }
+
+            function stopTeamAutoSlide() {
+                clearInterval(autoSlideInterval);
+            }
+
+            setTimeout(() => {
+                updateTeamDimensions();
+                goToTeamSlide(currentTeamIndex, true);
+                startTeamAutoSlide();
+            }, 100);
+
+            section.addEventListener("mouseenter", stopTeamAutoSlide);
+            section.addEventListener("mouseleave", startTeamAutoSlide);
+            section.addEventListener("touchstart", stopTeamAutoSlide);
+            section.addEventListener("touchend", () => {
+                setTimeout(startTeamAutoSlide, 2000);
+            });
+
+            // --- 4. Button Controls ---
+            const handleTeamNavClick = (direction) => {
+                stopTeamAutoSlide();
+                if (direction === 'next') goToTeamSlide(currentTeamIndex + 1);
+                else goToTeamSlide(currentTeamIndex - 1);
+            };
+
+            nextBtn.addEventListener("click", () => handleTeamNavClick('next'));
+            prevBtn.addEventListener("click", () => handleTeamNavClick('prev'));
+
+
+            // --- 5. Mouse Scroll (Wheel) to Slide ---
+            let isTeamScrolling = false;
+            
+            viewport.addEventListener("wheel", (e) => {
+                if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; 
+                e.preventDefault();
+
+                if (isTeamScrolling) return;
+                isTeamScrolling = true;
+
+                stopTeamAutoSlide();
+
+                setTimeout(() => { isTeamScrolling = false; }, 600); 
+
+                if (e.deltaY > 0) {
+                    goToTeamSlide(currentTeamIndex + 1);
+                } else {
+                    goToTeamSlide(currentTeamIndex - 1);
+                }
+            }, { passive: false });
+
+
+            // --- 6. Hover Animations ---
+            cards.forEach(card => {
+                const name = card.querySelector(".member-name");
+                const position = card.querySelector(".member-position");
+
+                card.addEventListener("mouseenter", () => {
+                    if(card.classList.contains("active")) {
+                        gsap.to(name, {
+                            x:5,
+                            color: ACCENT_COLOR,
+                            duration: 0.3
+                        });
+                        gsap.to(position, {
+                            x:5,
+                            opacity: 0.8,
+                            duration: 0.3
+                        });
+                    }
+                });
+
+                card.addEventListener("mouseleave", () => {
+                    gsap.to([name, position], {
+                        x: 0,
+                        color: (index, target) => target.classList.contains("member-name") ? "#ffffff" : "",
+                        opacity: 1,
+                        duration: 0.3
+                    });
+                });
+            });
+        }
+
         // ---------------------- PORTFOLIO LOGIC (NEW) ----------------------
         
         // Initialize portfolio based on screen size
@@ -4705,7 +5742,7 @@
                     position: "CEO",
                     company: "TechStart Solutions",
                     avatar: "https://picsum.photos/seed/author1/200/200.jpg",
-                    rating: 5,
+                    rating:5,
                     text: "Xzeal transformed our digital presence completely. Their innovative strategies and dedication helped us achieve 300% growth in just 6 months. Highly recommended!"
                 },
                 {
@@ -4921,6 +5958,126 @@
             goToSlide(currentTestimonialSlide);
         }
         
+        // ---------------------- CONTACT FORM LOGIC (NEW) ----------------------
+        
+        function initContactForm() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+            tl.to(".contact-heading-section", {
+                opacity:1,
+                y: 0,
+                duration: 0.8
+            }, "+=0.1") // Slight delay to allow scrolling
+            .to("#contactBrandingContent", {
+                opacity:1,
+                x: 0,
+                duration: 0.8
+            }, "-=0.5")
+            .to(".contact-form-card", {
+                opacity:1,
+                y: 0,
+                duration: 0.8
+            }, "-=0.6")
+            .to(".contact-brand-icon-wrapper", {
+                y: -5,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            }, "-=0.3")
+            .to(".contact-input-group", {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.05
+            }, "-=0.4");
+
+            // Form Submit Logic
+            const btn = document.getElementById("contactSubmitBtn");
+            const btnSpan = btn.querySelector("span");
+            const btnIcon = btn.querySelector("i");
+
+            btn.addEventListener("click", (e) => {
+                // Prevent multiple clicks while processing
+                if(btn.disabled) return;
+
+                const form = document.getElementById('enquiryForm');
+                
+                // Client-side Validation
+                if(!form.checkValidity()) {
+                    gsap.to(".contact-form-card", { x: [-10, 10, -10, 10, 0], duration: 0.3 });
+                    form.reportValidity();
+                    return;
+                }
+
+                // 1. Data Collect karein
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    service: document.getElementById('service').value,
+                    message: document.getElementById('message').value
+                };
+
+                // 2. Button Loading State
+                gsap.to(btn, { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1 });
+                btnSpan.innerText = "Sending...";
+                btnIcon.className = "fas fa-spinner fa-spin";
+                btn.style.pointerEvents = "none";
+
+                // 3. PHP API par Data Send karein
+                fetch('submit_enquiry.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Success Handling
+                    if (data.status === "success") {
+                        btnSpan.innerText = "Sent Successfully!";
+                        btnIcon.className = "fas fa-check-circle";
+                        btn.classList.add("success-state");
+
+                        gsap.to(btn, { 
+                            backgroundColor: "#10b981", 
+                            duration: 0.3
+                        });
+
+                        // Form Reset after success
+                        setTimeout(() => {
+                            form.reset();
+                            btnSpan.innerText = "Send Enquiry";
+                            btnIcon.className = "fas fa-paper-plane";
+                            btn.classList.remove("success-state");
+                            btn.style.pointerEvents = "auto";
+                            
+                            gsap.to(btn, { 
+                                backgroundColor: "#6366f1", 
+                                duration: 0.5 
+                            });
+                        }, 3000);
+                    } else {
+                        throw new Error(data.message || "Something went wrong");
+                    }
+                })
+                .catch(error => {
+                    // Error Handling
+                    console.error('Error:', error);
+                    alert("Error: " + error.message);
+                    
+                    // Button Reset on Error
+                    btnSpan.innerText = "Try Again";
+                    btnIcon.className = "fas fa-exclamation-circle";
+                    btn.style.pointerEvents = "auto";
+                });
+            });
+        }
+
         // ---------------------- MAIN INITIALIZATION ----------------------
 
         // Initialize everything when DOM is loaded
@@ -4928,7 +6085,9 @@
             createParticles();
             renderServices();
             initTestimonials();
+            initTeamSlider(); // Initialize Team Slider
             initializePortfolio();
+            initContactForm(); // Initialize Contact Form
             
             // Add event listeners for testimonials
             document.getElementById('nextBtn').addEventListener('click', nextSlide);
@@ -5017,6 +6176,19 @@
                 });
             });
             
+            // Team Section Animations (Minimal overlap, mostly handled inside initTeamSlider)
+            gsap.from(".team-section-header", {
+                scrollTrigger: {
+                    trigger: ".team-section",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+            
             // Portfolio Animations (NEW)
             // Set initial states for Portfolio section
             gsap.set(".portfolio-title", { opacity: 0, y: 50 });
@@ -5100,6 +6272,55 @@
                 ease: "power2.out" 
             }, "-=0.2");
             // Auto-play indicator animation REMOVED
+
+            // Contact Section Animations
+            // Set initial states
+            gsap.set(".contact-heading-section", { opacity: 0, y: 30 });
+            gsap.set("#contactBrandingContent", { opacity: 0, x: -30 });
+            gsap.set(".contact-form-card", { opacity: 0, y: 50, scale: 0.95 });
+            gsap.set(".contact-input-group", { opacity: 0, y: 30 });
+
+            // Contact section animation with ScrollTrigger
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".contact-section",
+                    start: "top 75%",
+                    toggleActions: "play none none reverse"
+                }
+            })
+            .to(".contact-heading-section", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            })
+            .to("#contactBrandingContent", {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            }, "-=0.6")
+            .to(".contact-form-card", {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: "back.out(1.7)"
+            }, "-=0.5")
+            .to(".contact-brand-icon-wrapper", {
+                y: -5,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            }, "-=0.3")
+            .to(".contact-input-group", {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.05,
+                ease: "power2.out"
+            }, "-=0.3");
 
             setupEventListeners();
         });
