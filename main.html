@@ -58,7 +58,7 @@
         }
 
         .sidebar-header {
-            padding: 30px 20px; /* Desktop Padding */
+            padding: 30px 20px;
             display: flex;
             align-items: center;
             gap: 15px;
@@ -94,13 +94,12 @@
 
         .nav-links {
             list-style: none;
-            padding: 20px; /* Desktop Padding */
-            flex: 1; /* Flexible Space */
-            overflow-y: hidden;
+            padding: 20px;
+            flex: 1;
         }
 
         .nav-item {
-            margin-bottom: 10px; /* Desktop Margin */
+            margin-bottom: 10px;
         }
 
         .nav-link {
@@ -127,12 +126,11 @@
 
         /* User Profile Section */
         .user-profile {
-            padding: 20px; /* Desktop Padding */
+            padding: 20px;
             border-top: 1px solid var(--glass-border);
             display: flex;
             align-items: center;
             gap: 12px;
-            /* Ensure it sits at bottom properly */
             margin-top: auto; 
         }
 
@@ -272,12 +270,17 @@
             gap: 5px;
         }
 
-        /* --- RESPONSIVE FIXES (MOBILE) --- */
+        /* --- RESPONSIVE FIXES (MOBILE - NO SCROLL FIX) --- */
         @media (max-width: 768px) {
             .sidebar {
                 width: 280px; 
                 transform: translateX(-100%);
                 box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+                
+                /* FIX: Prevent Sidebar scrolling */
+                overflow: hidden; 
+                /* Force content to fit in 100vh */
+                height: 100vh; 
             }
 
             .sidebar.active {
@@ -297,39 +300,62 @@
                 font-size: 1.6rem;
             }
 
-            /* --- TIGHT LAYOUT FOR NO SCROLL --- */
+            /* --- TIGHT PACKING FOR ONE FRAME --- */
+
+            /* Header: Kam Padding */
             .sidebar-header {
-                padding: 20px 15px; /* Kam padding */
+                padding: 15px 20px; 
+            }
+            
+            .logo-text {
+                font-size: 1rem;
             }
 
+            /* Nav Links: Kam Padding & Gaps */
             .nav-links {
-                padding: 10px 20px; /* Kam padding */
+                padding: 5px 20px; /* Bahut kam padding */
             }
 
             .nav-item {
-                margin-bottom: 5px; /* Items ko pakda pakda rakhein */
+                margin-bottom: 5px; /* Chhota gap */
             }
 
-            /* Logout button ko beech mein mat rakho Mobile par */
+            .nav-link {
+                padding: 10px 15px; /* Chhota padding */
+                font-size: 0.9rem; /* Chhota font */
+            }
+
+            /* Logout Button: Remove Margin Auto, keep it close */
             .nav-item[style*="margin-top: auto"] {
-                margin-top: 10px !important; 
-                margin-bottom: 5px;
+                margin-top: 5px !important; /* Sirf thoda gap, nahi toh push karega */
+                margin-bottom: 2px;
             }
 
+            /* Profile: Compact Size */
             .user-profile {
-                padding: 15px; /* Kam padding */
+                padding: 10px 20px; /* Kam padding */
+                margin-top: 5px; /* Gap kam kiya */
+                border-top: 1px solid var(--glass-border);
             }
 
             .user-avatar-img {
-                width: 40px;    /* Chhota image */
-                height: 40px;
+                width: 38px;    /* Chhota image */
+                height: 38px;
             }
 
             .user-info p {
+                font-size: 0.8rem;
+            }
+            
+            .user-name {
                 font-size: 0.85rem;
             }
             
-            /* --- STATS STACK 1 COLUMN --- */
+            .user-role {
+                font-size: 0.7rem;
+            }
+
+            /* Stats Stack 1 Column */
             .stats-grid {
                 grid-template-columns: 1fr !important;
                 gap: 20px;
