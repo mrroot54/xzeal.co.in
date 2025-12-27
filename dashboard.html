@@ -131,7 +131,6 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            /* Ensure it sits at bottom properly */
             margin-top: auto; 
         }
 
@@ -271,12 +270,17 @@
             gap: 5px;
         }
 
-        /* --- RESPONSIVE FIXES (MOBILE) --- */
+        /* --- RESPONSIVE FIXES (MOBILE - NO SCROLL FIX) --- */
         @media (max-width: 768px) {
             .sidebar {
-                width: 280px; /* Mobile Drawer Width */
+                width: 280px; 
                 transform: translateX(-100%);
                 box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+                
+                /* FIX: Prevent Sidebar scrolling */
+                overflow: hidden; 
+                /* Force content to fit in 100vh */
+                height: 100vh; 
             }
 
             .sidebar.active {
@@ -285,7 +289,7 @@
 
             .main-content {
                 margin-left: 0;
-                padding: 20px; /* Kam padding */
+                padding: 20px; 
             }
 
             .menu-toggle {
@@ -294,6 +298,61 @@
 
             .header-title h2 {
                 font-size: 1.6rem;
+            }
+
+            /* --- TIGHT PACKING FOR ONE FRAME --- */
+
+            /* Header: Kam Padding */
+            .sidebar-header {
+                padding: 15px 20px; 
+            }
+            
+            .logo-text {
+                font-size: 1rem;
+            }
+
+            /* Nav Links: Kam Padding & Gaps */
+            .nav-links {
+                padding: 5px 20px; /* Bahut kam padding */
+            }
+
+            .nav-item {
+                margin-bottom: 5px; /* Chhota gap */
+            }
+
+            .nav-link {
+                padding: 10px 15px; /* Chhota padding */
+                font-size: 0.9rem; /* Chhota font */
+            }
+
+            /* Logout Button: Remove Margin Auto, keep it close */
+            .nav-item[style*="margin-top: auto"] {
+                margin-top: 5px !important; /* Sirf thoda gap, nahi toh push karega */
+                margin-bottom: 2px;
+            }
+
+            /* Profile: Compact Size */
+            .user-profile {
+                padding: 10px 20px; /* Kam padding */
+                margin-top: 5px; /* Gap kam kiya */
+                border-top: 1px solid var(--glass-border);
+            }
+
+            .user-avatar-img {
+                width: 38px;    /* Chhota image */
+                height: 38px;
+            }
+
+            .user-info p {
+                font-size: 0.8rem;
+            }
+            
+            .user-name {
+                font-size: 0.85rem;
+            }
+            
+            .user-role {
+                font-size: 0.7rem;
             }
 
             /* Stats Stack 1 Column */
@@ -310,27 +369,10 @@
                 font-size: 2rem;
             }
 
-            /* --- PROFILE SECTION RESPONSIVE FIX --- */
-            .user-profile {
-                padding: 15px; /* Padding kam kiya */
-                gap: 10px;     /* Gap kam kiya */
-            }
-
-            .user-avatar-img {
-                width: 40px;    /* Image size chhota kiya */
-                height: 40px;
-            }
-
-            .user-info p {
-                font-size: 0.85rem; /* Text chhoda kiya */
-            }
-            
-            .user-name {
-                font-size: 0.9rem;
-            }
-            
-            .user-role {
-                font-size: 0.75rem;
+            .stat-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5rem;
             }
 
             .section-header h3 {
@@ -386,7 +428,7 @@
             </li>
         </ul>
 
-        <!-- Profile Section (Responsive Fixed) -->
+        <!-- Profile Section -->
         <div class="user-profile">
             <!-- profile.jpeg -->
             <img src="profile.jpeg" alt="Jay Parkash" class="user-avatar-img" onerror="this.src='https://picsum.photos/seed/jay/100/100'">
