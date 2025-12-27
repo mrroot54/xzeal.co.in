@@ -36,21 +36,26 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             min-height: 100vh;
-            display: flex;
+            display: flex; 
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            justify-content: center; /* Default Desktop Center */
+            /* FIX 1: Vertical scrolling enable ki */
+            overflow-x: hidden; 
             position: relative;
+            width: 100%;
         }
 
         /* Canvas for Digital Marketing Animation */
         #networkCanvas {
-            position: absolute;
+            position: fixed; /* Fixed taaki scroll karne par bhi rahe */
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 1;
+            /* FIX 2: Touch blocking rokne ke liye */
+            pointer-events: none; 
         }
 
         /* Login Container */
@@ -104,8 +109,7 @@
             height: 110px;
             border-radius: 50%;
             border: 3px solid var(--accent-color); 
-            
-            /* FIX: Solid Dark Background for clarity */
+            /* Solid Dark Background for clarity */
             background: #0f172a; 
             
             /* Strong Glow */
@@ -120,7 +124,7 @@
         }
 
         .brand-logo-img {
-            width: 80%; /* Increased size for better visibility */
+            width: 80%;
             height: 80%;
             object-fit: contain;
             display: block;
@@ -247,6 +251,13 @@
 
         /* Responsive Design */
         @media (max-width: 991px) {
+            /* FIX 3: Mobile par content top se start ho */
+            body {
+                justify-content: flex-start;
+                padding-top: 50px;
+                padding-bottom: 50px;
+            }
+
             .login-container {
                 flex-direction: column;
                 min-height: auto;
