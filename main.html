@@ -17,13 +17,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=stylesheet" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=stylesheet" rel="stylesheet">
     
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth; /* CSS smooth scroll fallback */
         }
         
         body {
@@ -168,6 +169,15 @@
         .nav-links a:hover::after {
             width: 100%;
         }
+
+        /* SCROLLSPY ACTIVE STATE FOR DESKTOP */
+        .nav-links a.active-link {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        .nav-links a.active-link::after {
+            width: 100%;
+        }
         
         .nav-cta {
             background: var(--cta-color) !important;
@@ -183,6 +193,11 @@
             transform: translateY(-2px);
             background: var(--cta-hover) !important;
             box-shadow: 0 15px 35px rgba(39, 38, 104, 0.3);
+        }
+
+        /* Active State for CTA Button (Just to keep border consistent) */
+        .nav-links a.active-link.nav-cta::after {
+            display: none;
         }
         
         /* Mobile Menu Toggle */
@@ -289,6 +304,15 @@
             color: #4facfe;
             padding-left: 10px;
         }
+
+        /* SCROLLSPY ACTIVE STATE FOR MOBILE */
+        .mobile-nav-links a.active-link {
+            color: #4facfe;
+            border-left: 4px solid #4facfe;
+            padding-left: 20px;
+            background: rgba(79, 172, 254, 0.1);
+            font-weight: 700;
+        }
         
         .mobile-nav-links a i {
             color: #4facfe;
@@ -341,6 +365,8 @@
             position: relative;
             overflow: hidden;
             background: #0a0a0a;
+            /* Added padding top for offset if necessary, but handled via JS scroll */
+            padding-top: 80px; 
         }
         
         /* Modern Floating Elements */
@@ -1210,7 +1236,7 @@
         }
 
         /* =========================================
-           MEET OUR TEAM SECTION (HEADER FIX)
+           MEET OUR TEAM SECTION (STYLED LIKE WHY CHOOSE US)
            ========================================= */
         .team-section {
             padding: 80px 20px;
@@ -1229,30 +1255,33 @@
         .team-section-header {
             text-align: center;
             margin-bottom: 40px;
-            /* FIXED: Removed opacity: 0 and transform to ensure visibility */
             opacity: 1 !important;
             transform: none !important;
             width: 100%;
             max-width: 800px;
-            z-index: 20; /* Increased z-index */
-            position: relative; /* Ensure stacking context */
-            padding-top: 20px; /* Extra padding */
+            z-index: 20;
+            position: relative;
+            padding-top: 20px;
         }
 
+        /* CHANGED: Matching Why Choose Us Title Style */
         .team-section-title {
-            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-size: clamp(36px, 5vw, 48px); /* Same as Why Choose Us */
             font-weight: 700;
             margin-bottom: 10px;
-            background: linear-gradient(90deg, #fff, #a5a5a5);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Same Gradient */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-family: 'Inter', sans-serif;
+            background-clip: text;
+            /* Font family removed to inherit Space Grotesk like Why Choose Us */
         }
 
+        /* CHANGED: Matching Why Choose Us Subtitle Style */
         .team-section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            font-family: 'Inter', sans-serif;
+            font-size: 18px; /* Same as Why Choose Us */
+            color: var(--text-secondary); /* Same grey color */
+            max-width: 700px; /* Same max width */
+            margin: 0 auto;
         }
 
         /* Team Slider Container */
@@ -1262,7 +1291,7 @@
             overflow: hidden; 
             position: relative;
             padding: 50px 0; 
-            opacity: 1; /* Ensure viewport is visible */
+            opacity: 1;
             margin: 0 auto;
             z-index: 5;
         }
@@ -1327,7 +1356,7 @@
             z-index: 2;
             background: #1a1d24;
             border-top: 1px solid rgba(255,255,255,0.05);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Space Grotesk', sans-serif; /* Changed to match body */
         }
 
         .member-name {
@@ -1430,12 +1459,13 @@
             }
 
             .team-section-title { 
-                font-size: 1.6rem; 
+                font-size: clamp(36px, 5vw, 48px); /* Keep consistent style */
                 margin-bottom: 15px;
             }
 
             .team-section-subtitle {
-                font-size: 0.9rem;
+                font-size: 18px; /* Keep consistent style */
+                max-width: 700px;
             }
 
             .team-slider-viewport {
@@ -1518,7 +1548,7 @@
             }
         }
         
-        /* Portfolio Section - NEW */
+        /* Portfolio Section - UPDATED STYLES */
         .portfolio-section {
             padding: 60px 0 100px;
             position: relative;
@@ -1549,17 +1579,22 @@
             margin-bottom: 40px;
         }
         
+        /* CHANGED: Matching Why Choose Us Title Style */
         .portfolio-title {
-            font-size: clamp(28px, 5vw, 42px);
+            font-size: clamp(36px, 5vw, 48px); /* Same as Why Choose Us */
             font-weight: 700;
             margin-bottom: 15px;
-            color: var(--text-primary);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Same Gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
+        /* CHANGED: Matching Why Choose Us Subtitle Style */
         .portfolio-subtitle {
-            font-size: clamp(16px, 2.5vw, 18px);
-            color: var(--text-secondary);
-            max-width: 700px;
+            font-size: 18px; /* Same as Why Choose Us */
+            color: var(--text-secondary); /* Same grey color */
+            max-width: 700px; /* Same max width */
             margin: 0 auto;
         }
         
@@ -4169,19 +4204,20 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo">
+            <a href="#home" class="logo">
                 <img src="logo.png" alt="Xzeal Logo" />
             </a>
             
             <!-- Desktop Navigation -->
             <div class="nav-links">
+                <!-- Links updated with correct IDs -->
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
                 <a href="#services">Services</a>
-                <a href="#about">About Us</a>
-                <a href="#why-choose">Why Choose Us</a>
-                <a href="#team">Meet Our Team</a>
+                <a href="#why-choose">Why Us</a>
+                <a href="#team">Team</a>
                 <a href="#portfolio">Portfolio</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#contact">Contact</a>
+                <a href="#testimonials">Reviews</a>
                 <a href="#contact" class="nav-cta">Get a Quote</a>
             </div>
             
@@ -4200,22 +4236,23 @@
             <img src="logo.png" alt="Xzeal Logo" class="mobile-nav-logo" />
         </div>
         <div class="mobile-nav-links">
-            <a href="#"><i class="fas fa-home"></i> Home</a>
+            <!-- Links updated with correct IDs -->
+            <a href="#home"><i class="fas fa-home"></i> Home</a>
+            <a href="#about"><i class="fas fa-info-circle"></i> About</a>
             <a href="#services"><i class="fas fa-cogs"></i> Services</a>
-            <a href="#about"><i class="fas fa-info-circle"></i> About Us</a>
-            <a href="#why-choose"><i class="fas fa-star"></i> Why Choose Us</a>
-            <a href="#team"><i class="fas fa-users"></i> Meet Our Team</a>
+            <a href="#why-choose"><i class="fas fa-star"></i> Why Us</a>
+            <a href="#team"><i class="fas fa-users"></i> Team</a>
             <a href="#portfolio"><i class="fas fa-briefcase"></i> Portfolio</a>
-            <a href="#testimonials"><i class="fas fa-comments"></i> Testimonials</a>
-            <a href="#contact"><i class="fas fa-envelope"></i> Contact Us</a>
+            <a href="#testimonials"><i class="fas fa-comments"></i> Reviews</a>
+            <a href="#contact" class="mobile-nav-cta"><i class="fas fa-envelope"></i> Get a Quote</a>
         </div>
     </div>
     
     <!-- Overlay -->
     <div class="overlay" id="overlay"></div>
     
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Hero Section (Added ID="home") -->
+    <section class="hero" id="home">
         <!-- Floating Elements -->
         <div class="floating-element float-1"></div>
         <div class="floating-element float-2"></div>
@@ -4819,7 +4856,7 @@
             <div class="footer-grid">
                 <!-- Footer Brand -->
                 <div class="footer-col footer-brand">
-                    <a href="#" class="logo">
+                    <a href="#home" class="logo">
                         <img src="logo.png" alt="Xzeal Logo" />
                     </a>
                     <p class="footer-tagline">
@@ -5199,6 +5236,85 @@
         // Register GSAP plugins
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
         
+        // ==========================================
+        // SCROLLSPY & SMOOTH SCROLL LOGIC (UPDATED)
+        // ==========================================
+        
+        // 1. Select all nav links
+        const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+        // 2. Select all sections
+        const sections = document.querySelectorAll('section');
+        
+        // 3. Intersection Observer Options
+        const observerOptions = {
+            threshold: 0.2 // Trigger when 20% of the section is visible
+        };
+        
+        // 4. Create Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Get ID of the section currently in view
+                    const id = entry.target.getAttribute('id');
+                    
+                    // Remove active class from all links
+                    navLinks.forEach(link => {
+                        link.classList.remove('active-link');
+                    });
+                    
+                    // Add active class to corresponding links (Desktop & Mobile)
+                    // We match the href attribute (e.g., href="#services") to the section id ("services")
+                    const activeLink = document.querySelector(`.nav-links a[href="#${id}"], .mobile-nav-links a[href="#${id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active-link');
+                    }
+                }
+            });
+        }, observerOptions);
+        
+        // 5. Observe all sections
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // 6. Smooth Scroll Handler
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const sectionTop = targetSection.offsetTop;
+                    const offsetPosition = sectionTop - navHeight; // Adjust for fixed header
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Close Mobile Menu if open
+                    const mobileNav = document.getElementById('mobileNav');
+                    const overlay = document.getElementById('overlay');
+                    const menuToggle = document.getElementById('menuToggle');
+                    
+                    if (mobileNav.classList.contains('active')) {
+                        mobileNav.classList.remove('active');
+                        overlay.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        
+                        // Unlock Scroll
+                        document.body.style.removeProperty('overflow');
+                        document.body.style.removeProperty('position');
+                        document.body.style.removeProperty('top');
+                        document.body.style.removeProperty('width');
+                    }
+                }
+            });
+        });
+
         // ==========================================
         // MOBILE MENU LOGIC - FIXED SCROLL LOCK
         // ==========================================
@@ -5864,7 +5980,7 @@
             const autoSlideDelay = 3500;
 
             function updateTeamDimensions() {
-                if(cards.length > 0) {
+                if(cards.length >0) {
                     cardWidth = cards[0].offsetWidth;
                 }
                 const trackStyle = window.getComputedStyle(track);
@@ -6545,7 +6661,7 @@
                     toggleActions: "play none none reverse"
                 },
                 y: 30,
-                opacity: 0,
+                opacity:0,
                 duration: 1,
                 delay: 0.2,
                 ease: "power2.out"
@@ -6807,7 +6923,7 @@
             function handleSwipe() {
                 if (touchEndX < touchStartX - 50) {
                     // Swipe left - next slide
-                    const maxIndex = Math.ceil(totalSlides / slidesPerView) - 1;
+                    const maxIndex = Math.ceil(totalSlides / slidesPerView) -1;
                     if (currentSlideIndex < maxIndex) {
                         currentSlideIndex++;
                         updateSlider();
@@ -6901,20 +7017,6 @@
             if (e.target === this) {
                 closeModal();
             }
-        });
-        
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
         });
     </script>
 </body>
