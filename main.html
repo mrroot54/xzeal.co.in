@@ -16,7 +16,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=stylesheet" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
@@ -1194,7 +1194,7 @@
         }
 
         /* =========================================
-           MEET OUR TEAM SECTION (INTEGRATED)
+           MEET OUR TEAM SECTION (THEME UPDATED)
            ========================================= */
         .team-section {
             padding: 80px 20px;
@@ -1205,7 +1205,7 @@
             position: relative;
             justify-content: center;
             width: 100%;
-            background: #0a0a0a;
+            background: #0a0a0a; /* Ensuring theme consistency */
             overflow: hidden;
             z-index: 1;
         }
@@ -1397,12 +1397,13 @@
             transform: scale(1.1);
         }
 
-        /* Team Background Glows */
+        /* Team Background Glows - CHANGED TO MATCH THEME (Purple) */
         .team-bg-glow {
             position: absolute;
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
+            /* Changed from Blue (99, 102, 241) to Purple (118, 75, 162) to match theme */
+            background: radial-gradient(circle, rgba(118, 75, 162, 0.15) 0%, rgba(0,0,0,0) 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
@@ -3883,6 +3884,273 @@
                 right: 15px;
             }
         }
+
+        /* =========================================
+           MODERN FOOTER STYLES (NEW)
+           ========================================= */
+        .modern-footer {
+            background: #080808;
+            padding: 80px 0 30px;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 10; /* Above background elements */
+        }
+
+        /* Subtle background glow for footer */
+        .modern-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 1px;
+            background: var(--primary-gradient);
+            opacity: 0.3;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* Footer Brand Section */
+        .footer-brand {
+            padding-right: 20px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-brand .logo img {
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-tagline {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        /* Footer Links Styling */
+        .footer-col h3 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            font-family: 'Space Grotesk', sans-serif;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+            transform: translateX(5px);
+            gap: 15px; /* Slight arrow effect */
+        }
+        
+        .footer-links a i {
+            font-size: 0.8rem;
+            opacity: 0;
+            color: var(--accent-blue);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover i {
+            opacity: 1;
+        }
+
+        /* Footer Contact & Socials */
+        .footer-contact-info p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .footer-contact-info i {
+            color: var(--accent-purple);
+            width: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icon:hover {
+            background: var(--primary-gradient);
+            transform: translateY(-5px);
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Newsletter Form in Footer */
+        .footer-newsletter {
+            margin-top: 25px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 15px;
+            border-radius: 8px 0 0 8px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-purple);
+        }
+
+        .newsletter-btn {
+            background: var(--primary-gradient);
+            color: #fff;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .newsletter-btn:hover {
+            filter: brightness(1.2);
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .footer-bottom-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #fff;
+        }
+
+        /* Footer Responsiveness */
+        @media (max-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+            
+            .footer-brand {
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-bottom-links {
+                justify-content: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -4186,6 +4454,7 @@
 
     <!-- Meet Our Team Section -->
     <section class="team-section" id="team">
+        <!-- Background glows updated to Purple to match theme -->
         <div class="team-bg-glow" style="top: -100px; left: -100px;"></div>
         <div class="team-bg-glow" style="bottom: -100px; right: -100px;"></div>
 
@@ -4244,18 +4513,18 @@
                     </div>
                 </div>
 
-                <!-- Member 4: Siddhi Kumari -->
+                <!-- Member 4: Aarohi Sharma -->
                 <div class="team-card">
                     <div class="card-image-wrapper">
-                        <img src="siddhi.jpg" alt="Siddhi Kumari" class="card-image">
+                        <img src="Aarohi.jpeg" alt="Aarohi Sharma" class="card-image">
                     </div>
                     <div class="card-content">
-                        <h3 class="member-name">Siddhi Kumari</h3>
+                        <h3 class="member-name">Aarohi Sharma</h3>
                         <span class="member-position">Creative Director</span>
                         <p class="member-intro">Leading design direction with passion and precision.</p>
                         <div class="social-links">
-                            <a href="https://www.linkedin.com/in/siddhi-kumari-787a84281/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="mailto:siddhi1182kumari@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                            <a href="#" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto: aarohi.xzeal@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
@@ -4528,6 +4797,85 @@
         </div>
     </section>
     <!-- END ENQUIRY FORM SECTION -->
+
+    <!-- =========================================
+         MODERN FOOTER (NEW)
+         ========================================= -->
+    <footer class="modern-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Footer Brand -->
+                <div class="footer-col footer-brand">
+                    <a href="#" class="logo">
+                        <img src="logo.png" alt="Xzeal Logo" />
+                    </a>
+                    <p class="footer-tagline">
+                        Xzeal is a premier digital marketing agency dedicated to transforming brands through innovative strategies, data-driven insights, and creative excellence.
+                    </p>
+                    
+                    <div class="footer-newsletter">
+                        <h3>Stay Updated</h3>
+                        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                            <input type="email" placeholder="Your Email" class="newsletter-input" required>
+                            <button type="submit" class="newsletter-btn"><i class="fas fa-arrow-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Footer Links: Quick Links -->
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Our Services</a></li>
+                        <li><a href="#portfolio"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                        <li><a href="#team"><i class="fas fa-chevron-right"></i> Meet Team</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Footer Links: Services -->
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Digital Marketing</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> SEO Optimization</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> PPC Advertising</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Web Development</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Content Strategy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Footer Contact & Social -->
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="footer-contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
+                        <p><i class="fas fa-envelope"></i> contact@xzeal.com</p>
+                        <p><i class="fas fa-phone-alt"></i> +91 90604 86548</p>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/919060486548" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 Xzeal. All Rights Reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END FOOTER -->
     
     <!-- Service Modal -->
     <div class="modal" id="serviceModal">
@@ -5777,7 +6125,7 @@
                     company: "Logistics Pro",
                     avatar: "https://picsum.photos/seed/author5/200/200.jpg",
                     rating: 4,
-                    text: "The web development team created an amazing website for us. It's fast, responsive, and user-friendly. Our customers love the new design!"
+                    text: "The web development team created an amazing website for us. It's fast, responsive, and user-friendly. Our customers love to new design!"
                 },
                 {
                     name: "Anjali Reddy",
@@ -6078,6 +6426,36 @@
             });
         }
 
+        // ---------------------- FOOTER ANIMATION (NEW) ----------------------
+        function initFooterAnimations() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Animate Footer Columns
+            gsap.from(".footer-grid > div", {
+                scrollTrigger: {
+                    trigger: ".modern-footer",
+                    start: "top 90%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.15,
+                ease: "power3.out"
+            });
+
+            // Animate Social Icons on Hover
+            document.querySelectorAll('.social-icon').forEach(icon => {
+                icon.addEventListener('mouseenter', () => {
+                    gsap.to(icon, { scale: 1.2, rotate: 10, duration: 0.3 });
+                });
+                icon.addEventListener('mouseleave', () => {
+                    gsap.to(icon, { scale: 1, rotate: 0, duration: 0.3 });
+                });
+            });
+        }
+
         // ---------------------- MAIN INITIALIZATION ----------------------
 
         // Initialize everything when DOM is loaded
@@ -6088,6 +6466,7 @@
             initTeamSlider(); // Initialize Team Slider
             initializePortfolio();
             initContactForm(); // Initialize Contact Form
+            initFooterAnimations(); // Initialize Footer Animations
             
             // Add event listeners for testimonials
             document.getElementById('nextBtn').addEventListener('click', nextSlide);
