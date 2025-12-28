@@ -1210,7 +1210,7 @@
         }
 
         /* =========================================
-           MEET OUR TEAM SECTION (THEME UPDATED)
+           MEET OUR TEAM SECTION (HEADER FIX)
            ========================================= */
         .team-section {
             padding: 80px 20px;
@@ -1221,7 +1221,7 @@
             position: relative;
             justify-content: center;
             width: 100%;
-            background: #0a0a0a; /* Ensuring theme consistency */
+            background: #0a0a0a;
             overflow: hidden;
             z-index: 1;
         }
@@ -1229,11 +1229,14 @@
         .team-section-header {
             text-align: center;
             margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(30px);
+            /* FIXED: Removed opacity: 0 and transform to ensure visibility */
+            opacity: 1 !important;
+            transform: none !important;
             width: 100%;
             max-width: 800px;
-            z-index: 10;
+            z-index: 20; /* Increased z-index */
+            position: relative; /* Ensure stacking context */
+            padding-top: 20px; /* Extra padding */
         }
 
         .team-section-title {
@@ -1259,7 +1262,7 @@
             overflow: hidden; 
             position: relative;
             padding: 50px 0; 
-            opacity: 0;
+            opacity: 1; /* Ensure viewport is visible */
             margin: 0 auto;
             z-index: 5;
         }
@@ -1411,18 +1414,6 @@
         .team-nav-btn:hover {
             background: #6366f1;
             transform: scale(1.1);
-        }
-
-        /* Team Background Glows - CHANGED TO MATCH THEME (Purple) */
-        .team-bg-glow {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            /* Changed from Blue (99, 102, 241) to Purple (118, 75, 162) to match theme */
-            background: radial-gradient(circle, rgba(118, 75, 162, 0.15) 0%, rgba(0,0,0,0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
         }
 
         /* Team Responsive Media Queries */
@@ -4468,12 +4459,11 @@
         </div>
     </section>
 
+
+
     <!-- Meet Our Team Section -->
     <section class="team-section" id="team">
-        <!-- Background glows updated to Purple to match theme -->
-        <div class="team-bg-glow" style="top: -100px; left: -100px;"></div>
-        <div class="team-bg-glow" style="bottom: -100px; right: -100px;"></div>
-
+        <!-- Background glows removed here -->
         <div class="team-section-header">
             <h2 class="team-section-title">Meet Our Team</h2>
             <p class="team-section-subtitle">The minds behind the magic</p>
@@ -4558,6 +4548,13 @@
         </div>
     </section>
     
+
+    
+
+
+
+
+
     <!-- Portfolio Section - NEW -->
     <section class="portfolio-section" id="portfolio">
         <!-- Geometric Background -->
@@ -5110,7 +5107,7 @@
         const portfolioData = {
             social: [
                 {
-                    id: 1,
+                    id:1,
                     title: "Instagram Campaign",
                     description: "A highly successful Instagram campaign that increased brand visibility by 200% and generated over 50k engagements.",
                     image: "https://picsum.photos/seed/instagram1/600/400.jpg"
@@ -5284,7 +5281,7 @@
         const tl = gsap.timeline({
             defaults: {
                 ease: "power3.out",
-                duration: 1
+                duration:1
             }
         });
         
@@ -5464,7 +5461,7 @@
             // Get current width of modern-visual container
             const width = modernVisual.offsetWidth;
             
-            // Set the height to match the width to maintain square aspect ratio
+            // Set to height to match the width to maintain square aspect ratio
             modernVisual.style.height = `${width}px`;
             
             // Adjust central circle size proportionally
@@ -5770,7 +5767,7 @@
                 z-index: 10000;
                 animation: slideDown 0.3s ease-out;
                 backdrop-filter: blur(10px);
-                border: 1px solid rgba(255, 255, 255, 0.1);
+                border:1px solid rgba(255, 255, 255, 0.1);
             `;
             toast.textContent = message;
             
@@ -5828,7 +5825,7 @@
 
             const ACCENT_COLOR = "#6366f1"; 
 
-            // --- 1. Section Entrance Animation ---
+            // ---1. Section Entrance Animation ---
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: ".team-section",
@@ -5893,7 +5890,7 @@
 
                 gsap.to(track, {
                     x: -xPos,
-                    duration: immediate ? 0 : 0.8,
+                    duration: immediate ? 0 :0.8,
                     ease: "power2.inOut",
                     overwrite: true
                 });
