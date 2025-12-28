@@ -215,27 +215,49 @@
             transform: rotate(45deg) translate(-6px, -7px);
         }
         
-        /* Mobile Navigation */
+        /* =========================================
+           MOBILE NAVIGATION - FIXED FOR 100dvh
+           ========================================= */
         .mobile-nav {
             position: fixed;
             top: 0;
             right: -100%;
             width: 85%;
             max-width: 400px;
-            height: 100vh;
+            
+            /* FIX 1: 100dvh use karein mobile ke liye */
+            height: 100dvh; /* Dynamic Viewport Height */
+            bottom: 0; /* Ensure it sticks to bottom */
+            
+            /* Fallback for desktop/old browsers */
+            @supports not (height: 100dvh) {
+                height: 100vh;
+            }
+            
             background: #000000;
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
             transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            z-index: 1001;
+            z-index: 1001; /* Ensure it's above nav */
             padding: 100px 30px 30px;
+            
+            /* FIX 2: Smooth scroll inside menu */
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
         .mobile-nav.active {
             right: 0;
         }
         
+        /* FIX 3: Links ke neeche padding taaki na katein */
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            padding-bottom: 40px; /* Extra padding for bottom */
+        }
+
         .mobile-nav-header {
             display: flex;
             align-items: center;
@@ -248,12 +270,6 @@
         .mobile-nav-logo {
             height: 50px;
             width: auto;
-        }
-        
-        .mobile-nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
         }
         
         .mobile-nav-links a {
@@ -5186,25 +5202,55 @@
         // Register GSAP plugins
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
         
-        // Mobile Menu Toggle
+        // ==========================================
+        // MOBILE MENU LOGIC - FIXED SCROLL LOCK
+        // ==========================================
         const menuToggle = document.getElementById('menuToggle');
         const mobileNav = document.getElementById('mobileNav');
         const overlay = document.getElementById('overlay');
-        
+
+        // Scroll Position Store karne ke liye variable
+        let scrollPosition = 0;
+
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
-            mobileNav.classList.toggle('active');
+            const isActive = mobileNav.classList.toggle('active');
             overlay.classList.toggle('active');
-            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
+
+            // FIX 4: Scroll Lock Logic
+            if (isActive) {
+                // Menu open hone se pehle scroll position save karein
+                scrollPosition = window.pageYOffset;
+                
+                // Body ko lock karein
+                document.body.style.overflow = 'hidden';
+                document.body.style.position = 'fixed';
+                document.body.style.top = `-${scrollPosition}px`; // Position maintain rahega
+                document.body.style.width = '100%';
+            } else {
+                // Menu band hone pe original position par wapas jayein
+                document.body.style.removeProperty('overflow');
+                document.body.style.removeProperty('position');
+                document.body.style.removeProperty('top');
+                document.body.style.removeProperty('width');
+                
+                window.scrollTo(0, scrollPosition);
+            }
         });
-        
+
         overlay.addEventListener('click', () => {
             menuToggle.classList.remove('active');
             mobileNav.classList.remove('active');
             overlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
+            
+            // Scroll Unlock
+            document.body.style.removeProperty('overflow');
+            document.body.style.removeProperty('position');
+            document.body.style.removeProperty('top');
+            document.body.style.removeProperty('width');
+            window.scrollTo(0, scrollPosition);
         });
-        
+
         // Close mobile menu when clicking on a link
         const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
         mobileLinks.forEach(link => {
@@ -5212,7 +5258,13 @@
                 menuToggle.classList.remove('active');
                 mobileNav.classList.remove('active');
                 overlay.classList.remove('active');
-                document.body.style.overflow = 'auto';
+                
+                // Scroll Unlock on link click
+                document.body.style.removeProperty('overflow');
+                document.body.style.removeProperty('position');
+                document.body.style.removeProperty('top');
+                document.body.style.removeProperty('width');
+                window.scrollTo(0, scrollPosition);
             });
         });
         
@@ -5862,17 +5914,17 @@
                 const socials = card.querySelector(".social-links");
 
                 gsap.fromTo(img, 
-                    { scale: 1.0, opacity: 0.9 }, 
+                    { scale:1.0, opacity: 0.9 }, 
                     { 
                         scale:1.05, 
-                        opacity: 1,
+                        opacity:1,
                         duration: 1.2,
                         ease: "expo.out"
                     }
                 );
 
                 gsap.to(socials, {
-                    opacity: 1,
+                    opacity:1,
                     y: 0,
                     duration: 0.5,
                     delay: 0.2,
@@ -6448,7 +6500,7 @@
             // Animate Social Icons on Hover
             document.querySelectorAll('.social-icon').forEach(icon => {
                 icon.addEventListener('mouseenter', () => {
-                    gsap.to(icon, { scale: 1.2, rotate: 10, duration: 0.3 });
+                    gsap.to(icon, { scale:1.2, rotate: 10, duration: 0.3 });
                 });
                 icon.addEventListener('mouseleave', () => {
                     gsap.to(icon, { scale: 1, rotate: 0, duration: 0.3 });
@@ -6668,7 +6720,7 @@
                 }
             })
             .to(".contact-heading-section", {
-                opacity: 1,
+                opacity:1,
                 y: 0,
                 duration: 0.8,
                 ease: "power2.out"
