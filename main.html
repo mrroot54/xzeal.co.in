@@ -4074,14 +4074,14 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255,255,255,0.05);
             display: flex;
             align-items: center;
             justify-content: center;
             color: #fff;
             text-decoration: none;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .social-icon:hover {
@@ -5240,7 +5240,7 @@
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
         
         // ==========================================
-        // SCROLLSPY & SMOOTH SCROLL LOGIC (UPDATED)
+        // SCROLLSPY & SMOOTH SCROLL LOGIC (FIXED)
         // ==========================================
         
         // 1. Select all nav links
@@ -5266,7 +5266,6 @@
                     });
                     
                     // Add active class to corresponding links (Desktop & Mobile)
-                    // We match the href attribute (e.g., href="#services") to the section id ("services")
                     const activeLink = document.querySelector(`.nav-links a[href="#${id}"], .mobile-nav-links a[href="#${id}"]`);
                     if (activeLink) {
                         activeLink.classList.add('active-link');
@@ -5280,7 +5279,7 @@
             observer.observe(section);
         });
 
-        // 6. Smooth Scroll Handler
+        // 6. Smooth Scroll Handler (FIXED FOR MOBILE)
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -5291,29 +5290,39 @@
                 if (targetSection) {
                     const navHeight = document.querySelector('nav').offsetHeight;
                     const sectionTop = targetSection.offsetTop;
-                    const offsetPosition = sectionTop - navHeight; // Adjust for fixed header
+                    
+                    // IMPORTANT FIX:
+                    // When body is 'position: fixed', offsetTop might behave differently depending on browser,
+                    // but usually it returns the position relative to the top of the document flow.
+                    // However, we MUST unlock the scroll before we can actually scroll.
+                    
+                    // Step 1: Calculate destination
+                    const offsetPosition = sectionTop - navHeight;
 
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-
-                    // Close Mobile Menu if open
+                    // Step 2: Close Mobile Menu & Unlock Body immediately
                     const mobileNav = document.getElementById('mobileNav');
                     const overlay = document.getElementById('overlay');
                     const menuToggle = document.getElementById('menuToggle');
-                    
-                    if (mobileNav.classList.contains('active')) {
-                        mobileNav.classList.remove('active');
-                        overlay.classList.remove('active');
-                        menuToggle.classList.remove('active');
-                        
-                        // Unlock Scroll
-                        document.body.style.removeProperty('overflow');
-                        document.body.style.removeProperty('position');
-                        document.body.style.removeProperty('top');
-                        document.body.style.removeProperty('width');
-                    }
+
+                    mobileNav.classList.remove('active');
+                    overlay.classList.remove('active');
+                    menuToggle.classList.remove('active');
+
+                    // Unlock Body Styles - This is CRITICAL for scrolling to work
+                    document.body.style.removeProperty('overflow');
+                    document.body.style.removeProperty('position');
+                    document.body.style.removeProperty('top');
+                    document.body.style.removeProperty('width');
+
+                    // Step 3: Scroll to the calculated position
+                    // We use a small timeout to ensure the browser has removed 'position: fixed' 
+                    // and reflowed the layout before attempting to scroll.
+                    requestAnimationFrame(() => {
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    });
                 }
             });
         });
@@ -5365,23 +5374,6 @@
             document.body.style.removeProperty('top');
             document.body.style.removeProperty('width');
             window.scrollTo(0, scrollPosition);
-        });
-
-        // Close mobile menu when clicking on a link
-        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                mobileNav.classList.remove('active');
-                overlay.classList.remove('active');
-                
-                // Scroll Unlock on link click
-                document.body.style.removeProperty('overflow');
-                document.body.style.removeProperty('position');
-                document.body.style.removeProperty('top');
-                document.body.style.removeProperty('width');
-                window.scrollTo(0, scrollPosition);
-            });
         });
         
         // Set initial states
@@ -5623,7 +5615,7 @@
         maintainSquareAspectRatio();
         window.addEventListener('resize', maintainSquareAspectRatio);
         
-        // Also call the function on scroll to ensure aspect ratio is maintained
+        // Also call to function on scroll to ensure aspect ratio is maintained
         let ticking = false;
         function requestTick() {
             if (!ticking) {
@@ -6319,7 +6311,7 @@
                     company: "EduCare Academy",
                     avatar: "https://picsum.photos/seed/author8/200/200.jpg",
                     rating: 5,
-                    text: "Xzeal helped us establish a strong online presence in the education sector. Their lead generation strategies have consistently delivered quality leads."
+                    text: "Xzeal helped us establish a strong online presence in => education sector. Their lead generation strategies have consistently delivered quality leads."
                 },
                 {
                     name: "Rohit Verma",
@@ -6842,7 +6834,7 @@
                 ease: "power2.out"
             })
             .to("#contactBrandingContent", {
-                opacity: 1,
+                opacity:1,
                 x: 0,
                 duration: 0.8,
                 ease: "power2.out"
