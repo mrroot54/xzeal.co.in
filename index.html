@@ -3,798 +3,424 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xzeal - Portfolio & Case Studies</title>
+    <title>Xzeal - Digital Marketing Solutions</title>
     
     <!-- GSAP CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=stylesheet" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-        
-        /* Custom Color Variables - Monochrome */
-        :root {
-            --primary-color: #ffffff;
-            --primary-light: #f5f5f5;
-            --primary-dark: #333333;
-            --accent-color: #555555;
-            --cta-color: #444444;
-            --cta-hover: #555555;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
-            --primary-gradient: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
-            --dark-bg: #0a0a0a;
-            --card-bg: rgba(255, 255, 255, 0.08);
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
-            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
-            --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
-        }
-        
-        /* Portfolio Section */
-        .portfolio-section {
-            padding: 60px 0 100px;
-            position: relative;
-            background: #0a0a0a;
-            overflow: hidden;
-        }
-        
-        /* Geometric Background Pattern */
-        .portfolio-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        
-        .geometric-pattern {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0.1;
-        }
-        
-        .geo-line {
-            position: absolute;
-            background: var(--primary-color);
-        }
-        
-        .geo-line-1 {
-            width: 1px;
-            height: 100%;
-            left: 20%;
-            transform: rotate(15deg);
-        }
-        
-        .geo-line-2 {
-            width: 1px;
-            height: 100%;
-            right: 25%;
-            transform: rotate(-10deg);
-        }
-        
-        .geo-line-3 {
-            width: 100%;
-            height: 1px;
-            top: 30%;
-            transform: rotate(5deg);
-        }
-        
-        .geo-line-4 {
-            width: 100%;
-            height: 1px;
-            bottom: 35%;
-            transform: rotate(-3deg);
-        }
-        
-        /* Modern Floating Elements */
-        .floating-element {
-            position: absolute;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        
-        .float-1 {
-            width: 120px;
-            height: 120px;
-            top: 15%;
-            left: 10%;
-            transform: rotate(45deg);
-        }
-        
-        .float-2 {
-            width: 80px;
-            height: 80px;
-            top: 25%;
-            right: 15%;
-            transform: rotate(-30deg);
-        }
-        
-        .float-3 {
-            width: 150px;
-            height: 150px;
-            bottom: 20%;
-            left: 20%;
-            transform: rotate(15deg);
-        }
-        
-        .float-4 {
-            width: 100px;
-            height: 100px;
-            bottom: 15%;
-            right: 10%;
-            transform: rotate(-45deg);
-        }
-        
-        .portfolio-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Portfolio Header */
-        .portfolio-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .portfolio-title {
-            font-size: clamp(28px, 5vw, 42px);
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--text-primary);
-        }
-        
-        .portfolio-subtitle {
-            font-size: clamp(16px, 2.5vw, 18px);
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Category Filter Tabs */
-        .filter-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .filter-tab {
-            padding: 10px 20px;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: clamp(14px, 2vw, 16px);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .filter-tab:hover {
-            color: var(--text-primary);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .filter-tab.active {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-        
-        .filter-tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
-            height: 2px;
-            background: var(--text-primary);
-        }
-        
-        /* Portfolio Slider - Fixed for mobile */
-        .portfolio-slider {
-            position: relative;
-            width: 100%;
-            margin-bottom: 40px;
-            overflow: hidden; /* Ensures no content spills out */
-        }
-        
-        .slider-container {
-            display: flex;
-            transition: transform 0.5s ease;
-            width: 100%; /* Full width */
-        }
-        
-        .slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: clamp(40px, 5vw, 50px);
-            height: clamp(40px, 5vw, 50px);
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        
-        .slider-arrow:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .slider-arrow.prev {
-            left: 10px;
-        }
-        
-        .slider-arrow.next {
-            right: 10px;
-        }
-        
-        /* Project Cards - Fixed for mobile */
-        .project-card {
-            width: 100%; /* Full width of container */
-            flex-shrink: 0; /* Prevents shrinking */
-            padding: 0 5px; /* Small padding for spacing */
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        .project-image {
-            height: clamp(180px, 25vw, 220px);
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .project-card:hover .project-image img {
-            transform: scale(1.05);
-        }
-        
-        .project-content {
-            padding: clamp(15px, 3vw, 25px);
-        }
-        
-        .project-title {
-            font-size: clamp(18px, 3vw, 22px);
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text-primary);
-        }
-        
-        .project-description {
-            font-size: clamp(14px, 2vw, 16px);
-            color: var(--text-secondary);
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-        
-        .project-cta {
-            display: inline-block;
-            padding: 8px 16px;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 30px;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: clamp(14px, 2vw, 16px);
-            transition: all 0.3s ease;
-        }
-        
-        .project-cta:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-        
-        /* Slider Pagination */
-        .slider-pagination {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 15px;
-        }
-        
-        .pagination-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .pagination-dot.active {
-            background: var(--text-primary);
-            width: 24px;
-            border-radius: 4px;
-        }
-        
-        /* Lower Section */
-        .lower-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-        
-        /* Lightbox Gallery Card */
-        .lightbox-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-        }
-        
-        .lightbox-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        .lightbox-preview {
-            height: clamp(160px, 22vw, 200px);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .lightbox-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .lightbox-card:hover .lightbox-preview img {
-            transform: scale(1.05);
-        }
-        
-        .lightbox-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .lightbox-card:hover .lightbox-overlay {
-            opacity: 1;
-        }
-        
-        .lightbox-icon {
-            width: clamp(40px, 6vw, 60px);
-            height: clamp(40px, 6vw, 60px);
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
-            font-size: clamp(16px, 3vw, 24px);
-        }
-        
-        .lightbox-content {
-            padding: clamp(15px, 3vw, 25px);
-        }
-        
-        .lightbox-title {
-            font-size: clamp(18px, 3vw, 22px);
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text-primary);
-        }
-        
-        .lightbox-description {
-            font-size: clamp(14px, 2vw, 16px);
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-        
-        /* Video Case Study Card */
-        .video-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-        }
-        
-        .video-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        .video-preview {
-            height: clamp(160px, 22vw, 200px);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .video-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .video-card:hover .video-preview img {
-            transform: scale(1.05);
-        }
-        
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .play-button {
-            width: clamp(50px, 7vw, 80px);
-            height: clamp(50px, 7vw, 80px);
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
-            font-size: clamp(20px, 3vw, 30px);
-            transition: all 0.3s ease;
-        }
-        
-        .video-card:hover .play-button {
-            transform: scale(1.1);
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        .video-content {
-            padding: clamp(15px, 3vw, 25px);
-        }
-        
-        .video-title {
-            font-size: clamp(18px, 3vw, 22px);
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text-primary);
-        }
-        
-        .video-description {
-            font-size: clamp(14px, 2vw, 16px);
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-        
-        /* Statistics Card */
-        .stats-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: clamp(20px, 3vw, 30px);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .stats-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        .stats-title {
-            font-size: clamp(18px, 3vw, 22px);
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--text-primary);
-        }
-        
-        .stat-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .stat-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .stat-icon {
-            width: clamp(40px, 5vw, 50px);
-            height: clamp(40px, 5vw, 50px);
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: var(--text-primary);
-            font-size: clamp(16px, 2.5vw, 20px);
-        }
-        
-        .stat-info {
-            flex: 1;
-        }
-        
-        .stat-value {
-            font-size: clamp(20px, 3vw, 24px);
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: var(--text-primary);
-        }
-        
-        .stat-label {
-            font-size: clamp(14px, 2vw, 16px);
-            color: var(--text-secondary);
-        }
-        
-        /* Lightbox Modal */
-        .lightbox-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .lightbox-modal.active {
-            display: flex;
-        }
-        
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
-            position: relative;
-        }
-        
-        .lightbox-image {
-            max-width: 100%;
-            max-height: 80vh;
-            border-radius: 10px;
-        }
-        
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .lightbox-close:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        /* Video Modal */
-        .video-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .video-modal.active {
-            display: flex;
-        }
-        
-        .video-container {
-            position: relative;
-            width: 90%;
-            max-width: 900px;
-        }
-        
-        .video-frame {
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            position: relative;
-        }
-        
-        .video-frame iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 10px;
-        }
-        
-        .video-close {
-            position: absolute;
-            top: -50px;
-            right: 0;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .video-close:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 1024px) {
-            .lower-section {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .portfolio-section {
-                padding: 40px 0 60px;
-            }
-            
-            .portfolio-container {
-                padding: 0 15px;
-            }
-            
-            .portfolio-header {
-                margin-bottom: 30px;
-            }
-            
-            .filter-tabs {
-                margin-bottom: 25px;
-            }
-            
-            .slider-arrow.prev {
-                left: 5px;
-            }
-            
-            .slider-arrow.next {
-                right: 5px;
-            }
-            
-            .lower-section {
-                grid-template-columns: 1fr;
-                margin-top: 30px;
-            }
-            
-            /* Lighter Design for Mobile */
-            .floating-element {
-                opacity: 0.05;
-            }
-            
-            .geometric-pattern {
-                opacity: 0.05;
-            }
-            
-            .geo-line {
-                opacity: 0.05;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .portfolio-section {
-                padding: 30px 0 40px;
-            }
-            
-            .portfolio-container {
-                padding: 0 10px;
-            }
-            
-            .portfolio-header {
-                margin-bottom: 25px;
-            }
-            
-            .filter-tabs {
-                margin-bottom: 20px;
-            }
-            
-            .filter-tab {
-                padding: 8px 15px;
-                font-size: 14px;
-            }
-            
-            .project-content {
-                padding: 15px;
-            }
-            
-            /* Even Lighter Design for Small Mobile */
-            .floating-element {
-                opacity: 0.02;
-            }
-            
-            .geometric-pattern {
-                opacity: 0.02;
-            }
-            
-            .geo-line {
-                opacity: 0.02;
-            }
-        }
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Portfolio Section -->
-    <section class="portfolio-section">
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/919060486548" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <img src="logo.png" alt="Xzeal Logo" />
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <div class="nav-links">
+                <!-- Links updated with correct IDs -->
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#why-choose">Why Us</a>
+                <a href="#team">Team</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#contact" class="nav-cta">Get a Quote</a>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <img src="logo.png" alt="Xzeal Logo" class="mobile-nav-logo" />
+        </div>
+        <div class="mobile-nav-links">
+            <!-- Links updated with correct IDs -->
+            <a href="#home"><i class="fas fa-home"></i> Home</a>
+            <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+            <a href="#services"><i class="fas fa-cogs"></i> Services</a>
+            <a href="#why-choose"><i class="fas fa-star"></i> Why Us</a>
+            <a href="#team"><i class="fas fa-users"></i> Team</a>
+            <a href="#portfolio"><i class="fas fa-briefcase"></i> Portfolio</a>
+            <a href="#testimonials"><i class="fas fa-comments"></i> Reviews</a>
+            <a href="#contact" class="mobile-nav-cta"><i class="fas fa-envelope"></i> Get a Quote</a>
+        </div>
+    </div>
+    
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Hero Section (Added ID="home") -->
+    <section class="hero" id="home">
+        <!-- Floating Elements -->
+        <div class="floating-element float-1"></div>
+        <div class="floating-element float-2"></div>
+        <div class="floating-element float-3"></div>
+        <div class="floating-element float-4"></div>
+        
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <div class="hero-left">
+                <h1 class="hero-title">
+                    <span class="title-line">We Build</span><br>
+                    <span class="title-line"><span class="highlight">Digital</span></span><br>
+                    <span class="title-line">Experiences</span>
+                </h1>
+                
+                <p class="hero-description">
+                    Transform your brand with cutting-edge digital marketing strategies that drive results and elevate your online presence.
+                </p>
+                
+                <div class="hero-buttons">
+                    <a href="#services" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        Explore Services
+                    </a>
+                    <a href="#" class="btn btn-secondary">
+                        <i class="fas fa-play"></i>
+                        Watch Demo
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-right">
+                <div class="modern-visual">
+                    <!-- Central Circle with Logo -->
+                    <div class="central-circle">
+                        <img src="logo.png" alt="Logo" />
+                    </div>
+                    
+                    <!-- Orbiting Elements with Service Icons -->
+                    <div class="orbit orbit-1">
+                        <div class="orbit-item orbit-item-1">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <div class="orbit-item orbit-item-2">
+                            <i class="fas fa-ad"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="orbit orbit-2">
+                        <div class="orbit-item orbit-item-3">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="orbit-item orbit-item-4">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="orbit orbit-3">
+                        <div class="orbit-item orbit-item-1">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <div class="orbit-item orbit-item-2">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-section" id="about">
+        <!-- Geometric Background -->
+        <div class="about-bg">
+            <div class="geometric-pattern">
+                <div class="geo-line geo-line-1"></div>
+                <div class="geo-line geo-line-2"></div>
+                <div class="geo-line geo-line-3"></div>
+                <div class="geo-line geo-line-4"></div>
+            </div>
+            
+            <!-- Floating Elements -->
+            <div class="floating-element float-1"></div>
+            <div class="floating-element float-2"></div>
+            <div class="floating-element float-3"></div>
+            <div class="floating-element float-4"></div>
+        </div>
+        
+        <div class="about-container">
+            <div class="about-content">
+                <h2 class="about-title">About Xzeal</h2>
+                <p class="about-description">
+                    We are a team of passionate digital experts dedicated to transforming your brand's online presence. 
+                    With innovative strategies and cutting-edge technology, we help businesses connect with their audience 
+                    and achieve remarkable growth in digital landscape.
+                </p>
+                <a href="#" class="about-cta">Learn More About Us</a>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number" data-target="150">0</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="stat-number" data-target="250">0</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">Years of Experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <!-- Geometric Background (Same as Hero Section) -->
+        <div class="services-bg">
+            <div class="geometric-pattern">
+                <div class="geo-line geo-line-1"></div>
+                <div class="geo-line geo-line-2"></div>
+                <div class="geo-line geo-line-3"></div>
+                <div class="geo-line geo-line-4"></div>
+            </div>
+            
+            <!-- Floating Elements (Same as Hero Section) -->
+            <div class="floating-element float-1"></div>
+            <div class="floating-element float-2"></div>
+            <div class="floating-element float-3"></div>
+            <div class="floating-element float-4"></div>
+        </div>
+        
+        <!-- Animated Background Particles -->
+        <div class="particles" id="particles"></div>
+        
+        <!-- Services Container -->
+        <div class="services-container">
+            <!-- Services Header -->
+            <div class="services-header">
+                <h2 class="services-title">Our Services</h2>
+                <p class="services-subtitle">Premium digital solutions for your business growth</p>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search services..." onkeyup="searchServices(this.value)">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            
+            <!-- Services Grid -->
+            <div class="services-grid" id="servicesGrid">
+                <!-- Service Cards will be dynamically generated -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-section" id="why-choose">
+        <!-- Geometric Background -->
+        <div class="why-choose-bg">
+            <div class="geometric-pattern">
+                <div class="geo-line geo-line-1"></div>
+                <div class="geo-line geo-line-2"></div>
+                <div class="geo-line geo-line-3"></div>
+                <div class="geo-line geo-line-4"></div>
+            </div>
+            
+            <!-- Floating Elements -->
+            <div class="floating-element float-1"></div>
+            <div class="floating-element float-2"></div>
+            <div class="floating-element float-3"></div>
+            <div class="floating-element float-4"></div>
+        </div>
+        
+        <div class="why-choose-container">
+            <!-- Section Header -->
+            <div class="why-choose-header">
+                <h2 class="why-choose-title">Why Choose Us</h2>
+                <p class="why-choose-subtitle">Show your unique strengths that set us apart from competition</p>
+            </div>
+            
+            <!-- Features Grid -->
+            <div class="features-grid">
+                <!-- Feature Card 1: 24/7 Support -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-headset feature-icon"></i>
+                    </div>
+                    <h3 class="feature-title">24/7 Support</h3>
+                    <p class="feature-description">
+                        Round-the-clock assistance to address your concerns and ensure your digital campaigns run smoothly at all times.
+                    </p>
+                </div>
+                
+                <!-- Feature Card 2: Professional Team -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-users feature-icon"></i>
+                    </div>
+                    <h3 class="feature-title">Professional Team</h3>
+                    <p class="feature-description">
+                        Experienced specialists dedicated to delivering exceptional results and innovative solutions for your business.
+                    </p>
+                </div>
+                
+                <!-- Feature Card 3: Fast Delivery -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-rocket feature-icon"></i>
+                    </div>
+                    <h3 class="feature-title">Fast Delivery</h3>
+                    <p class="feature-description">
+                        Quick turnaround times without compromising on quality, helping you launch your campaigns and achieve goals faster.
+                    </p>
+                </div>
+                
+                <!-- Feature Card 4: Result Oriented -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <i class="fas fa-chart-line feature-icon"></i>
+                    </div>
+                    <h3 class="feature-title">Result Oriented</h3>
+                    <p class="feature-description">
+                        Data-driven strategies focused on delivering measurable results and maximizing your return on investment.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Meet Our Team Section -->
+    <section class="team-section" id="team">
+        <!-- Background glows removed here -->
+        <div class="team-section-header">
+            <h2 class="team-section-title">Meet Our Team</h2>
+            <p class="team-section-subtitle">The minds behind the magic</p>
+        </div>
+
+        <div class="team-slider-viewport" id="teamSliderViewport">
+            <div class="team-slider-track" id="teamSliderTrack">
+                <!-- Member 1: Jay Prakash -->
+                <div class="team-card">
+                    <div class="card-image-wrapper">
+                        <img src="rahul.jpeg" alt="Jay Prakash" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="member-name">Jay Prakash</h3>
+                        <span class="member-position">CEO (Chief Executive Officer)</span>
+                        <p class="member-intro">Visionary leader driving strategic growth and innovation.</p>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/jay-prakash-19a08427b/" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto:imjayprakash18@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 2: Atul Rajput -->
+                <div class="team-card">
+                    <div class="card-image-wrapper">
+                        <img src="asr.jpg" alt="Atul Rajput" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="member-name">Atul Rajput</h3>
+                        <span class="member-position">CTO (Chief Technology Officer)</span>
+                        <p class="member-intro">Tech architect building robust scalable solutions.</p>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/atul54kumar/" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto:atulkumar841207@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 3: Harsh Srivastava -->
+                <div class="team-card">
+                    <div class="card-image-wrapper">
+                        <img src="harsh.jpg" alt="Harsh Srivastava" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="member-name">Harsh Srivastava</h3>
+                        <span class="member-position">Head of Video Production</span>
+                        <p class="member-intro">Crafting visual stories that captivate and inspire.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto:harshsrivastava358@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 4: Aarohi Sharma -->
+                <div class="team-card">
+                    <div class="card-image-wrapper">
+                        <img src="Aarohi.jpeg" alt="Aarohi Sharma" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="member-name">Aarohi Sharma</h3>
+                        <span class="member-position">Creative Director</span>
+                        <p class="member-intro">Leading design direction with passion and precision.</p>
+                        <div class="social-links">
+                            <a href="#" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto: aarohi.xzeal@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nav buttons positioned absolutely by CSS -->
+        <div class="team-slider-nav">
+            <button class="team-nav-btn" id="teamPrevBtn" aria-label="Previous Slide">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="team-nav-btn" id="teamNextBtn" aria-label="Next Slide">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </section>
+    
+
+    
+
+
+
+
+
+    <!-- Portfolio Section - NEW -->
+    <section class="portfolio-section" id="portfolio">
         <!-- Geometric Background -->
         <div class="portfolio-bg">
             <div class="geometric-pattern">
@@ -915,7 +541,259 @@
         </div>
     </section>
     
-    <!-- Lightbox Modal -->
+    <!-- Testimonials Section (AUTO-PLAY REMOVED) -->
+    <section class="testimonials-section" id="testimonials">
+        <!-- Geometric Background -->
+        <div class="testimonials-bg">
+            <div class="geometric-pattern">
+                <div class="geo-line geo-line-1"></div>
+                <div class="geo-line geo-line-2"></div>
+                <div class="geo-line geo-line-3"></div>
+                <div class="geo-line geo-line-4"></div>
+            </div>
+            
+            <!-- Floating Elements -->
+            <div class="floating-element float-1"></div>
+            <div class="floating-element float-2"></div>
+            <div class="floating-element float-3"></div>
+            <div class="floating-element float-4"></div>
+        </div>
+        
+        <div class="testimonials-container">
+            <!-- Section Header -->
+            <div class="testimonials-header">
+                <h2 class="testimonials-title">Client Testimonials</h2>
+                <p class="testimonials-subtitle">Hear what our satisfied clients have to say about their experience with us</p>
+            </div>
+            
+            <!-- Enhanced Testimonials Slider -->
+            <div class="testimonials-slider">
+                <div class="testimonials-wrapper" id="testimonialsWrapper">
+                    <!-- Testimonial Slides will be dynamically generated -->
+                </div>
+            </div>
+            
+            <!-- Enhanced Navigation Controls -->
+            <div class="testimonial-controls">
+                <button class="nav-arrow" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="testimonial-nav" id="testimonialNav">
+                    <!-- Navigation dots will be dynamically generated -->
+                </div>
+                
+                <button class="nav-arrow" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <!-- Auto-play indicator REMOVED -->
+        </div>
+    </section>
+
+    <!-- =========================================
+         CONTACT / ENQUIRY SECTION (INTEGRATED)
+         ========================================= -->
+    <section class="contact-section" id="contact">
+        <!-- Background Glow Blob -->
+        <div class="bg-blob"></div>
+
+        <!-- Top Main Heading -->
+        <div class="contact-heading-section">
+            <h1>Let’s Build Your Brand Together</h1>
+        </div>
+
+        <div class="contact-split-wrapper">
+            
+            <!-- Left Side: Content -->
+            <div class="contact-branding-column">
+                <div class="contact-branding-content" id="contactBrandingContent">
+                    <div class="contact-brand-icon-wrapper">
+                        <img src="logo.png" alt="Xzeal Logo" class="contact-brand-logo-img">
+                    </div>
+                    <h2>Start Your Journey</h2>
+                    <p>Ready to scale? We combine creative design with data-driven strategies to build brands that stand out. Fill the form and let's make it happen.</p>
+                </div>
+            </div>
+
+            <!-- Right Side: Form -->
+            <div class="contact-form-column">
+                <form class="contact-form-card" id="enquiryForm" onsubmit="event.preventDefault();">
+                    
+                    <!-- Name -->
+                    <div class="contact-input-group">
+                        <input type="text" id="name" class="contact-input" placeholder=" " required autocomplete="off">
+                        <label for="name" class="contact-label">Full Name</label>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="contact-input-group">
+                        <input type="email" id="email" class="contact-input" placeholder=" " required autocomplete="off">
+                        <label for="email" class="contact-label">Email Address</label>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="contact-input-group">
+                        <input type="tel" id="phone" class="contact-input" placeholder=" " required autocomplete="off">
+                        <label for="phone" class="contact-label">Phone Number</label>
+                    </div>
+
+                    <!-- Service Dropdown -->
+                    <div class="contact-input-group contact-select-wrapper">
+                        <select id="service" class="contact-select" required>
+                            <option value="" disabled selected hidden></option>
+                            <option value="Digital Marketing">Digital Marketing</option>
+                            <option value="PPC Advertising">PPC Advertising</option>
+                            <option value="SEO Optimization">SEO Optimization</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Lead Generation">Lead Generation</option>
+                            <option value="Content Creation">Content Creation</option>
+                            <option value="API Development">API Development</option>
+                            <option value="Mobile Application">Mobile Application</option>
+                            <option value="Maintenance Services">Maintenance Services</option>
+                        </select>
+                        <label for="service" class="contact-label">Select Service</label>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="contact-input-group">
+                        <textarea id="message" class="contact-textarea" placeholder=" " required></textarea>
+                        <label for="message" class="contact-label">Project Details / Message</label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="contact-submit-btn" id="contactSubmitBtn">
+                        <span>Send Enquiry</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+    </section>
+    <!-- END ENQUIRY FORM SECTION -->
+
+    <!-- =========================================
+         MODERN FOOTER (NEW)
+         ========================================= -->
+    <footer class="modern-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Footer Brand -->
+                <div class="footer-col footer-brand">
+                    <a href="#home" class="logo">
+                        <img src="logo.png" alt="Xzeal Logo" />
+                    </a>
+                    <p class="footer-tagline">
+                        Xzeal is a premier digital marketing agency dedicated to transforming brands through innovative strategies, data-driven insights, and creative excellence.
+                    </p>
+                    
+                    <div class="footer-newsletter">
+                        <h3>Stay Updated</h3>
+                        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                            <input type="email" placeholder="Your Email" class="newsletter-input" required>
+                            <button type="submit" class="newsletter-btn"><i class="fas fa-arrow-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Footer Links: Quick Links -->
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Our Services</a></li>
+                        <li><a href="#portfolio"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                        <li><a href="#team"><i class="fas fa-chevron-right"></i> Meet Team</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Footer Links: Services -->
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Digital Marketing</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> SEO Optimization</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> PPC Advertising</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Web Development</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Content Strategy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Footer Contact & Social -->
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="footer-contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
+                        <p><i class="fas fa-envelope"></i> contact@xzeal.com</p>
+                        <p><i class="fas fa-phone-alt"></i> +91 90604 86548</p>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/919060486548" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 Xzeal. All Rights Reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END FOOTER -->
+    
+    <!-- Service Modal -->
+    <div class="modal" id="serviceModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="modal-header">
+                <div class="modal-title-section">
+                    <div class="modal-icon" id="modalIcon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div>
+                        <h2 class="modal-title" id="modalTitle">Service Title</h2>
+                        <p class="modal-subtitle" id="modalSubtitle">Service Category</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <p class="modal-description" id="modalDescription">
+                    Service description goes here...
+                </p>
+                
+                <div class="modal-features">
+                    <h3 style="margin-bottom: 20px; font-size: 18px;">Key Features</h3>
+                    <ul class="feature-list" id="featureList">
+                        <!-- Features will be dynamically added -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal()">Close</button>
+                <button class="modal-btn modal-btn-primary" onclick="startService()">Get Started</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal (NEW) -->
     <div class="lightbox-modal" id="lightboxModal">
         <div class="lightbox-content">
             <img src="https://picsum.photos/seed/gallery1/1200/800.jpg" alt="Gallery Image" class="lightbox-image" id="lightboxImage">
@@ -925,7 +803,7 @@
         </div>
     </div>
     
-    <!-- Video Modal -->
+    <!-- Video Modal (NEW) -->
     <div class="video-modal" id="videoModal">
         <div class="video-container">
             <button class="video-close" id="videoClose">
@@ -936,458 +814,8 @@
             </div>
         </div>
     </div>
-    
-    <script>
-        // Register GSAP plugins
-        gsap.registerPlugin(ScrollTrigger);
-        
-        // Portfolio Data
-        const portfolioData = {
-            social: [
-                {
-                    id: 1,
-                    title: "Instagram Campaign",
-                    description: "A highly successful Instagram campaign that increased brand visibility by 200% and generated over 50k engagements.",
-                    image: "https://picsum.photos/seed/instagram1/600/400.jpg"
-                },
-                {
-                    id: 2,
-                    title: "Creative Posts Series",
-                    description: "Innovative social media content series that went viral and reached over 1 million users across multiple platforms.",
-                    image: "https://picsum.photos/seed/posts1/600/400.jpg"
-                },
-                {
-                    id: 3,
-                    title: "Influencer Collaboration",
-                    description: "Strategic partnership with top influencers that resulted in a 150% increase in product sales and brand credibility.",
-                    image: "https://picsum.photos/seed/influencer1/600/400.jpg"
-                }
-            ],
-            websites: [
-                {
-                    id: 4,
-                    title: "E-commerce Redesign",
-                    description: "Complete website overhaul that improved user experience and increased conversion rate by 75%.",
-                    image: "https://picsum.photos/seed/ecommerce1/600/400.jpg"
-                },
-                {
-                    id: 5,
-                    title: "Corporate Website",
-                    description: "Modern corporate website design that enhanced brand perception and increased lead generation by 120%.",
-                    image: "https://picsum.photos/seed/corporate1/600/400.jpg"
-                },
-                {
-                    id: 6,
-                    title: "Landing Page Optimization",
-                    description: "A/B tested landing pages that improved ad campaign performance and reduced cost per acquisition by 40%.",
-                    image: "https://picsum.photos/seed/landing1/600/400.jpg"
-                }
-            ],
-            ads: [
-                {
-                    id: 7,
-                    title: "Promo Video Ad",
-                    description: "Compelling video advertisement that achieved a 5x return on ad spend and went viral with over 2 million views.",
-                    image: "https://picsum.photos/seed/videoad1/600/400.jpg"
-                },
-                {
-                    id: 8,
-                    title: "Google Ads Campaign",
-                    description: "Strategic PPC campaign that increased qualified leads by 180% while reducing cost per click by 35%.",
-                    image: "https://picsum.photos/seed/googleads1/600/400.jpg"
-                },
-                {
-                    id: 9,
-                    title: "Facebook Ads Series",
-                    description: "Targeted social media ads that boosted conversion rate by 120% and generated over 10k sales.",
-                    image: "https://picsum.photos/seed/fbads1/600/400.jpg"
-                }
-            ],
-            analytics: [
-                {
-                    id: 10,
-                    title: "Metrics Dashboard",
-                    description: "Custom analytics dashboard that provided actionable insights and improved marketing ROI by 85%.",
-                    image: "https://picsum.photos/seed/dashboard1/600/400.jpg"
-                },
-                {
-                    id: 11,
-                    title: "Customer Journey Analysis",
-                    description: "In-depth analysis of customer behavior that identified key touchpoints and improved retention rate by 60%.",
-                    image: "https://picsum.photos/seed/journey1/600/400.jpg"
-                },
-                {
-                    id: 12,
-                    title: "Conversion Optimization",
-                    description: "Data-driven optimization of conversion funnel that increased overall conversion rate by 95%.",
-                    image: "https://picsum.photos/seed/conversion1/600/400.jpg"
-                }
-            ]
-        };
-        
-        let currentCategory = 'social';
-        let currentSlideIndex = 0;
-        let slidesPerView = 1; // Always show 1 slide at a time for better mobile experience
-        let totalSlides = 0;
-        
-        // Initialize the portfolio page
-        document.addEventListener('DOMContentLoaded', function() {
-            initializePortfolio();
-            setupEventListeners();
-            initializeAnimations();
-        });
-        
-        // Initialize portfolio based on screen size
-        function initializePortfolio() {
-            updateSlidesPerView();
-            renderPortfolio(currentCategory);
-            updateSlider();
-        }
-        
-        // Update slides per view based on screen size
-        function updateSlidesPerView() {
-            // Always show 1 slide at a time for better mobile experience
-            slidesPerView = 1;
-        }
-        
-        // Render portfolio based on category
-        function renderPortfolio(category) {
-            const sliderContainer = document.getElementById('sliderContainer');
-            sliderContainer.innerHTML = '';
-            
-            const projects = portfolioData[category];
-            totalSlides = projects.length;
-            
-            projects.forEach(project => {
-                const slide = createProjectSlide(project);
-                sliderContainer.appendChild(slide);
-            });
-            
-            renderPagination();
-        }
-        
-        // Create project slide
-        function createProjectSlide(project) {
-            const slide = document.createElement('div');
-            slide.className = 'project-card';
-            
-            slide.innerHTML = `
-                <div class="project-image">
-                    <img src="${project.image}" alt="${project.title}">
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">${project.title}</h3>
-                    <p class="project-description">${project.description}</p>
-                    <a href="#" class="project-cta">View Case Study</a>
-                </div>
-            `;
-            
-            return slide;
-        }
-        
-        // Render pagination dots
-        function renderPagination() {
-            const pagination = document.getElementById('sliderPagination');
-            pagination.innerHTML = '';
-            
-            const totalPages = Math.ceil(totalSlides / slidesPerView);
-            
-            for (let i = 0; i < totalPages; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'pagination-dot';
-                
-                if (i === currentSlideIndex) {
-                    dot.classList.add('active');
-                }
-                
-                dot.addEventListener('click', () => {
-                    currentSlideIndex = i;
-                    updateSlider();
-                });
-                
-                pagination.appendChild(dot);
-            }
-        }
-        
-        // Update slider position - Fixed for mobile
-        function updateSlider() {
-            const sliderContainer = document.getElementById('sliderContainer');
-            // Fixed calculation for mobile - move by full slide width
-            const offset = currentSlideIndex * 100;
-            
-            sliderContainer.style.transform = `translateX(-${offset}%)`;
-            
-            // Update pagination dots
-            const dots = document.querySelectorAll('.pagination-dot');
-            dots.forEach((dot, index) => {
-                if (index === currentSlideIndex) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-        }
-        
-        // Setup event listeners
-        function setupEventListeners() {
-            // Filter tabs
-            const filterTabs = document.querySelectorAll('.filter-tab');
-            filterTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Update active tab
-                    filterTabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    
-                    // Update current category and render portfolio
-                    currentCategory = tab.getAttribute('data-filter');
-                    currentSlideIndex = 0;
-                    renderPortfolio(currentCategory);
-                    updateSlider();
-                });
-            });
-            
-            // Slider navigation
-            const prevArrow = document.getElementById('prevArrow');
-            const nextArrow = document.getElementById('nextArrow');
-            
-            prevArrow.addEventListener('click', () => {
-                if (currentSlideIndex > 0) {
-                    currentSlideIndex--;
-                    updateSlider();
-                }
-            });
-            
-            nextArrow.addEventListener('click', () => {
-                const maxIndex = Math.ceil(totalSlides / slidesPerView) - 1;
-                if (currentSlideIndex < maxIndex) {
-                    currentSlideIndex++;
-                    updateSlider();
-                }
-            });
-            
-            // Touch events for mobile swipe
-            let touchStartX = 0;
-            let touchEndX = 0;
-            
-            const slider = document.querySelector('.portfolio-slider');
-            
-            slider.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-            
-            slider.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            });
-            
-            function handleSwipe() {
-                if (touchEndX < touchStartX - 50) {
-                    // Swipe left - next slide
-                    const maxIndex = Math.ceil(totalSlides / slidesPerView) - 1;
-                    if (currentSlideIndex < maxIndex) {
-                        currentSlideIndex++;
-                        updateSlider();
-                    }
-                }
-                
-                if (touchEndX > touchStartX + 50) {
-                    // Swipe right - previous slide
-                    if (currentSlideIndex > 0) {
-                        currentSlideIndex--;
-                        updateSlider();
-                    }
-                }
-            }
-            
-            // Lightbox modal
-            const lightboxCard = document.getElementById('lightboxCard');
-            const lightboxModal = document.getElementById('lightboxModal');
-            const lightboxClose = document.getElementById('lightboxClose');
-            const lightboxImage = document.getElementById('lightboxImage');
-            
-            lightboxCard.addEventListener('click', () => {
-                lightboxModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-            
-            lightboxClose.addEventListener('click', () => {
-                lightboxModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-            
-            lightboxModal.addEventListener('click', (e) => {
-                if (e.target === lightboxModal) {
-                    lightboxModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-            
-            // Video modal
-            const videoCard = document.getElementById('videoCard');
-            const videoModal = document.getElementById('videoModal');
-            const videoClose = document.getElementById('videoClose');
-            
-            videoCard.addEventListener('click', () => {
-                videoModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-            
-            videoClose.addEventListener('click', () => {
-                videoModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-                
-                // Stop video playback
-                const iframe = videoModal.querySelector('iframe');
-                const src = iframe.getAttribute('src');
-                iframe.setAttribute('src', src);
-            });
-            
-            videoModal.addEventListener('click', (e) => {
-                if (e.target === videoModal) {
-                    videoModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                    
-                    // Stop video playback
-                    const iframe = videoModal.querySelector('iframe');
-                    const src = iframe.getAttribute('src');
-                    iframe.setAttribute('src', src);
-                }
-            });
-            
-            // Window resize
-            window.addEventListener('resize', () => {
-                updateSlidesPerView();
-                renderPagination();
-                updateSlider();
-            });
-        }
-        
-        // Initialize animations
-        function initializeAnimations() {
-            // Set initial states
-            gsap.set(".portfolio-title", { opacity: 0, y: 50 });
-            gsap.set(".portfolio-subtitle", { opacity: 0, y: 30 });
-            gsap.set(".filter-tab", { opacity: 0, y: 20 });
-            gsap.set(".project-card", { opacity: 0, y: 50, scale: 0.9 });
-            gsap.set(".lightbox-card, .video-card, .stats-card", { opacity: 0, y: 50, scale: 0.9 });
-            
-            // Portfolio header animation
-            gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".portfolio-section",
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
-                }
-            })
-            .to(".portfolio-title", { opacity: 1, y: 0, duration: 1, ease: "power2.out" })
-            .to(".portfolio-subtitle", { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, "-=0.7")
-            .to(".filter-tab", { 
-                opacity: 1, 
-                y: 0, 
-                duration: 0.8, 
-                stagger: 0.1, 
-                ease: "power2.out" 
-            }, "-=0.5")
-            .to(".project-card", { 
-                opacity: 1, 
-                y: 0, 
-                scale: 1, 
-                duration: 0.8, 
-                stagger: 0.1, 
-                ease: "back.out(1.7)" 
-            }, "-=0.3");
-            
-            // Lower section animation
-            gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".lower-section",
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
-                }
-            })
-            .to(".lightbox-card, .video-card, .stats-card", { 
-                opacity: 1, 
-                y: 0, 
-                scale: 1, 
-                duration: 0.8, 
-                stagger: 0.2, 
-                ease: "back.out(1.7)" 
-            });
-            
-            // Floating elements animation
-            gsap.to(".float-1", {
-                y: -30,
-                duration: 4,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
-            });
-            
-            gsap.to(".float-2", {
-                y: -20,
-                duration: 3,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
-            });
-            
-            gsap.to(".float-3", {
-                y: -25,
-                duration: 3.5,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
-            });
-            
-            gsap.to(".float-4", {
-                y: -35,
-                duration: 4.5,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
-            });
-            
-            // Parallax effect on mouse move (desktop only)
-            if (window.innerWidth > 768) {
-                document.addEventListener("mousemove", (e) => {
-                    const x = e.clientX / window.innerWidth;
-                    const y = e.clientY / window.innerHeight;
-                    
-                    // Floating elements parallax
-                    gsap.to(".float-1", {
-                        x: (x - 0.5) * 30,
-                        y: (y - 0.5) * 30,
-                        rotation: 45 + (x - 0.5) * 20,
-                        duration: 1.5,
-                        ease: "power2.out"
-                    });
-                    
-                    gsap.to(".float-2", {
-                        x: (x - 0.5) * 25,
-                        y: (y - 0.5) * 25,
-                        rotation: -30 + (y - 0.5) * 20,
-                        duration: 1.5,
-                        ease: "power2.out"
-                    });
-                    
-                    gsap.to(".float-3", {
-                        x: (x - 0.5) * 35,
-                        y: (y - 0.5) * 35,
-                        rotation: 15 + (x - 0.5) * 15,
-                        duration: 1.5,
-                        ease: "power2.out"
-                    });
-                    
-                    gsap.to(".float-4", {
-                        x: (x - 0.5) * 28,
-                        y: (y - 0.5) * 28,
-                        rotation: -45 + (y - 0.5) * 25,
-                        duration: 1.5,
-                        ease: "power2.out"
-                    });
-                });
-            }
-        }
-    </script>
+
+    <!-- Custom JavaScript -->
+    <script src="main.js"></script>
 </body>
 </html>
